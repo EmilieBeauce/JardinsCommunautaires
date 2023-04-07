@@ -52,11 +52,9 @@ namespace TP2_14E_A2022.Data.Entites
         {
             _prenom = prenom;
             _nom = nom;
-            _courriel = courriel;
+            _courriel = courriel; ;
             _motDePasse = motDePasse;
         }
         #endregion
-
-
     }
 }

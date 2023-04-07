@@ -8,7 +8,7 @@ using MongoDB.Driver;
 
 namespace TP2_14E_A2022.Data.GestionsBD
 {
-    public class DalConnexion
+    public class DALConnexion
     {
         private static MongoClient mongoDBClient;
         private static MongoClient OuvrirConnexion()

@@ -16,27 +16,27 @@ namespace TP2_14E_A2022.Data.GestionsBD
 
         public DAL()
         {
-            mongoDBClient = DalConnexion.GetConnexion();
+            mongoDBClient = DALConnexion.GetConnexion();
         }
 
-        public List<Membre> GetMembres()
+        public List<Gestionnaire> GetGestionnaires()
         {
-            var membres = new List<Membre>();
+            var gestionnaires = new List<Gestionnaire>();
 
             try
             {
                 IMongoDatabase db = mongoDBClient.GetDatabase("TP2DB");
-                membres = db.GetCollection<Membre>("Membres").Aggregate().ToList();
+                gestionnaires = db.GetCollection<Gestionnaire>("Gestionnaires").Aggregate().ToList();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Impossible de se connecter à la base de données " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
-            return membres;
+            return gestionnaires;
         }
 
-        private MongoClient OuvrirConnexion()
+        public MongoClient OuvrirConnexion()
         {
             MongoClient dbClient = null;
             try

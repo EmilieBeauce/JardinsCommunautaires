@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
 using TP2_14E_A2022.Data.GestionsBD;
 
@@ -23,10 +24,9 @@ namespace TP2_14E_A2022.Pages
     /// </summary>
     public partial class PageConnexion
     {
-        private PageConnexionBD pageConnexionBD;
+        private readonly PageConnexionBD pageConnexionBD = new PageConnexionBD();
         public PageConnexion()
         {
-            //DAL dal = new DAL()
             InitializeComponent();
             pageConnexionBD = new PageConnexionBD();
 
@@ -35,15 +35,15 @@ namespace TP2_14E_A2022.Pages
         {
             string courriel = courrielTextBox.Text;
             string motDePasse = mdpPasswordBox.Password;
-
-            // Vérifier les informations de connexion
+         
+            Console.WriteLine("motDePasse et courriel",motDePasse);
             bool estConnecte = pageConnexionBD.SeConnecter(courriel, motDePasse);
 
             if (estConnecte)
             {
-                // Rediriger l'utilisateur vers la page de menu
                 PageMenu pageMenu = new PageMenu();
                 this.NavigationService.Navigate(pageMenu);
+             
             }
             else
             {

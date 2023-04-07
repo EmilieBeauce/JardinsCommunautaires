@@ -31,16 +31,23 @@ namespace TP2_14E_A2022.Data.Gestions
         public bool SeConnecter(string prenom, string nom, string courriel, string motDePasse)
         {
            
-            Gestionnaire gestionnaire = gestionnaires.Find(g => g.Courriel == courriel);
-
-            if (gestionnaire != null && gestionnaire.MotDePasse == motDePasse)
+            try
             {
-                return true; 
+                Gestionnaire gestionnaire = gestionnaires.Find(g => g.Courriel == courriel);
+                if (gestionnaire != null && gestionnaire.MotDePasse == motDePasse)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return false; 
+                throw new Exception("Une erreur s'est produite lors de la recherche du gestionnaire.", ex);
             }
+          
         }
     }
 }
