@@ -36,8 +36,7 @@ namespace TP2_14E_A2022.Pages
             string courriel = courrielTextBox.Text;
             string motDePasse = mdpPasswordBox.Password;
          
-            Console.WriteLine("motDePasse et courriel",motDePasse);
-            bool estConnecte = pageConnexionBD.SeConnecter(courriel, motDePasse);
+            bool estConnecte = pageConnexionBD.ValiderSiConnexionFonctionne(courriel, motDePasse);
 
             if (estConnecte)
             {

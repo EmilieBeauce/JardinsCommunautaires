@@ -5,36 +5,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP2_14E_A2022.Data.Entites;
+using TP2_14E_A2022.Pages;
+using TP2_14E_A2022.Data.GestionsBD;
 
 namespace TP2_14E_A2022.Data.Gestions
 {
     public class GestionConnexion
     {
+        public PageConnexionBD pageConnexionBD;
         private List<Gestionnaire> gestionnaires; 
 
         public GestionConnexion()
         {
-            gestionnaires = new List<Gestionnaire>();
+            pageConnexionBD = new PageConnexionBD();
+            gestionnaires = pageConnexionBD.GetGestionnaires();
         }
 
-        public void CreerCompte(ObjectId id, string prenom, string nom, string courriel, string motDePasse)
+        public Gestionnaire CreerCompteGestionnaire( string prenom, string nom, string courriel, string motDePasse)
         {
             
             if (gestionnaires.Exists(g => g.Courriel == courriel))
             {
-                throw new Exception("Un compte avec ce nom et prénom existe déjà.");
+                throw new Exception("Un compte avec ce courriel existe déjà.");
             }
-
            
-            gestionnaires.Add(new Gestionnaire(id, prenom, nom, courriel, motDePasse));
+            gestionnaires.Add(new Gestionnaire(prenom, nom, courriel, motDePasse));
+            return gestionnaires.Last();
         }
 
-        public bool SeConnecter(string courriel, string motDePasse)
+        public bool ValiderSiDonneesConnexionConcordes(string courriel, string motDePasse)
         {
            
             try
             {
-                Gestionnaire gestionnaire = gestionnaires.Find(g => g.Courriel == courriel);
+                Gestionnaire gestionnaire = gestionnaires.FirstOrDefault(g => g.Courriel == courriel);
                 if (gestionnaire != null && gestionnaire.MotDePasse == motDePasse)
                 {
                     return true;
