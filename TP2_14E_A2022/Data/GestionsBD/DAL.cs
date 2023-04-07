@@ -10,6 +10,7 @@ using TP2_14E_A2022.Data.Entites;
 
 namespace TP2_14E_A2022.Data.GestionsBD
 {
+    
     public class DAL
     {
         private const string CHAINE_CONNEXION = "mongodb://localhost:27017/TP2DB";
@@ -20,22 +21,11 @@ namespace TP2_14E_A2022.Data.GestionsBD
         {
             mongoDBClient = OuvrirConnexion();
         }
-
-        public List<Gestionnaire> GetGestionnaires()
+        /** get la data base mettre dans une variable db */
+      public IMongoDatabase GetDatabase()
         {
-            var gestionnaires = new List<Gestionnaire>();
-
-            try
-            {
-                IMongoDatabase db = mongoDBClient.GetDatabase(NOM_BASE_DE_DONNEES);
-                gestionnaires = db.GetCollection<Gestionnaire>("Gestionnaires").Aggregate().ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Impossible de se connecter à la base de données " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            }
-            return gestionnaires;
+            IMongoDatabase db = mongoDBClient.GetDatabase(NOM_BASE_DE_DONNEES);
+            return db;
         }
 
         public static MongoClient OuvrirConnexion()

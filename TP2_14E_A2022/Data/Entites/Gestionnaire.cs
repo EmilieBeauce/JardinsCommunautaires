@@ -11,7 +11,7 @@ namespace TP2_14E_A2022.Data.Entites
     public class Gestionnaire
     {
         #region Attributs
-        private ObjectId _id;
+        private ObjectId? _id;
         private string _prenom;
         private string _nom;
         private string _courriel;
@@ -19,7 +19,7 @@ namespace TP2_14E_A2022.Data.Entites
         #endregion
 
         #region Propriétés
-        public ObjectId Id
+        public ObjectId? Id
         {
             get { return _id; }
             set { _id = value; }
@@ -49,9 +49,8 @@ namespace TP2_14E_A2022.Data.Entites
         #region Constructeurs
         public Gestionnaire() { }
 
-        public Gestionnaire(ObjectId id, string prenom, string nom, string courriel, string motDePasse)
+        public Gestionnaire(string prenom, string nom, string courriel, string motDePasse)
         {
-            Id = id;
             Prenom = prenom;
             Nom = nom;
             Courriel = courriel; ;
