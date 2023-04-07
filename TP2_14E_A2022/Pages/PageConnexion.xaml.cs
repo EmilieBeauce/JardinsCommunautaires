@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TP214E.Data;
+using TP2_14E_A2022.Data.Gestions;
+using TP2_14E_A2022.Data.GestionsBD;
+
 
 namespace TP2_14E_A2022.Pages
 {
@@ -31,10 +33,23 @@ namespace TP2_14E_A2022.Pages
         }
         private void BoutonConnexion_Click(object sender, RoutedEventArgs e)
         {
-            PageMenu pageMenu = new PageMenu();
+            string prenom = TextBoxPrenom.Text;
+            string nom = TextBoxNom.Text;
+            string motDePasse = PasswordBoxMotDePasse.Password;
 
-            this.NavigationService.Navigate(pageMenu);
+            // Vérifier les informations de connexion
+            bool estConnecte = dal.GestionConnexion.SeConnecter(prenom, nom, motDePasse);
 
+            if (estConnecte)
+            {
+                // Rediriger l'utilisateur vers la page de menu
+                PageMenu pageMenu = new PageMenu();
+                this.NavigationService.Navigate(pageMenu);
+            }
+            else
+            {
+                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.");
+            }
         }
 
     }
