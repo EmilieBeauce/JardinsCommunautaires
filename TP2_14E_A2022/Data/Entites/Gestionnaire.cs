@@ -12,6 +12,7 @@ namespace TP2_14E_A2022.Data.Entites
         #region Attributs
         private string _prenom;
         private string _nom;
+        private string _courriel;
         private string _motDePasse;
         #endregion
 
@@ -26,6 +27,11 @@ namespace TP2_14E_A2022.Data.Entites
             get { return _nom; }
             set { _nom = value; }
         }
+        public string Courriel
+        {
+            get { return _courriel; }
+            set { _courriel = value; }
+        }
         public string MotDePasse
         {
             get { return _motDePasse; }
@@ -38,13 +44,15 @@ namespace TP2_14E_A2022.Data.Entites
         {
             _prenom = "";
             _nom = "";
+            _courriel = "";
             _motDePasse = "";
         }
 
-        public Gestionnaire(string prenom, string nom, string motDePasse)
+        public Gestionnaire(string prenom, string nom, string courriel, string motDePasse)
         {
             _prenom = prenom;
             _nom = nom;
+            _courriel = courriel;
             _motDePasse = motDePasse;
         }
         #endregion

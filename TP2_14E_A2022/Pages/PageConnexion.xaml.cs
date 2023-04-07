@@ -21,24 +21,23 @@ namespace TP2_14E_A2022.Pages
     /// <summary>
     /// Logique d'interaction pour PageConnexion.xaml
     /// </summary>
-    public partial class PageConnexion : Page
+    public partial class PageConnexion
     {
-        private DAL dal;
+        private PageConnexionBD pageConnexionBD;
         public PageConnexion()
         {
             //DAL dal = new DAL()
             InitializeComponent();
-            dal = new DAL();
+            pageConnexionBD = new PageConnexionBD();
 
         }
         private void BoutonConnexion_Click(object sender, RoutedEventArgs e)
         {
-            string prenom = TextBoxPrenom.Text;
-            string nom = TextBoxNom.Text;
-            string motDePasse = PasswordBoxMotDePasse.Password;
+            string courriel = courrielTextBox.Text;
+            string motDePasse = mdpPasswordBox.Password;
 
             // Vérifier les informations de connexion
-            bool estConnecte = dal.GestionConnexion.SeConnecter(prenom, nom, motDePasse);
+            bool estConnecte = pageConnexionBD.SeConnecter(courriel, motDePasse);
 
             if (estConnecte)
             {

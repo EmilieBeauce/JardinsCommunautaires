@@ -6,16 +6,17 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Core;
-using TP2_14E_A2022.Data;
+using TP2_14E_A2022.Data.Entites;
 
 namespace TP2_14E_A2022.Data.GestionsBD
 {
     public class DAL
     {
-        public MongoClient mongoDBClient;
+        private MongoClient mongoDBClient;
+
         public DAL()
         {
-            mongoDBClient = OuvrirConnexion();
+            mongoDBClient = DalConnexion.GetConnexion();
         }
 
         public List<Membre> GetMembres()

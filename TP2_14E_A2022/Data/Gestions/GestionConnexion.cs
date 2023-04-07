@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TP2_14E_A2022.Data;
+using TP2_14E_A2022.Data.Entites;
 
 namespace TP2_14E_A2022.Data.Gestions
 {
@@ -16,22 +16,22 @@ namespace TP2_14E_A2022.Data.Gestions
             gestionnaires = new List<Gestionnaire>();
         }
 
-        public void CreerCompte(string prenom, string nom, string motDePasse)
+        public void CreerCompte(string prenom, string nom, string courriel, string motDePasse)
         {
             
-            if (gestionnaires.Exists(g => g.Prenom == prenom && g.Nom == nom))
+            if (gestionnaires.Exists(g => g.Courriel == courriel))
             {
                 throw new Exception("Un compte avec ce nom et prénom existe déjà.");
             }
 
            
-            gestionnaires.Add(new Gestionnaire(prenom, nom, motDePasse));
+            gestionnaires.Add(new Gestionnaire(prenom, nom, courriel, motDePasse));
         }
 
-        public bool SeConnecter(string prenom, string nom, string motDePasse)
+        public bool SeConnecter(string prenom, string nom, string courriel, string motDePasse)
         {
            
-            Gestionnaire gestionnaire = gestionnaires.Find(g => g.Prenom == prenom && g.Nom == nom);
+            Gestionnaire gestionnaire = gestionnaires.Find(g => g.Courriel == courriel);
 
             if (gestionnaire != null && gestionnaire.MotDePasse == motDePasse)
             {
