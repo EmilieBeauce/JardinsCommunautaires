@@ -17,6 +17,7 @@ namespace TP2_14E_A2022.Data.Gestions
 
         public GestionConnexion()
         {
+            pageConnexionBD = new PageConnexionBD();
             gestionnaires = pageConnexionBD.GetGestionnaires();
         }
 
@@ -32,12 +33,12 @@ namespace TP2_14E_A2022.Data.Gestions
             return gestionnaires.Last();
         }
 
-        public bool ValiderSiDonnesConnexionConcorde(string courriel, string motDePasse)
+        public bool ValiderSiDonneesConnexionConcordes(string courriel, string motDePasse)
         {
            
             try
             {
-                Gestionnaire gestionnaire = gestionnaires.Find(g => g.Courriel == courriel);
+                Gestionnaire gestionnaire = gestionnaires.FirstOrDefault(g => g.Courriel == courriel);
                 if (gestionnaire != null && gestionnaire.MotDePasse == motDePasse)
                 {
                     return true;

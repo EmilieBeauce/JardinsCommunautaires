@@ -13,11 +13,12 @@ namespace TP2_14E_A2022.Data.GestionsBD
     public class PageConnexionBD
     {
         private DAL dal;
-        private GestionConnexion gestionConnexion;
+        public GestionConnexion gestionConnexion;
 
         public PageConnexionBD()
         {
             dal = new DAL();
+            
         }
         public List<Gestionnaire> GetGestionnaires()
         {
@@ -38,10 +39,19 @@ namespace TP2_14E_A2022.Data.GestionsBD
         public bool ValiderSiConnexionFonctionne(string courriel, string motDePasse)
         {
             bool estConnecte = false;
+            if (courriel == null || motDePasse == null || courriel == "" || motDePasse == "")
+            {
+                MessageBox.Show("Veuillez entrer un courriel et un mot de passe", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return estConnecte;
+            }
 
+            if (gestionConnexion == null)
+            {
+                gestionConnexion = new GestionConnexion();
+            }
             try
             {
-                estConnecte = GetGestionnaires().Any(g => g.Courriel == courriel && g.MotDePasse == motDePasse);
+                estConnecte = gestionConnexion.ValiderSiDonneesConnexionConcordes(courriel, motDePasse);
             }
             catch (Exception ex)
             {
@@ -63,7 +73,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             {
                 MessageBox.Show("Erreur lors de la création du compte : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
     }
 }

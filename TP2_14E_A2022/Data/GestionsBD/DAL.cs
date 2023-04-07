@@ -20,6 +20,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
         public DAL()
         {
             mongoDBClient = OuvrirConnexion();
+
         }
         /** get la data base mettre dans une variable db */
       public IMongoDatabase GetDatabase()
