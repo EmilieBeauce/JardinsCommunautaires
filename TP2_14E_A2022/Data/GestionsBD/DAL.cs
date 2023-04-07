@@ -12,11 +12,13 @@ namespace TP2_14E_A2022.Data.GestionsBD
 {
     public class DAL
     {
-        private MongoClient mongoDBClient;
+        private const string CHAINE_CONNEXION = "mongodb://localhost:27017/TP2DB";
+        private const string NOM_BASE_DE_DONNEES = "TP2DB";
+        private readonly MongoClient mongoDBClient;
 
         public DAL()
         {
-            mongoDBClient = DALConnexion.GetConnexion();
+            mongoDBClient = OuvrirConnexion();
         }
 
         public List<Gestionnaire> GetGestionnaires()
@@ -25,7 +27,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
 
             try
             {
-                IMongoDatabase db = mongoDBClient.GetDatabase("TP2DB");
+                IMongoDatabase db = mongoDBClient.GetDatabase(NOM_BASE_DE_DONNEES);
                 gestionnaires = db.GetCollection<Gestionnaire>("Gestionnaires").Aggregate().ToList();
             }
             catch (Exception ex)
@@ -36,12 +38,12 @@ namespace TP2_14E_A2022.Data.GestionsBD
             return gestionnaires;
         }
 
-        public MongoClient OuvrirConnexion()
+        public static MongoClient OuvrirConnexion()
         {
             MongoClient dbClient = null;
             try
             {
-                dbClient = new MongoClient("mongodb://localhost:27017/TP2DB");
+                dbClient = new MongoClient(CHAINE_CONNEXION);
             }
             catch (Exception ex)
             {
