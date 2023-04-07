@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Serializers;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Serializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace TP2_14E_A2022.Data.Entites
     public class Gestionnaire
     {
         #region Attributs
+        private ObjectId _id;
         private string _prenom;
         private string _nom;
         private string _courriel;
@@ -17,6 +19,11 @@ namespace TP2_14E_A2022.Data.Entites
         #endregion
 
         #region Propriétés
+        public ObjectId Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
         public string Prenom
         {
             get { return _prenom; }
@@ -40,20 +47,15 @@ namespace TP2_14E_A2022.Data.Entites
         #endregion
 
         #region Constructeurs
-        public Gestionnaire()
-        {
-            _prenom = "";
-            _nom = "";
-            _courriel = "";
-            _motDePasse = "";
-        }
+        public Gestionnaire() { }
 
-        public Gestionnaire(string prenom, string nom, string courriel, string motDePasse)
+        public Gestionnaire(ObjectId id, string prenom, string nom, string courriel, string motDePasse)
         {
-            _prenom = prenom;
-            _nom = nom;
-            _courriel = courriel; ;
-            _motDePasse = motDePasse;
+            Id = id;
+            Prenom = prenom;
+            Nom = nom;
+            Courriel = courriel; ;
+            MotDePasse = motDePasse;
         }
         #endregion
     }

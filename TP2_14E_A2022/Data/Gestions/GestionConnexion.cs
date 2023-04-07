@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace TP2_14E_A2022.Data.Gestions
             gestionnaires = new List<Gestionnaire>();
         }
 
-        public void CreerCompte(string prenom, string nom, string courriel, string motDePasse)
+        public void CreerCompte(ObjectId id, string prenom, string nom, string courriel, string motDePasse)
         {
             
             if (gestionnaires.Exists(g => g.Courriel == courriel))
@@ -25,10 +26,10 @@ namespace TP2_14E_A2022.Data.Gestions
             }
 
            
-            gestionnaires.Add(new Gestionnaire(prenom, nom, courriel, motDePasse));
+            gestionnaires.Add(new Gestionnaire(id, prenom, nom, courriel, motDePasse));
         }
 
-        public bool SeConnecter(string prenom, string nom, string courriel, string motDePasse)
+        public bool SeConnecter(string courriel, string motDePasse)
         {
            
             try
