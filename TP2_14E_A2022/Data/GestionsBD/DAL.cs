@@ -6,40 +6,44 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Core;
-using TP2_14E_A2022.Data;
+using TP2_14E_A2022.Data.Entites;
 
-namespace TP214E.Data
+namespace TP2_14E_A2022.Data.GestionsBD
 {
     public class DAL
     {
-        public MongoClient mongoDBClient;
+        private MongoClient mongoDBClient;
+
         public DAL()
         {
-            mongoDBClient = OuvrirConnexion();
+            mongoDBClient = DALConnexion.GetConnexion();
         }
 
-        public List<Membre> GetMembres()
+        public List<Gestionnaire> GetGestionnaires()
         {
-            var membres = new List<Membre>();
+            var gestionnaires = new List<Gestionnaire>();
 
             try
             {
                 IMongoDatabase db = mongoDBClient.GetDatabase("TP2DB");
-                membres = db.GetCollection<Membre>("Membres").Aggregate().ToList();
-            }catch (Exception ex)
+                gestionnaires = db.GetCollection<Gestionnaire>("Gestionnaires").Aggregate().ToList();
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Impossible de se connecter à la base de données " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
-            return membres;
+            return gestionnaires;
         }
 
-        private MongoClient OuvrirConnexion()
+        public MongoClient OuvrirConnexion()
         {
             MongoClient dbClient = null;
-            try{
+            try
+            {
                 dbClient = new MongoClient("mongodb://localhost:27017/TP2DB");
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Impossible de se connecter à la base de données " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }

@@ -17,7 +17,7 @@
             <TextBox  Width="250"  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="courrielTextBox" Margin="5" BorderBrush="Black"/>
             
             <TextBlock IsHitTestVisible="False" Text="Mot de passe" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-160,0,0,5" Foreground="#FF009019"></TextBlock>
-            <TextBox  Width="250"  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="mdpTextBox" Margin="5" BorderBrush="Black"/>
+            <PasswordBox  Width="250"  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="mdpPasswordBox" Margin="5" BorderBrush="Black"/>
             
             <Button Style="{StaticResource boutonBleu}" MinWidth="100" MaxWidth="200" Click="BoutonConnexion_Click" Margin="5,20,5,5">Se connecter</Button>
             <Label HorizontalAlignment="Center" Margin="0,20,0,-10">Pas de compte ?</Label>

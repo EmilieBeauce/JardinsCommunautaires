@@ -12,29 +12,43 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TP214E.Data;
+using TP2_14E_A2022.Data.Entites;
+using TP2_14E_A2022.Data.Gestions;
+using TP2_14E_A2022.Data.GestionsBD;
+
 
 namespace TP2_14E_A2022.Pages
 {
     /// <summary>
     /// Logique d'interaction pour PageConnexion.xaml
     /// </summary>
-    public partial class PageConnexion : Page
+    public partial class PageConnexion
     {
-        private DAL dal;
+        private readonly PageConnexionBD pageConnexionBD = new PageConnexionBD();
         public PageConnexion()
         {
-            //DAL dal = new DAL()
             InitializeComponent();
-            dal = new DAL();
+            pageConnexionBD = new PageConnexionBD();
 
         }
         private void BoutonConnexion_Click(object sender, RoutedEventArgs e)
         {
-            PageMenu pageMenu = new PageMenu();
+            string courriel = courrielTextBox.Text;
+            string motDePasse = mdpPasswordBox.Password;
+         
+            Console.WriteLine("motDePasse et courriel",motDePasse);
+            bool estConnecte = pageConnexionBD.SeConnecter(courriel, motDePasse);
 
-            this.NavigationService.Navigate(pageMenu);
-
+            if (estConnecte)
+            {
+                PageMenu pageMenu = new PageMenu();
+                this.NavigationService.Navigate(pageMenu);
+             
+            }
+            else
+            {
+                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.");
+            }
         }
 
     }
