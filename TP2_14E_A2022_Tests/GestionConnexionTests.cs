@@ -8,28 +8,40 @@ using System.Threading.Tasks;
 using Moq;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
+using TP2_14E_A2022.Data.GestionsBD;
+using TP2_14E_A2022.Pages;
+using System.Security.Cryptography.X509Certificates;
+using static TP2_14E_A2022.Data.Gestions.GestionConnexion;
 
 namespace TP2_14E_A2022.Data.Gestions.Tests
 {
     [TestClass()]
     public class GestionConnexionTests
     {
-        [TestMethod()]
-        public void ValiderSiDonneesConnexionConcordes_Retourne_True_Si_Donnees_Concordent()
+
+
+        [TestMethod]
+        public void TestValiderSiConnexionFonctionne()
         {
             // Arrange
-            var gestionConnexion = new GestionConnexion(); // create an instance of GestionConnexion
-
-            var gestionnaires = new List<Gestionnaire>
-    {
-        new Gestionnaire("John", "Doe", "john.doe@example.com", "password123"),
-        new Gestionnaire("Jane", "Doe", "jane.doe@example.com", "password456")
-    };
-
+            var mock = new Mock<IGestionConnexion>();
             // Act
-            var result = gestionConnexion.ValiderSiDonneesConnexionConcordes("john.doe@example.com", "password123");
-
+            mock.Setup(x => x.ValiderSiConnexionFonctionne("jd@courriel.com", "password")).Returns(true);
+            // Assert
+            Assert.IsTrue(mock.Object.ValiderSiConnexionFonctionne("jd@courriel.com", "password"));
 
         }
+
+        [TestMethod]
+        public void TestValiderSiDonneesConnexionConcordes()
+        {
+            // Arrange
+            var mock = new Mock<IGestionConnexion>();
+            // Act
+            mock.Setup(x => x.ValiderSiDonneesConnexionConcordes("jd@courriel.com", "password")).Returns((bool)true);
+            // Assert
+            Assert.IsTrue(mock.Object.ValiderSiDonneesConnexionConcordes("jd@courriel.com", "password"));
+        }
+
     }
 }

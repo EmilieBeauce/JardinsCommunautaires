@@ -21,9 +21,12 @@ namespace TP2_14E_A2022.Pages
     /// </summary>
     public partial class PageMenu : Page
     {
-        public PageMenu()
+        public string nomCompletGestionnaire;
+        public PageMenu(string nomCompletGestionnaire)
         {
             InitializeComponent();
+            this.nomCompletGestionnaire = nomCompletGestionnaire; 
+            nomCompletTextBlock.Text = nomCompletGestionnaire;
         }
 
         private void BoutonDeconnexion_Click(object sender, MouseButtonEventArgs e)
@@ -32,5 +35,11 @@ namespace TP2_14E_A2022.Pages
 
             this.NavigationService.Navigate(pageConnexion);
         }
+
+       
+
+
+
+       
     }
 }
