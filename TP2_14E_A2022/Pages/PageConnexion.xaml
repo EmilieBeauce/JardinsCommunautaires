@@ -22,9 +22,8 @@
             <Button Style="{StaticResource boutonBleu}" MinWidth="100" MaxWidth="200" Click="BoutonConnexion_Click" Margin="5,20,5,5">Se connecter</Button>
             <Label HorizontalAlignment="Center" Margin="0,20,0,-10">Pas de compte ?</Label>
             <Label HorizontalAlignment="Center" FontSize="16">
-                <TextBlock Style="{DynamicResource overLabel}">S'inscrire</TextBlock>
+                <TextBlock Style="{DynamicResource overLabel}" MouseLeftButtonUp="BoutonSinscrire_Click">S'inscrire</TextBlock>
             </Label>
-
         </StackPanel>
     </Grid>
 </Page>

@@ -24,7 +24,7 @@ namespace TP2_14E_A2022.Pages
     /// </summary>
     public partial class PageConnexion
     {
-        private readonly PageConnexionBD pageConnexionBD = new PageConnexionBD();
+        private readonly PageConnexionBD pageConnexionBD ;
         public PageConnexion()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace TP2_14E_A2022.Pages
 
             if (estConnecte)
             {
-                string nomCompletGestionnaire = pageConnexionBD.getPrenomNomGestionnaire(courriel);
+                string nomCompletGestionnaire = pageConnexionBD.GetPrenomNomGestionnaire(courriel);
                 PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
                 this.NavigationService.Navigate(pageMenu);
             }
@@ -49,6 +49,19 @@ namespace TP2_14E_A2022.Pages
                 MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.");
             }
         }
+
+        private void BoutonCreerCompte_Click(object sender, RoutedEventArgs e)
+        {
+            PageCreerCompte pageCreerCompte = new PageCreerCompte();
+            this.NavigationService.Navigate(pageCreerCompte);
+        }
+
+        private void BoutonSinscrire_Click(object sender, RoutedEventArgs e)
+        {
+            PageCreerCompte pageCreerCompte = new PageCreerCompte();
+            this.NavigationService.Navigate(pageCreerCompte);
+        }
+
 
     }
 }
