@@ -13,7 +13,7 @@ namespace TP2_14E_A2022.Data.Gestions
     public class GestionConnexion
     {
         public PageConnexionBD pageConnexionBD;
-        private List<Gestionnaire> gestionnaires; 
+        public List<Gestionnaire> gestionnaires; 
 
         public GestionConnexion()
         {

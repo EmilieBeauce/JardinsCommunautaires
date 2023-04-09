@@ -10,7 +10,11 @@ using TP2_14E_A2022.Data.Gestions;
 
 namespace TP2_14E_A2022.Data.GestionsBD
 {
-    public class PageConnexionBD
+    public interface IPageConnexionBD
+    {
+        List<Gestionnaire> GetGestionnaires();
+    }
+    public class PageConnexionBD : IPageConnexionBD
     {
         private DAL dal;
         public GestionConnexion gestionConnexion;
@@ -20,7 +24,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             dal = new DAL();
             
         }
-        public List<Gestionnaire> GetGestionnaires()
+        public virtual List<Gestionnaire> GetGestionnaires()
         {
             var gestionnaires = new List<Gestionnaire>();
 
