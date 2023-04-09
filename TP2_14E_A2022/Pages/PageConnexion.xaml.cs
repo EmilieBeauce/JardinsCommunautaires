@@ -40,9 +40,9 @@ namespace TP2_14E_A2022.Pages
 
             if (estConnecte)
             {
-                PageMenu pageMenu = new PageMenu();
+                string nomCompletGestionnaire = pageConnexionBD.getPrenomNomGestionnaire(courriel);
+                PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
                 this.NavigationService.Navigate(pageMenu);
-             
             }
             else
             {

@@ -13,6 +13,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
     public interface IPageConnexionBD
     {
         List<Gestionnaire> GetGestionnaires();
+        bool ValiderSiConnexionFonctionne(string courriel, string motDePasse);
     }
     public class PageConnexionBD : IPageConnexionBD
     {
@@ -51,7 +52,8 @@ namespace TP2_14E_A2022.Data.GestionsBD
 
             if (gestionConnexion == null)
             {
-                gestionConnexion = new GestionConnexion();
+                PageConnexionBD pageConnexionBD = new PageConnexionBD();
+                gestionConnexion = new GestionConnexion(pageConnexionBD);
             }
             try
             {
@@ -63,6 +65,13 @@ namespace TP2_14E_A2022.Data.GestionsBD
             }
 
             return estConnecte;
+        }
+
+        public string getPrenomNomGestionnaire(string courriel)
+        {
+            var db = dal.GetDatabase();
+            var gestionnaire = db.GetCollection<Gestionnaire>("Gestionnaires").Find(g => g.Courriel == courriel).FirstOrDefault();
+            return gestionnaire.Prenom + " " + gestionnaire.Nom;
         }
 
         public void CreerCompteGestionnaire(string prenom, string nom, string courriel, string motDePasse)

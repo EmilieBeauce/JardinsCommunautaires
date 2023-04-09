@@ -10,7 +10,8 @@ using TP2_14E_A2022.Data.Entites;
 
 namespace TP2_14E_A2022.Data.GestionsBD
 {
-    
+  
+
     public class DAL
     {
         private const string CHAINE_CONNEXION = "mongodb://localhost:27017/TP2DB";
@@ -44,4 +45,6 @@ namespace TP2_14E_A2022.Data.GestionsBD
         }
 
     }
+
+   
 }

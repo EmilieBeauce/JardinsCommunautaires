@@ -22,10 +22,10 @@
 
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
 
-        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
+        <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
             <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
-                <Label FontSize="20" >Bonjour</Label>
-                <TextBlock Style="{DynamicResource overLabel}" FontSize="18" VerticalAlignment="Center"  >NomUsager</TextBlock>
+                <Label FontSize="15"  >Bonjour</Label>
+                <TextBlock x:Name="nomCompletTextBlock"  Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"  ></TextBlock>
             </StackPanel >
             <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click"   >Me déconnecter</TextBlock>
         </StackPanel >
