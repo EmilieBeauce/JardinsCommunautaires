@@ -21,26 +21,92 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
 
 
         [TestMethod]
-        public void TestValiderSiConnexionFonctionne()
+        public void TestValiderSiConnexionFonctionne_retourne_vrai_si_les_données_sont_exactes()
         {
             // Arrange
             var mock = new Mock<IGestionConnexion>();
+           
             // Act
             mock.Setup(x => x.ValiderSiConnexionFonctionne("jd@courriel.com", "password")).Returns(true);
+            
             // Assert
             Assert.IsTrue(mock.Object.ValiderSiConnexionFonctionne("jd@courriel.com", "password"));
 
         }
 
         [TestMethod]
-        public void TestValiderSiDonneesConnexionConcordes()
+        public void TestValiderSiConnexionFonctionne_retourne_faux_si_les_données_sont_incorrectes()
         {
             // Arrange
             var mock = new Mock<IGestionConnexion>();
+            
+            // Act
+            mock.Setup(x => x.ValiderSiConnexionFonctionne("jd@courriel.com", "password")).Returns(true);
+
+            // Assert
+            Assert.IsFalse(mock.Object.ValiderSiConnexionFonctionne("rd@courriel.com", "passworld"));
+        }
+
+        [TestMethod]
+        public void TestValiderSiDonneesConnexionConcordes_retourne_vrai_si_les_données_sont_exactes()
+        {
+            // Arrange
+            var mock = new Mock<IGestionConnexion>();
+            
             // Act
             mock.Setup(x => x.ValiderSiDonneesConnexionConcordes("jd@courriel.com", "password")).Returns((bool)true);
+            
             // Assert
             Assert.IsTrue(mock.Object.ValiderSiDonneesConnexionConcordes("jd@courriel.com", "password"));
+        }
+
+        //retourne faux si les données sont incorrectes
+
+        [TestMethod]
+        public void TestValiderSiDonneesConnexionConcordes_retourne_faux_si_les_données_sont_incorrectes()
+        {
+            // Arrange
+            var mock = new Mock<IGestionConnexion>();
+
+            // Act
+            mock.Setup(x => x.ValiderSiDonneesConnexionConcordes("jd@courriel.com", "password"));
+
+            // Assert
+            Assert.IsFalse(mock.Object.ValiderSiDonneesConnexionConcordes("rd@courriel.com", "passworld"));
+        }
+
+        [TestMethod]
+        public void TestCreerCompteGestionnaire_retourne_un_gestionnaire()
+        {
+            // Arrange
+            var mock = new Mock<IGestionConnexion>();
+            mock.Setup(x => x.CreerCompteGestionnaire("John", "Doe", "jd@courriel.com", "password"))
+                .Returns(new Gestionnaire { Prenom = "John", Nom = "Doe", Courriel = "jd@courriel.com", MotDePasse = "password" });
+
+            // Act
+            var result = mock.Object.CreerCompteGestionnaire("John", "Doe", "jd@courriel.com", "password");
+
+            // Assert 
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Prenom, "John");
+            Assert.AreEqual(result.Nom, "Doe");
+            Assert.AreEqual(result.Courriel, "jd@courriel.com");
+            Assert.AreEqual(result.MotDePasse, "password");
+        }
+
+        [TestMethod]
+        public void TestCreerCompteGestionnaire_retourne_null_si_les_données_sont_incorrectes()
+        {
+            // Arrange
+            var mock = new Mock<IGestionConnexion>();
+            mock.Setup(x => x.CreerCompteGestionnaire("John", "Doe", "jd@courriel.com", "password"))
+                .Returns(new Gestionnaire { Prenom = "John", Nom = "Doe", Courriel = "jd@courriel.com", MotDePasse = "password" });
+
+            // Act
+            var result = mock.Object.CreerCompteGestionnaire("John", "Doe", "jd@courriel.com", "");
+
+            // Assert
+            Assert.IsNull(result);
         }
 
     }
