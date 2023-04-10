@@ -40,8 +40,9 @@ namespace TP2_14E_A2022.Data.Gestions
             {
                 throw new Exception("Un compte avec ce courriel existe déjà.");
             }
-           
-            gestionnaires.Add(new Gestionnaire(prenom, nom, courriel, motDePasse));
+            
+            var objectId = ObjectId.GenerateNewId();
+            gestionnaires.Add(new Gestionnaire(objectId, prenom, nom, courriel, motDePasse));
             return gestionnaires.Last();
         }
 
@@ -50,11 +51,10 @@ namespace TP2_14E_A2022.Data.Gestions
             bool estConnecte = false;
             if (courriel == null || motDePasse == null || courriel == "" || motDePasse == "")
             {
-                MessageBox.Show("Veuillez entrer un courriel et un mot de passe", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                
                 return estConnecte;
             }
 
-           
             try
             {
                 estConnecte = ValiderSiDonneesConnexionConcordes(courriel, motDePasse);
@@ -62,7 +62,7 @@ namespace TP2_14E_A2022.Data.Gestions
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de la connexion : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            }           
 
             return estConnecte;
         }

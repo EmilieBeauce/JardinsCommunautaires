@@ -48,7 +48,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             bool estConnecte = false;
             if (courriel == null || motDePasse == null || courriel == "" || motDePasse == "")
             {
-                MessageBox.Show("Veuillez entrer un courriel et un mot de passe", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                
                 return estConnecte;
             }
 
@@ -91,6 +91,20 @@ namespace TP2_14E_A2022.Data.GestionsBD
             {
                 MessageBox.Show("Erreur lors de la création du compte : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
+            }
+        }
+
+        public bool ValiderSiCourrielExiste(string courriel)
+        {
+            var db = dal.GetDatabase();
+            var gestionnaire = db.GetCollection<Gestionnaire>("Gestionnaires").Find(g => g.Courriel == courriel).FirstOrDefault();
+            if (gestionnaire == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

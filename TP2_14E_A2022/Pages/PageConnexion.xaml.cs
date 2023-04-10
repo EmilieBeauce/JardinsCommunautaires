@@ -35,7 +35,8 @@ namespace TP2_14E_A2022.Pages
         {
             string courriel = courrielTextBox.Text;
             string motDePasse = mdpPasswordBox.Password;
-         
+          
+
             bool estConnecte = pageConnexionBD.ValiderSiConnexionFonctionne(courriel, motDePasse);
 
             if (estConnecte)
@@ -46,7 +47,23 @@ namespace TP2_14E_A2022.Pages
             }
             else
             {
-                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.");
+                if (string.IsNullOrWhiteSpace(courriel))
+                {
+                    courrielErreurTextBlock.Text = "Veuillez entrer votre adresse courriel.";
+                }
+                else
+                {
+                    courrielErreurTextBlock.Text = "";
+                }
+
+                if (string.IsNullOrWhiteSpace(motDePasse))
+                {
+                    motDePasseErreurTextBlock.Text = "Veuillez entrer votre mot de passe.";
+                }
+                else
+                {
+                    motDePasseErreurTextBlock.Text = "";
+                }
             }
         }
 
