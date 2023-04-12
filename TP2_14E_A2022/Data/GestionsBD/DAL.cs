@@ -35,6 +35,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             MongoClient dbClient = null;
             try
             {
+                Console.Write("succes here");
                 dbClient = new MongoClient(CHAINE_CONNEXION);
             }
             catch (Exception ex)

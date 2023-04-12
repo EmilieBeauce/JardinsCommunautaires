@@ -31,8 +31,6 @@ namespace TP2_14E_A2022.Data.Gestions
             gestionnaires = pageConnexionBD.GetGestionnaires();
         }
 
-  
-
         public Gestionnaire CreerCompteGestionnaire( string prenom, string nom, string courriel, string motDePasse)
         {
             
