@@ -49,8 +49,9 @@ namespace TP2_14E_A2022.Data.Entites
         #region Constructeurs
         public Gestionnaire() { }
 
-        public Gestionnaire(string prenom, string nom, string courriel, string motDePasse)
+        public Gestionnaire(ObjectId? id, string prenom, string nom, string courriel, string motDePasse)
         {
+            Id = id;
             Prenom = prenom;
             Nom = nom;
             Courriel = courriel; ;

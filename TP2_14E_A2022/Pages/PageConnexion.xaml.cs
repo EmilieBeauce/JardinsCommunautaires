@@ -24,7 +24,7 @@ namespace TP2_14E_A2022.Pages
     /// </summary>
     public partial class PageConnexion
     {
-        private readonly PageConnexionBD pageConnexionBD = new PageConnexionBD();
+        private readonly PageConnexionBD pageConnexionBD ;
         public PageConnexion()
         {
             InitializeComponent();
@@ -35,20 +35,50 @@ namespace TP2_14E_A2022.Pages
         {
             string courriel = courrielTextBox.Text;
             string motDePasse = mdpPasswordBox.Password;
-         
+          
+
             bool estConnecte = pageConnexionBD.ValiderSiConnexionFonctionne(courriel, motDePasse);
 
             if (estConnecte)
             {
-                string nomCompletGestionnaire = pageConnexionBD.getPrenomNomGestionnaire(courriel);
+                string nomCompletGestionnaire = pageConnexionBD.GetPrenomNomGestionnaire(courriel);
                 PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
                 this.NavigationService.Navigate(pageMenu);
             }
             else
             {
-                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.");
+                if (string.IsNullOrWhiteSpace(courriel))
+                {
+                    courrielErreurTextBlock.Text = "Veuillez entrer votre adresse courriel.";
+                }
+                else
+                {
+                    courrielErreurTextBlock.Text = "";
+                }
+
+                if (string.IsNullOrWhiteSpace(motDePasse))
+                {
+                    motDePasseErreurTextBlock.Text = "Veuillez entrer votre mot de passe.";
+                }
+                else
+                {
+                    motDePasseErreurTextBlock.Text = "";
+                }
             }
         }
+
+        private void BoutonCreerCompte_Click(object sender, RoutedEventArgs e)
+        {
+            PageCreerCompte pageCreerCompte = new PageCreerCompte();
+            this.NavigationService.Navigate(pageCreerCompte);
+        }
+
+        private void BoutonSinscrire_Click(object sender, RoutedEventArgs e)
+        {
+            PageCreerCompte pageCreerCompte = new PageCreerCompte();
+            this.NavigationService.Navigate(pageCreerCompte);
+        }
+
 
     }
 }

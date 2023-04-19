@@ -35,11 +35,6 @@ namespace TP2_14E_A2022.Pages
 
             this.NavigationService.Navigate(pageConnexion);
         }
-
-       
-
-
-
        
     }
 }
