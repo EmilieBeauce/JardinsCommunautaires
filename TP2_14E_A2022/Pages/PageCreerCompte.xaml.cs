@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TP2_14E_A2022.Data.Gestions;
 using TP2_14E_A2022.Data.GestionsBD;
 
 namespace TP2_14E_A2022.Pages
@@ -22,12 +23,14 @@ namespace TP2_14E_A2022.Pages
     public partial class PageCreerCompte : Page
     {
         private PageConnexionBD pageConnexionBD = new PageConnexionBD();
+        private GestionConnexion gestionConnexion;
 
         public PageCreerCompte()
         {
             InitializeComponent();
             pageConnexionBD = new PageConnexionBD();
 
+            
         }
 
         private void BoutonCreerCompte_Click(object sender, RoutedEventArgs e)
@@ -37,63 +40,60 @@ namespace TP2_14E_A2022.Pages
             string courriel = courrielTextBox.Text;
             string motDePasse = mdpPasswordBox.Password;
             string confirmationMotDePasse = confirmationPasswordBox.Password;
+            bool estValide= false;
 
-
-            bool nomEstValide = false;
-            if (string.IsNullOrWhiteSpace(nom))
+            if (!gestionConnexion.NomEstValide(nom))
             {
                 nomErreurTextBlock.Text = "Veuillez entrer votre nom.";
-                nomEstValide = false;
+                estValide = false;
             }
-            else
-            {
-                nomEstValide = true;
-            }
-
-            bool prenomEstValide = false;
-            if (string.IsNullOrWhiteSpace(prenom))
+            else estValide = true;
+        
+        
+            if (!gestionConnexion.PrenomEstValide(prenom))
             {
                 prenomErreurTextBlock.Text = "Veuillez entrer votre prénom.";
-                prenomEstValide = false;
+                estValide = false;
             }
-            else
-            {
-                prenomEstValide = true;
-            }
+            else estValide = true;
 
-            bool courrielEstValide = false;
-            if (string.IsNullOrWhiteSpace(courriel))
+            if (gestionConnexion.CourrielEstVIde(courriel))
             {
                 courrielErreurTextBlock.Text = "Veuillez entrer votre adresse courriel.";
-                courrielEstValide = false;
+                estValide = false;
             }
-            else if (courriel.Contains("@") && courriel.Contains("."))
+            else if (!gestionConnexion.CourrielEstConforme(courriel) == true)
             {
-                courrielEstValide = true;
+                courrielErreurTextBlock.Text = "Cette adresse courriel n'est pas conforme devrait avoir un '@' ou un '.'.";
+                estValide = false;
             }
-         
-            else if (pageConnexionBD.ValiderSiCourrielExiste(courriel) == true)
+            else if (!gestionConnexion.CourrielEstConforme(courriel) == false)
             {
-                courrielErreurTextBlock.Text = "Cette adresse courriel est déjà utilisée.";
-                courrielEstValide = false;
+                courrielErreurTextBlock.Text = "Veuillez entrer un courriel qui n'est pas utilisé.";
+                estValide = false;
             }
-            else
-            {
-                courrielEstValide = false;
-            }
+            else estValide = true;
 
-            bool motDePasseEstValide = false;
-            if (string.IsNullOrWhiteSpace(motDePasse))
+            if (gestionConnexion.MotDePasseEstVide(motDePasse))
             {
                 mdpErreurTextBlock.Text = "Veuillez entrer votre mot de passe.";
-                motDePasseEstValide = false;
+                estValide = false;
             }
-            else
+            else if (gestionConnexion.MotDePasseEstConforme(motDePasse))
             {
-                motDePasseEstValide = true;
+                mdpErreurTextBlock.Text = "Veuillez avoir un mot de passe d'au moins 8 caractères.";
+                estValide = false;
             }
+            else estValide = true;
 
-            if (motDePasse == confirmationMotDePasse && nomEstValide && prenomEstValide && courrielEstValide)
+            if (!gestionConnexion.MotDePasseEstEgaleConfirmation(motDePasse, confirmationMotDePasse))
+            {
+                confirmationErreurTextBlock.Text = "Les deux mots de passe ne corresponde pas";
+                estValide = false;
+            }
+            else estValide = true;
+
+            if (estValide)
             {
                 PageConnexionBD pageConnexionBD = new PageConnexionBD();
                 bool estCree = pageConnexionBD.LoginBD(prenom, nom, courriel, motDePasse);
@@ -110,10 +110,8 @@ namespace TP2_14E_A2022.Pages
                     MessageBox.Show("Erreur lors de la création du compte.");
                 }
             }
-            else
-            {
-                confirmationErreurTextBlock.Text = "Les deux mots de passe ne corresponde pas";
-            }
+           
         }
+
     }
 }

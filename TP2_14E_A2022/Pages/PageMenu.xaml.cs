@@ -35,6 +35,11 @@ namespace TP2_14E_A2022.Pages
 
             this.NavigationService.Navigate(pageConnexion);
         }
-       
+
+        private void btnMembre_Click(object sender, RoutedEventArgs e)
+        {
+            PageMembre pageMembre = new PageMembre();
+            this.NavigationService.Navigate(pageMembre);
+        }
     }
 }
