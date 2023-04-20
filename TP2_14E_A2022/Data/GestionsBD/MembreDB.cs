@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             return membres;
         }
 
-        public bool AjouterMembre(string prenom, string nom, string? adresseCivique, string? idLot, string? idCotisation, bool payeCotisation)
+        public bool AjouterMembre(string prenom, string nom, ObjectId? adresseCivique, ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
         {
             try
             {
@@ -54,6 +55,21 @@ namespace TP2_14E_A2022.Data.GestionsBD
                 MessageBox.Show("Erreur lors de la création du compte : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+        }
+        /** voir le detail d'un membre */
+        public Membre GetMembre(ObjectId? idMembre)
+        {
+            Membre membre = new Membre();
+            try
+            {
+                var db = dal.GetDatabase();
+                membre = db.GetCollection<Membre>("Membres").Find(m => m.Id == idMembre).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la requête : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return membre;
         }
     }
 }

@@ -13,9 +13,9 @@ namespace TP2_14E_A2022.Data.Entites
         private ObjectId? _id;
         private string _prenom;
         private string _nom;
-        private string? _idAdresseCivique;
-        private string? _idLot;
-        private string? _idCotisation;
+        private ObjectId? _idAdresseCivique;
+        private ObjectId? _idLot;
+        private ObjectId? _idCotisation;
         private bool _payeCotisation;
         #endregion
 
@@ -35,17 +35,17 @@ namespace TP2_14E_A2022.Data.Entites
             get { return _nom; }
             set { _nom = value; }
         }
-        public string? IdAdresseCivique
+        public ObjectId? IdAdresseCivique
         {
             get { return _idAdresseCivique; }
             set { _idAdresseCivique = value; }
         }
-        public string? IdLot
+        public ObjectId? IdLot
         {
             get { return _idLot; }
             set { _idLot = value; }
         }
-        public string? IdCotisation
+        public ObjectId? IdCotisation
         {
             get { return _idCotisation; }
             set { _idCotisation = value; }
@@ -59,7 +59,7 @@ namespace TP2_14E_A2022.Data.Entites
         #region constructeur
         public Membre() { }
       
-        public Membre(ObjectId? id, string prenom, string nom, string? idAdresseCivique, string? idLot, string? idCotisation, bool payeCotisation)
+        public Membre(ObjectId? id, string prenom, string nom, ObjectId? idAdresseCivique, ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
         {
             Id = id;
             Prenom = prenom;

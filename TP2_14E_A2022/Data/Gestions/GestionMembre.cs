@@ -21,8 +21,8 @@ namespace TP2_14E_A2022.Data.Gestions
             membres = membreDb.GetMembres();
         }
 
-        public Membre CreerMembre(string prenom, string nom, string? idAdresseCivique,
-            string? idLot, string? idCotisation, bool payeCotisation)
+        public Membre CreerMembre(string prenom, string nom, ObjectId? idAdresseCivique,
+            ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
         {
 
             var objectId = ObjectId.GenerateNewId();
@@ -30,8 +30,8 @@ namespace TP2_14E_A2022.Data.Gestions
             return membres.Last();
         }
 
-        public Membre ModifierMembre(string prenom, string nom, string idAdresseCivique,
-                       string? idLot, string? idCotisation, bool payeCotisation)
+        public Membre ModifierMembre(string prenom, string nom, ObjectId? idAdresseCivique,
+                       ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
         {
             var membre = membres.Find(m => m.IdAdresseCivique == idAdresseCivique);
             if (membre == null)
@@ -46,6 +46,8 @@ namespace TP2_14E_A2022.Data.Gestions
             membre.PayeCotisation = payeCotisation;
             return membre;
         }
+
+
         
     }
 }

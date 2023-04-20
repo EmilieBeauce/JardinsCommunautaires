@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Source="../Ressources/logo.png" MaxHeight="200" MaxWidth="200" Margin="-400,0,20,0" Height="180" ></Image>
+        <Image Source="../Ressources/logo.png" MaxHeight="200" MaxWidth="200" Margin="-386,115,26,115" Height="180" ></Image>
 
         <StackPanel VerticalAlignment="Center" Height="378" Margin="300,0,40,0">
             <TextBlock IsHitTestVisible="False" Text="Prénom" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF009019"></TextBlock>

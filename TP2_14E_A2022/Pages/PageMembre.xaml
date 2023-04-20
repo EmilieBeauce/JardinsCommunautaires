@@ -57,16 +57,16 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Prenom}" Margin="0,6,20,0"/>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Nom}" Margin="0,6,20,0"/>
-                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Prenom}" Margin="0,6,20,0"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Nom}" Margin="0,6,20,0"/>
+
                             <Button Grid.Column="2" HorizontalAlignment="Right"
-                                 Command="{Binding DetailsMembre}"
-                                 CommandParameter="{Binding}"
-                                 Style="{StaticResource MaterialDesignFlatButton}">
+                                    Command="{Binding Path=DataContext.DetailsMembre, RelativeSource={RelativeSource AncestorType=Page}}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
                                 <wpf:PackIcon Kind="Eye" />
                             </Button>
-                            
+
                             <Button Grid.Column="3" HorizontalAlignment="Right"
                                 Command="{Binding ModificationMembre}"
                                 CommandParameter="{Binding}"

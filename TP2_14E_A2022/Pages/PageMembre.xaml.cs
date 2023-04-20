@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,18 +25,14 @@ namespace TP2_14E_A2022.Pages
     public partial class PageMembre : Page
     {
         public List<Membre> ListeDesMembres { get; set; }
+        public ICommand DetailsMembre { get; private set; }
         public PageMembre()
         {
             InitializeComponent();
-
+            DetailsMembre = new RelayCommand<Membre>(AfficherDetailsMembre);
         }
 
         private void MembresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -50,22 +47,20 @@ namespace TP2_14E_A2022.Pages
 
         }
 
-        public ICommand DetailsMembre
+        public void AfficherDetailsMembre(Membre membre)
         {
-            get
-            {
-                return new RelayCommand<Membre>(membre =>
-                {
-                    // Ouvrir les détails du membre
-                });
-            }
+            PageDetailsMembre pageDetailsMembre = new PageDetailsMembre(membre);
+            this.NavigationService.Navigate(pageDetailsMembre);
         }
+       
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MembreDB membreDB = new MembreDB();
             ListeDesMembres = membreDB.GetMembres();
             MembresListBox.ItemsSource = ListeDesMembres;
+            this.DataContext = this;
         }
     }
 }
