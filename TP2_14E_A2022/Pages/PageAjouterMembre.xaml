@@ -24,7 +24,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+        <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
 
         <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
             <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
@@ -45,7 +45,6 @@
             <TextBox x:Name="nomTextBox" RenderTransformOrigin="0.483,-0.753" Foreground="#FF009019"/>
             <CheckBox x:Name="payerCotisationCheckBox" Content="La cotisation est payée" Foreground="#FF009019" Height="102" Width="197"/>
         </StackPanel>
-
 
         <Button x:Name="AjouterMembre" MinWidth="100" MaxWidth="200" Click="Button_Ajouter_Membre_Click"  Foreground="{DynamicResource MaterialDesignDarkForeground}" Background="#FF7DB569" Content="Ajouter le membre" Grid.ColumnSpan="3" Margin="175,290,175,-12" IsDefault="True" Grid.Row="1">
         </Button>

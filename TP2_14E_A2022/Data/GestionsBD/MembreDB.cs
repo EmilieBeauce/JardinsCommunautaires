@@ -21,7 +21,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
         {
             dal = new DAL();
         }
-
+        /** obtenir la liste des membres */
         public virtual List<Membre> GetMembres()
         {
             var membres = new List<Membre>();
@@ -38,7 +38,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             }
             return membres;
         }
-
+        /** ajouter un membre */
         public bool AjouterMembre(string prenom, string nom, ObjectId? adresseCivique, ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
         {
             try
@@ -70,6 +70,37 @@ namespace TP2_14E_A2022.Data.GestionsBD
                 MessageBox.Show("Erreur lors de la requête : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return membre;
+        }
+        /** modifier un membre */
+        public bool ModifierMembre(ObjectId idMembre, string prenom, string nom, ObjectId? idAdresseCivique, ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
+        {
+            try
+            {
+                var db = dal.GetDatabase();
+                Membre membre = gestionMembre.ModifierMembre(idMembre, prenom, nom, idAdresseCivique, idLot, idCotisation, payeCotisation);
+                db.GetCollection<Membre>("Membres").ReplaceOne(m => m.Id == idMembre, membre);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la modification du membre : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+        /** supprimer un membre */
+        public bool SupprimerMembre(ObjectId idMembre)
+        {
+            try
+            {
+                var db = dal.GetDatabase();
+                db.GetCollection<Membre>("Membres").DeleteOne(m => m.Id == idMembre);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la suppression du membre : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
         }
     }
 }

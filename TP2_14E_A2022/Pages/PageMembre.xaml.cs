@@ -25,21 +25,26 @@ namespace TP2_14E_A2022.Pages
     public partial class PageMembre : Page
     {
         public List<Membre> ListeDesMembres { get; set; }
+        public string nomCompletGestionnaire;
+        private GestionMembre gestionMembre;
+        private MembreDB membreDB = new MembreDB();
         public ICommand DetailsMembre { get; private set; }
-        public PageMembre()
+        public PageMembre(string nomCompletGestionnaire)
         {
             InitializeComponent();
             DetailsMembre = new RelayCommand<Membre>(AfficherDetailsMembre);
+            this.nomCompletGestionnaire = nomCompletGestionnaire;
+            nomCompletTextBlock.Text = nomCompletGestionnaire;
+            gestionMembre = new GestionMembre(membreDB);
         }
-
-        private void MembresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+         private void MembresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
         private void Button_Ajouter_Membre_Click(object sender, RoutedEventArgs e)
         {
-            PageAjouterMembre pageAjouterMembre = new PageAjouterMembre();
+            PageAjouterMembre pageAjouterMembre = new PageAjouterMembre(nomCompletGestionnaire);
             this.NavigationService.Navigate(pageAjouterMembre);
         }
         private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
@@ -49,7 +54,7 @@ namespace TP2_14E_A2022.Pages
 
         public void AfficherDetailsMembre(Membre membre)
         {
-            PageDetailsMembre pageDetailsMembre = new PageDetailsMembre(membre);
+            PageDetailsMembre pageDetailsMembre = new PageDetailsMembre(membre, nomCompletGestionnaire, gestionMembre);
             this.NavigationService.Navigate(pageDetailsMembre);
         }
        
@@ -57,7 +62,6 @@ namespace TP2_14E_A2022.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            MembreDB membreDB = new MembreDB();
             ListeDesMembres = membreDB.GetMembres();
             MembresListBox.ItemsSource = ListeDesMembres;
             this.DataContext = this;

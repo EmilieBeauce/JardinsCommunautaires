@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TP2_14E_A2022.Data.Entites;
+using TP2_14E_A2022.Data.Gestions;
 
 namespace TP2_14E_A2022.Pages
 {
@@ -22,16 +23,24 @@ namespace TP2_14E_A2022.Pages
     public partial class PageDetailsMembre : Page
     {
         public Membre MembreSelectionne { get; set; }
-        public PageDetailsMembre(Membre membre)
+        public string nomCompletGestionnaire;
+        private GestionMembre gestionMembre;
+        public PageDetailsMembre(Membre membre, string nomCompletGestionnaire, GestionMembre gestionMembre)
         {
             InitializeComponent();
             MembreSelectionne = membre;
             this.DataContext = this;
+            this.nomCompletGestionnaire = nomCompletGestionnaire;
+            this.gestionMembre = gestionMembre;
+            AdresseMessageTxt.Text = gestionMembre.GetAdresseMessage(MembreSelectionne);
+            CotisationMessageTxt.Text = gestionMembre.GetCotisationMessage(MembreSelectionne);
+            LotMessageTxt.Text = gestionMembre.GetLotMessage(MembreSelectionne);
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Logo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
+            this.NavigationService.Navigate(pageMenu);
         }
     }
 }

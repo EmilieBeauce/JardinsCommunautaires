@@ -25,10 +25,12 @@ namespace TP2_14E_A2022.Pages
 
         private MembreDB membreDB = new MembreDB();
         private GestionMembre gestionMembre;
-        public PageAjouterMembre()
+        public string nomCompletGestionnaire;
+        public PageAjouterMembre(string nomCompletGestionnaire)
         {
             InitializeComponent();
             membreDB = new MembreDB();
+            this.nomCompletGestionnaire = nomCompletGestionnaire;
         }
 
         private void Button_Ajouter_Membre_Click(object sender, object e)
@@ -46,7 +48,7 @@ namespace TP2_14E_A2022.Pages
 
             {
                 MessageBox.Show("Compte créé avec succès.");
-                PageMembre pageMembre = new PageMembre();
+                PageMembre pageMembre = new PageMembre(nomCompletGestionnaire);
                 this.NavigationService.Navigate(pageMembre);
             }
             else
@@ -63,6 +65,12 @@ namespace TP2_14E_A2022.Pages
         private void Button_Ajouter_Adresse_Click(object sender, object e)
         {
 
+        }
+
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
+            this.NavigationService.Navigate(pageMenu);
         }
     }
 }
