@@ -1,0 +1,53 @@
+﻿<Page x:Class="TP2_14E_A2022.Pages.PageDetailsMembre"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+xmlns:local="clr-namespace:TP2_14E_A2022.Pages"
+mc:Ignorable="d" 
+d:DesignHeight="450" d:DesignWidth="800"
+Title="PageDetailsMembre">
+
+    <Page.Resources>
+        <Style x:Key="errorMessage" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+    </Page.Resources>
+
+    <Grid  Margin="20,20,20,20" Background="White">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="0.4*" />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"  MouseLeftButtonUp="Logo_MouseLeftButtonUp" />
+
+        <StackPanel VerticalAlignment="Center"  Grid.Column="1" Grid.Row="1"  Height="380" Margin="20,0,0,0">
+            <TextBlock Text="Détails du membre" FontWeight="Bold" FontSize="20" Margin="0,10,0,20"/>
+            <!-- nom et prénom -->
+            <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
+                <TextBlock Text="{Binding MembreSelectionne.Prenom}"  FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text=" " />
+                <TextBlock Text="{Binding MembreSelectionne.Nom}" FontWeight="Bold" FontSize="16"/>
+            </StackPanel>
+            <!-- adresse -->
+            <TextBlock Text="Adresse" FontWeight="Bold" FontSize="20" Margin="0,20,0,20"/>
+            <TextBlock Text="{Binding NuméroImmeuble}" FontSize="16"/>
+            <TextBlock Text="{Binding Unité}" FontSize="16"/>
+            <TextBlock Text="{Binding Rue}" FontSize="16"/>
+            <TextBlock Text="{Binding CodePostal}" FontSize="16"/>
+            <TextBlock Text="{Binding Ville}" FontSize="16"/>
+            <TextBlock x:Name="AdresseMessageTxt" FontSize="16" FontStyle="Italic" />
+            <TextBlock x:Name="CotisationMessageTxt" FontSize="16" FontStyle="Italic" />
+            <TextBlock x:Name="LotMessageTxt" FontSize="16" FontStyle="Italic"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

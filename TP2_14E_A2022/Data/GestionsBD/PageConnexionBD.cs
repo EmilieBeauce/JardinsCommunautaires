@@ -65,7 +65,6 @@ namespace TP2_14E_A2022.Data.GestionsBD
             {
                 MessageBox.Show("Erreur lors de la connexion : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
             return estConnecte;
         }
 
