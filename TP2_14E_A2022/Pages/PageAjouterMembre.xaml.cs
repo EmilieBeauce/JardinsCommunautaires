@@ -37,9 +37,7 @@ namespace TP2_14E_A2022.Pages
         {
             string nom = nomTextBox.Text;
             string prenom = prenomTextBox.Text;
-           
             bool payeCotisation = (bool)payerCotisationCheckBox.IsChecked;
-
 
             MembreDB membreDB = new MembreDB();
             bool estCree = membreDB.AjouterMembre(prenom, nom, null, null, null, payeCotisation);

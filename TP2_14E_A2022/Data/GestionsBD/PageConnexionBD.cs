@@ -24,8 +24,6 @@ namespace TP2_14E_A2022.Data.GestionsBD
         public PageConnexionBD()
         {
             dal = new DAL();
-         
-
         }
         public virtual List<Gestionnaire> GetGestionnaires()
         {
@@ -42,30 +40,6 @@ namespace TP2_14E_A2022.Data.GestionsBD
 
             }
             return gestionnaires;
-        }
-        public bool ValiderSiConnexionFonctionne(string courriel, string motDePasse)
-        {
-            bool estConnecte = false;
-            if (courriel == null || motDePasse == null || courriel == "" || motDePasse == "")
-            {
-                
-                return estConnecte;
-            }
-
-            if (gestionConnexion == null)
-            {
-                PageConnexionBD pageConnexionBD = new PageConnexionBD();
-                gestionConnexion = new GestionConnexion(pageConnexionBD);
-            }
-            try
-            {
-                estConnecte = gestionConnexion.ValiderSiDonneesConnexionConcordes(courriel, motDePasse);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de la connexion : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            return estConnecte;
         }
 
         public string GetPrenomNomGestionnaire(string courriel)
@@ -105,6 +79,36 @@ namespace TP2_14E_A2022.Data.GestionsBD
             {
                 return true;
             }
+        }
+
+        /** ValiderSiMotDePasseEstLeBon */
+        public bool ValiderSiMotDePasseEstLeBon(string courriel, string motDePasse)
+        {
+            var db = dal.GetDatabase();
+            var MotDePasseEstBon = false;
+            var gestionnaire = db.GetCollection<Gestionnaire>("Gestionnaires").Find(g => g.Courriel == courriel).FirstOrDefault();
+            if (gestionnaire.MotDePasse == motDePasse)
+            {
+                MotDePasseEstBon = true;
+                
+            }
+            else
+            {
+                MotDePasseEstBon = false;
+            }
+            return MotDePasseEstBon;
+        }
+
+
+
+        List<Gestionnaire> IPageConnexionBD.GetGestionnaires()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IPageConnexionBD.ValiderSiConnexionFonctionne(string courriel, string motDePasse)
+        {
+            throw new NotImplementedException();
         }
     }
 }

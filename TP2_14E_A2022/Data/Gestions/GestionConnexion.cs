@@ -114,7 +114,7 @@ namespace TP2_14E_A2022.Data.Gestions
         }
         public bool CourrielEstVIde(string courriel) 
         { 
-            if (string.IsNullOrWhiteSpace(courriel))
+            if (courriel == null || courriel == "" )
             {
                 return true;
             }
@@ -136,7 +136,7 @@ namespace TP2_14E_A2022.Data.Gestions
                 return false; 
             }
         }
-        public bool CourrielEstUnique(string courriel)
+        public bool CourrielExiste(string courriel)
         {
             if (gestionnaires.Exists(g => g.Courriel == courriel))
             {
@@ -183,6 +183,8 @@ namespace TP2_14E_A2022.Data.Gestions
                 return false;
             }
         }
+
+     
        
     }
 }

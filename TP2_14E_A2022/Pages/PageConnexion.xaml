@@ -21,11 +21,11 @@
 
             <TextBlock IsHitTestVisible="False" Text="Adresse courriel" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF009019"></TextBlock>
             <TextBox  Width="250"  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="courrielTextBox" Margin="5" BorderBrush="Black"/>
-            <TextBlock x:Name="courrielErreurTextBlock" Style="{StaticResource errorMessage}" Margin="250,0,0,5"/>
+            <TextBlock x:Name="courrielErreurTextBlock" Style="{StaticResource errorMessage}" Margin="100,0,0,5"/>
 
             <TextBlock IsHitTestVisible="False" Text="Mot de passe" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF009019"></TextBlock>
             <PasswordBox  Width="250"  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="mdpPasswordBox" Margin="5" BorderBrush="Black"/>
-            <TextBlock x:Name="motDePasseErreurTextBlock" Style="{StaticResource errorMessage}" Margin="250,0,0,5"/>
+            <TextBlock x:Name="mdpErreurTextBlock" Style="{StaticResource errorMessage}" Margin="100,0,0,5"/>
 
             <Button Style="{StaticResource boutonBleu}" MinWidth="100" MaxWidth="200" Click="BoutonConnexion_Click" Margin="5,20,5,5" Background="#FF7DB569">Se connecter</Button>
             <Label HorizontalAlignment="Center" Margin="0,20,0,-10">Pas de compte ?</Label>
