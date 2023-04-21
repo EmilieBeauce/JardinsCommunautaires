@@ -38,13 +38,13 @@ Title="PageDetailsMembre">
                 <TextBlock Text="{Binding MembreSelectionne.Nom}" FontWeight="Bold" FontSize="16"/>
             </StackPanel>
             <!-- adresse -->
-            <TextBlock Text="Adresse" FontWeight="Bold" FontSize="20" Margin="0,20,0,20"/>
+            <TextBlock Text="Adresse" FontWeight="Bold" FontSize="20" Margin="0,20,0,0"/>
+            <TextBlock x:Name="AdresseMessageTxt" FontSize="16" FontStyle="Italic" />
             <TextBlock Text="{Binding NuméroImmeuble}" FontSize="16"/>
             <TextBlock Text="{Binding Unité}" FontSize="16"/>
             <TextBlock Text="{Binding Rue}" FontSize="16"/>
             <TextBlock Text="{Binding CodePostal}" FontSize="16"/>
             <TextBlock Text="{Binding Ville}" FontSize="16"/>
-            <TextBlock x:Name="AdresseMessageTxt" FontSize="16" FontStyle="Italic" />
             <TextBlock x:Name="CotisationMessageTxt" FontSize="16" FontStyle="Italic" />
             <TextBlock x:Name="LotMessageTxt" FontSize="16" FontStyle="Italic"/>
         </StackPanel>

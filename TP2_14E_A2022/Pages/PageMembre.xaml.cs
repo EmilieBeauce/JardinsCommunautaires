@@ -66,5 +66,11 @@ namespace TP2_14E_A2022.Pages
             MembresListBox.ItemsSource = ListeDesMembres;
             this.DataContext = this;
         }
+
+        private void Logo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
+            this.NavigationService.Navigate(pageMenu);
+        }
     }
 }

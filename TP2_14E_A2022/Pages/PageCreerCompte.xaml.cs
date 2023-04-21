@@ -29,12 +29,12 @@ namespace TP2_14E_A2022.Pages
         {
             InitializeComponent();
             pageConnexionBD = new PageConnexionBD();
-
             
         }
 
         private void BoutonCreerCompte_Click(object sender, RoutedEventArgs e)
         {
+            gestionConnexion = new GestionConnexion(pageConnexionBD);
             string nom = nomTextBox.Text;
             string prenom = prenomTextBox.Text;
             string courriel = courrielTextBox.Text;
@@ -62,12 +62,12 @@ namespace TP2_14E_A2022.Pages
                 courrielErreurTextBlock.Text = "Veuillez entrer votre adresse courriel.";
                 estValide = false;
             }
-            else if (!gestionConnexion.CourrielEstConforme(courriel) == true)
+            else if (!gestionConnexion.CourrielEstConforme(courriel) == false)
             {
                 courrielErreurTextBlock.Text = "Cette adresse courriel n'est pas conforme devrait avoir un '@' ou un '.'.";
                 estValide = false;
             }
-            else if (!gestionConnexion.CourrielEstConforme(courriel) == false)
+            else if (!gestionConnexion.CourrielExiste(courriel) == true)
             {
                 courrielErreurTextBlock.Text = "Veuillez entrer un courriel qui n'est pas utilisé.";
                 estValide = false;
