@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.GestionsBD;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TP2_14E_A2022.Data.Gestions.Tests;
 
@@ -60,13 +60,12 @@ public class GestionOutilTests
 
         // Assert
         
-        //TODO: 
+        // TODO:
         // VÉRIFIÉ POURUQOI .FALSE MARCHE, MAIS .TRUE NE MARCHE PAS
         Assert.IsFalse(gestionOutil.outils.Contains(outil));
     }
     
-    [ExpectedException()]
-    [TestMethod()]
+    [TestMethod]
     public void CreerOutil_ThrowsArgumentNullException_WhenIdIsNull()
     {
         // Arrange
@@ -74,9 +73,9 @@ public class GestionOutilTests
         outilDbMock.Setup(repo => repo.GetOutils()).Returns(new List<Outils>());
         var gestionOutil = new GestionOutil(outilDbMock.Object);
 
-        ObjectId potato = null;
         // Act & Assert
-        Assert.Throws(typeof(ArgumentNullException), () => gestionOutil.CreerOutil(potato, "Test Outil", "Ceci est un outil de test", false));
-        //Assert.Throws<ArgumentNullException>(() => gestionOutil.CreerOutil(null, "Test Outil", "Ceci est un outil de test", false));
+        Assert.ThrowsException<ArgumentNullException>(() => gestionOutil.CreerOutil(default(ObjectId), "Test Outil", "Ceci est un outil de test", false));
     }
+
+
 }

@@ -29,7 +29,7 @@ public class GestionOutil : IGestionOutil
     
     public Outils CreerOutil(ObjectId id, string nom, string description, bool estBrise)
     {
-        if (id == null)
+        if (id == default(ObjectId))
         {
             throw new ArgumentNullException(nameof(id));
         }
