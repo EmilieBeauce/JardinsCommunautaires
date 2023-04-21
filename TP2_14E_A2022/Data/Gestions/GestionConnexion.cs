@@ -10,6 +10,7 @@ using TP2_14E_A2022.Data.GestionsBD;
 using Moq;
 using System.Windows;
 using static TP2_14E_A2022.Data.Gestions.GestionConnexion;
+using ControlzEx.Standard;
 
 namespace TP2_14E_A2022.Data.Gestions
 {
@@ -22,6 +23,7 @@ namespace TP2_14E_A2022.Data.Gestions
             bool ValiderSiConnexionFonctionne(string courriel, string motDePasse);
             bool ValiderSiDonneesConnexionConcordes(string courriel, string motDePasse);
         }
+
         public PageConnexionBD pageConnexionBD;
         public List<Gestionnaire> gestionnaires; 
 
@@ -31,6 +33,7 @@ namespace TP2_14E_A2022.Data.Gestions
             gestionnaires = pageConnexionBD.GetGestionnaires();
         }
 
+
         public Gestionnaire CreerCompteGestionnaire( string prenom, string nom, string courriel, string motDePasse)
         {
             
@@ -38,8 +41,9 @@ namespace TP2_14E_A2022.Data.Gestions
             {
                 throw new Exception("Un compte avec ce courriel existe déjà.");
             }
-           
-            gestionnaires.Add(new Gestionnaire(prenom, nom, courriel, motDePasse));
+            
+            var objectId = ObjectId.GenerateNewId();
+            gestionnaires.Add(new Gestionnaire(objectId, prenom, nom, courriel, motDePasse));
             return gestionnaires.Last();
         }
 
@@ -48,7 +52,7 @@ namespace TP2_14E_A2022.Data.Gestions
             bool estConnecte = false;
             if (courriel == null || motDePasse == null || courriel == "" || motDePasse == "")
             {
-                MessageBox.Show("Veuillez entrer un courriel et un mot de passe", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                
                 return estConnecte;
             }
 
@@ -59,7 +63,7 @@ namespace TP2_14E_A2022.Data.Gestions
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de la connexion : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            }           
 
             return estConnecte;
         }
@@ -83,8 +87,104 @@ namespace TP2_14E_A2022.Data.Gestions
                 throw new Exception("Une erreur s'est produite lors de la recherche du gestionnaire.", ex);
             }
         }
+        /** validation si le nom est valide */
+        public bool NomEstValide(string nom) {
 
+            if (string.IsNullOrWhiteSpace(nom))
+            {
+                return false;
+
+            }
+            else
+            {
+               return true;
+            }
+        }
+        /** validation si le prenom est valide */
+        public bool PrenomEstValide(string prenom)
+        {
+            if (string.IsNullOrWhiteSpace(prenom))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool CourrielEstVIde(string courriel) 
+        { 
+            if (courriel == null || courriel == "" )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        
+        }
+        public bool CourrielEstConforme(string courriel)
+        {
+
+            if (courriel.Contains("@") && courriel.Contains("."))
+            {
+                return true;
+            }
+            else
+            { 
+                return false; 
+            }
+        }
+        public bool CourrielExiste(string courriel)
+        {
+            if (gestionnaires.Exists(g => g.Courriel == courriel))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        /** mot de passe valide */
+        public bool MotDePasseEstVide(string motDePasse)
+        {
+            if (string.IsNullOrWhiteSpace(motDePasse))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /** validation si le mot de passe est conforme */
+        public bool MotDePasseEstConforme(string motDePasse)
+        {
+            if (motDePasse.Length >= 8)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /** validation si le mot de passe est égale a la confirmation */
+        public bool MotDePasseEstEgaleConfirmation(string motDePasse, string confirmation)
+        {
+            if (motDePasse == confirmation)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+     
+       
     }
-
-   
 }
