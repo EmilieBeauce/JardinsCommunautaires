@@ -52,7 +52,6 @@ namespace TP2_14E_A2022.Data.Gestions
                 return estConnecte;
             }
 
-           
             try
             {
                 estConnecte = ValiderSiDonneesConnexionConcordes(courriel, motDePasse);

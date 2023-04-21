@@ -26,6 +26,9 @@ public partial class OutilCreate : Page
 
     private void CreateButton_Click(object sender, RoutedEventArgs e)
     {
+        //TODO: 
+        // Faire les validations pour les champs de create!!!
+        
         var objectId = ObjectId.GenerateNewId();
         string nom = NomTextBox.Text;
         string description = DescriptionTextBox.Text;

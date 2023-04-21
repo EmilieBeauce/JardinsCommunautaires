@@ -7,17 +7,14 @@ using TP2_14E_A2022.Data.Gestions;
 
 namespace TP2_14E_A2022.Data.GestionsBD;
 
-public interface IOutilDB
-{
-    List<Outils> GetOutils();
-        
-}
-
 public class OutilDB : IOutilDB
 {
     private DAL dal;
     public GestionOutil gestionOutil;
+    private const string MESSAGE_ERREUR_CONNEXION = "Impossible de se connecter à la base de données";
+    private const string MESSAGE_ERREUR = "ERREUR";
 
+    
     public OutilDB()
     {
         dal = new DAL();
@@ -34,7 +31,7 @@ public class OutilDB : IOutilDB
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Impossible de se connecter à la base de données " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(MESSAGE_ERREUR_CONNEXION + ex.Message, MESSAGE_ERREUR, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         return outils;
@@ -49,7 +46,7 @@ public class OutilDB : IOutilDB
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Impossible de se connecter à la base de données " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(MESSAGE_ERREUR_CONNEXION+ ex.Message, MESSAGE_ERREUR, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
