@@ -32,6 +32,7 @@ namespace TP2_14E_A2022.Pages
             InitializeComponent();
             pageConnexionBD = new PageConnexionBD();
             gestionConnexion = new GestionConnexion(pageConnexionBD);
+
             if (!string.IsNullOrEmpty(message))
             {
                 MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
@@ -86,19 +87,11 @@ namespace TP2_14E_A2022.Pages
                 this.NavigationService.Navigate(pageMenu);
             }
         }
-
-        private void BoutonCreerCompte_Click(object sender, RoutedEventArgs e)
-        {
-            PageCreerCompte pageCreerCompte = new PageCreerCompte();
-            this.NavigationService.Navigate(pageCreerCompte);
-        }
-
+        
         private void BoutonSinscrire_Click(object sender, RoutedEventArgs e)
         {
             PageCreerCompte pageCreerCompte = new PageCreerCompte();
             this.NavigationService.Navigate(pageCreerCompte);
         }
-
-
     }
 }

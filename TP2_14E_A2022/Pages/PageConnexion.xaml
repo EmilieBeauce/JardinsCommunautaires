@@ -25,7 +25,7 @@
                 <materialDesign:SnackbarMessageQueue/>
             </materialDesign:Snackbar.MessageQueue>
         </materialDesign:Snackbar>
-        <StackPanel VerticalAlignment="Top" Height="310" Margin="400,140,1,0">
+        <StackPanel VerticalAlignment="Top" Height="310" Margin="400,140,-20,0">
 
             <TextBlock IsHitTestVisible="False" Text="Adresse courriel" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF009019"></TextBlock>
             <TextBox  Width="250"  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="courrielTextBox" Margin="5" BorderBrush="Black"/>

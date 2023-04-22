@@ -22,16 +22,16 @@ namespace TP2_14E_A2022.Data.Gestions
         }
 
         public Membre CreerMembre(string prenom, string nom, ObjectId? idAdresseCivique,
-            ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
+            ObjectId? idLot, ObjectId? idCotisation)
         {
 
             var objectId = ObjectId.GenerateNewId();
-            membres.Add(new Membre(objectId, prenom, nom, idAdresseCivique, idLot, idCotisation, payeCotisation));
+            membres.Add(new Membre(objectId, prenom, nom, idAdresseCivique, idLot, idCotisation));
             return membres.Last();
         }
 
         public Membre ModifierMembre(ObjectId id, string prenom, string nom, ObjectId? idAdresseCivique,
-                       ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
+                       ObjectId? idLot, ObjectId? idCotisation)
         {
             var membre = membres.Find(m => m.Id == id);
             if (membre == null)
@@ -43,7 +43,6 @@ namespace TP2_14E_A2022.Data.Gestions
             membre.IdAdresseCivique = idAdresseCivique;
             membre.IdLot = idLot;
             membre.IdCotisation = idCotisation;
-            membre.PayeCotisation = payeCotisation;
             return membre;
         }
         public Membre SupprimerMembre (ObjectId id)

@@ -28,17 +28,14 @@ namespace TP2_14E_A2022.Pages
             this.nomCompletGestionnaire = nomCompletGestionnaire; 
             nomCompletTextBlock.Text = nomCompletGestionnaire;
         }
-
         private void BoutonDeconnexion_Click(object sender, MouseButtonEventArgs e)
         {
             PageConnexion pageConnexion = new PageConnexion();
-
             this.NavigationService.Navigate(pageConnexion);
         }
-
         private void BtnMembre_Click(object sender, RoutedEventArgs e)
         {
-            PageMembre pageMembre = new PageMembre(nomCompletGestionnaire);
+            PageMembres pageMembre = new PageMembres(nomCompletGestionnaire);
             this.NavigationService.Navigate(pageMembre);
         }
     }
