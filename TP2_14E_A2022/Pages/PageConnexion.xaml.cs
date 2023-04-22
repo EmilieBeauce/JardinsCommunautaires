@@ -78,7 +78,6 @@ namespace TP2_14E_A2022.Pages
                 mdpErreurTextBlock.Text = "";
                 mdpEstValide = true;
             }
-           
 
             if (mdpEstValide && courrielEstValide)
             {
@@ -87,7 +86,6 @@ namespace TP2_14E_A2022.Pages
                 this.NavigationService.Navigate(pageMenu);
             }
         }
-        
         private void BoutonSinscrire_Click(object sender, RoutedEventArgs e)
         {
             PageCreerCompte pageCreerCompte = new PageCreerCompte();
