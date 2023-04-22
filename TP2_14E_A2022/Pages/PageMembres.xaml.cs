@@ -22,26 +22,38 @@ namespace TP2_14E_A2022.Pages
     /// <summary>
     /// Logique d'interaction pour PageMembre.xaml
     /// </summary>
-    public partial class PageMembre : Page
+    public partial class PageMembres: Page
+
     {
         public List<Membre> ListeDesMembres { get; set; }
         public string nomCompletGestionnaire;
         private GestionMembre gestionMembre;
         private MembreDB membreDB = new MembreDB();
         public ICommand DetailsMembre { get; private set; }
-        public PageMembre(string nomCompletGestionnaire)
+        public ICommand ModifierMembre { get; private set; }
+        public PageMembres(string nomCompletGestionnaire, string message = null)
         {
             InitializeComponent();
             DetailsMembre = new RelayCommand<Membre>(AfficherDetailsMembre);
-            this.nomCompletGestionnaire = nomCompletGestionnaire;
-            nomCompletTextBlock.Text = nomCompletGestionnaire;
+            ModifierMembre = new RelayCommand<Membre>(AfficherModifierMembre);
             gestionMembre = new GestionMembre(membreDB);
+            
+            this.nomCompletGestionnaire = nomCompletGestionnaire;
+            
+            nomCompletTextBlock.Text = nomCompletGestionnaire;
+            
+            if (!string.IsNullOrEmpty(message))
+            {
+                MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+                MessageValidation.MessageQueue.Enqueue(message);
+            }
         }
-         private void MembresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            ListeDesMembres = membreDB.GetMembres();
+            MembresListBox.ItemsSource = ListeDesMembres;
+            this.DataContext = this;
         }
-
         private void Button_Ajouter_Membre_Click(object sender, RoutedEventArgs e)
         {
             PageAjouterMembre pageAjouterMembre = new PageAjouterMembre(nomCompletGestionnaire);
@@ -49,28 +61,26 @@ namespace TP2_14E_A2022.Pages
         }
         private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
         {
-
+            PageConnexion pageConnexion = new PageConnexion();
+            this.NavigationService.Navigate(pageConnexion);
         }
-
         public void AfficherDetailsMembre(Membre membre)
         {
             PageDetailsMembre pageDetailsMembre = new PageDetailsMembre(membre, nomCompletGestionnaire, gestionMembre);
             this.NavigationService.Navigate(pageDetailsMembre);
         }
-       
-
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        public void AfficherModifierMembre(Membre membre)
         {
-            ListeDesMembres = membreDB.GetMembres();
-            MembresListBox.ItemsSource = ListeDesMembres;
-            this.DataContext = this;
+            PageModifierMembre pageModifierMembre = new PageModifierMembre(membre, nomCompletGestionnaire, gestionMembre);
+            this.NavigationService.Navigate(pageModifierMembre);
         }
-
         private void Logo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
             this.NavigationService.Navigate(pageMenu);
         }
+
+      
     }
+    
 }

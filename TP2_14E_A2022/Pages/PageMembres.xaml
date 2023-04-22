@@ -1,0 +1,150 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:TP2_14E_A2022.Pages" 
+      xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="TP2_14E_A2022.Pages.PageMembres"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
+      Title="PageMembres">
+
+    <Page.Resources>
+        <Style x:Key="errorMessage" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+        <Style x:Key="SnackbarSuccessStyle" TargetType="{x:Type wpf:Snackbar}">
+            <Setter Property="Foreground" Value="#B3FFFFFF" />
+            <Setter Property="Background" Value="LightGreen"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="0.4*" />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Image x:Name="Logo" Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonUp="Logo_MouseLeftButtonUp"/>
+
+        <wpf:Snackbar x:Name="MessageValidation" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">
+            <wpf:Snackbar.MessageQueue>
+                <wpf:SnackbarMessageQueue/>
+            </wpf:Snackbar.MessageQueue>
+        </wpf:Snackbar>
+
+        <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
+            <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
+                <Label FontSize="15" Content="Bonjour"/>
+                <TextBlock x:Name="nomCompletTextBlock"  Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"/>
+            </StackPanel>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click"><Run Text="Me déconnecter"/></TextBlock>
+        </StackPanel>
+
+        <Rectangle Fill="#FF7DB569" IsHitTestVisible="False"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Margin="90,20,0,0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Width="630" >
+            <ListBox x:Name="MembresListBox"
+              
+                 wpf:HintAssist.Background="Transparent"
+                 BorderBrush="Black"
+                 BorderThickness="1"
+                     Width="554"
+                     Height="278" Background="#FFF4F8F3" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="0.269,0.576"  >
+
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                      Margin="{TemplateBinding Margin}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="LightGray" />
+                                            <Setter TargetName="Bd" Property="BorderBrush" Value="Black" />
+                                            <Setter TargetName="Bd" Property="BorderThickness" Value="1" />
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="LightGray" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0"/>
+                        <RotateTransform Angle="0.331"/>
+                        <TranslateTransform Y="-0.967" X="-0.119"/>
+                    </TransformGroup>
+                </ListBox.RenderTransform>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Prenom}" Margin="0,6,20,0"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Nom}" Margin="0,6,20,0"/>
+                            <!-- Pour afficher la page détails membre-->
+                            <Button Grid.Column="2" HorizontalAlignment="Right"
+                                    Command="{Binding DataContext.DetailsMembre, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+                                <wpf:PackIcon Kind="Eye" />
+                            </Button>
+                            <!-- Pour afficher la page modification membre-->
+                            <Button Grid.Column="3" HorizontalAlignment="Right"
+                                    Command="{Binding DataContext.ModifierMembre, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+                                <wpf:PackIcon Kind="Pencil" />
+                            </Button>
+                            <!-- Pour supprimer un membre-->
+                            <Button Grid.Column="4" HorizontalAlignment="Right"
+                                    Command="{Binding SupprimerMembre}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+                                <wpf:PackIcon Kind="Delete" />
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <Button x:Name="Ajouter_un_Membre" Style="{StaticResource boutonBleu}" MinWidth="100" MaxWidth="200" Click="Button_Ajouter_Membre_Click" BorderBrush="{DynamicResource MaterialDesignLightBackground}" Foreground="{DynamicResource MaterialDesignDarkForeground}" Background="#FF7DB569" Content="Ajouter un membre" Grid.ColumnSpan="3" Margin="172,64,178,47" IsDefault="True"/>
+    </Grid>
+</Page>
+
+
+
+

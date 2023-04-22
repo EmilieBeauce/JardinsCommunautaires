@@ -30,9 +30,7 @@ namespace TP2_14E_A2022.Pages
         {
             InitializeComponent();
             pageConnexionBD = new PageConnexionBD();
-
         }
-
         private void BoutonCreerCompte_Click(object sender, RoutedEventArgs e)
         {
             gestionConnexion = new GestionConnexion(pageConnexionBD);
@@ -122,9 +120,11 @@ namespace TP2_14E_A2022.Pages
             {
                 PageConnexionBD pageConnexionBD = new PageConnexionBD();
                 bool estCree = pageConnexionBD.CreateGestionnaireBD(prenom, nom, courriel, motDePasse);
-                if (estCree) {
-                PageConnexion pageConnexion = new PageConnexion("Compte créé avec succès.");
-                this.NavigationService.Navigate(pageConnexion);
+                
+                if (estCree)
+                {
+                    PageConnexion pageConnexion = new PageConnexion("Compte créé avec succès.");
+                    this.NavigationService.Navigate(pageConnexion);
                 }
             }
             else
@@ -133,8 +133,12 @@ namespace TP2_14E_A2022.Pages
                 MessageValidation.MessageQueue.Enqueue("Erreur lors de la création du compte.");
             }
         }
-
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            PageConnexion pageConnexion = new PageConnexion();
+            this.NavigationService.Navigate(pageConnexion);
+        }
+        private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
         {
             PageConnexion pageConnexion = new PageConnexion();
             this.NavigationService.Navigate(pageConnexion);

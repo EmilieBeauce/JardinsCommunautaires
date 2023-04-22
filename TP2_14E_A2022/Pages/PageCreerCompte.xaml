@@ -17,7 +17,6 @@
             <Setter Property="Foreground" Value="#B3FFFFFF" />
             <Setter Property="Background" Value="Red"/>
         </Style>
-      
     </Page.Resources>
 
     <Grid Background="White" ShowGridLines="True" Margin="20,20,20,20">
@@ -28,11 +27,13 @@
         </Grid.ColumnDefinitions>
 
         <Image Source="../Ressources/logo.png" MaxHeight="200" MaxWidth="200" Margin="90,115,480,106" MouseLeftButtonUp="Image_MouseLeftButtonUp" />
+        
         <materialDesign:Snackbar x:Name="MessageValidation" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">
             <materialDesign:Snackbar.MessageQueue>
                 <materialDesign:SnackbarMessageQueue/>
             </materialDesign:Snackbar.MessageQueue>
         </materialDesign:Snackbar>
+        
         <StackPanel VerticalAlignment="Top" Height="400" Margin="347,80,0,0" HorizontalAlignment="Left" Width="395">
 
             <TextBlock IsHitTestVisible="False" Text="Prénom" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF009019"></TextBlock>
