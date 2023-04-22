@@ -27,12 +27,16 @@ namespace TP2_14E_A2022.Pages
     {
         private readonly PageConnexionBD pageConnexionBD;
         public GestionConnexion gestionConnexion;
-        public PageConnexion()
+        public PageConnexion(string message = null)
         {
             InitializeComponent();
             pageConnexionBD = new PageConnexionBD();
             gestionConnexion = new GestionConnexion(pageConnexionBD);
-
+            if (!string.IsNullOrEmpty(message))
+            {
+                MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+                MessageValidation.MessageQueue.Enqueue(message);
+            }
         }
         private void BoutonConnexion_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +46,7 @@ namespace TP2_14E_A2022.Pages
             bool mdpEstValide = false;
             
 
-            if (gestionConnexion.CourrielEstVIde(courriel))
+            if (gestionConnexion.CourrielEstVide(courriel))
             {
                 courrielErreurTextBlock.Text = "Veuillez entrer votre adresse courriel.";
                 courrielEstValide = false;
@@ -63,7 +67,7 @@ namespace TP2_14E_A2022.Pages
                 mdpErreurTextBlock.Text = "Veuillez entrer votre mot de passe.";
                 mdpEstValide = false;
             }
-            else if (!gestionConnexion.ValiderSiDonneesConnexionConcordes(courriel, motDePasse) && courrielEstValide)
+            else if (!pageConnexionBD.ValiderSiMotDePasseEstLeBon(courriel, motDePasse) && courrielEstValide)
             {
                 mdpErreurTextBlock.Text = "Le mot de passe est incorrect.";
                 mdpEstValide = false;
@@ -81,8 +85,6 @@ namespace TP2_14E_A2022.Pages
                 PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
                 this.NavigationService.Navigate(pageMenu);
             }
-
-
         }
 
         private void BoutonCreerCompte_Click(object sender, RoutedEventArgs e)
