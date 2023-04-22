@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.GestionsBD;
 
@@ -45,16 +46,7 @@ namespace TP2_14E_A2022.Data.Gestions
             membre.IdCotisation = idCotisation;
             return membre;
         }
-        public Membre SupprimerMembre (ObjectId id)
-        {
-            var membre = membres.Find(m => m.Id == id);
-            if (membre == null)
-            {
-                throw new Exception("Ce membre n'existe pas.");
-            }
-            membres.Remove(membre);
-            return membre;
-        }
+    
         public string GetAdresseMessage(Membre membre)
         {
             if (membre.IdAdresseCivique == null)

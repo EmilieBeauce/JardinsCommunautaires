@@ -31,11 +31,13 @@ namespace TP2_14E_A2022.Pages
         private MembreDB membreDB = new MembreDB();
         public ICommand DetailsMembre { get; private set; }
         public ICommand ModifierMembre { get; private set; }
+        public ICommand SupprimerMembre { get; private set; }
         public PageMembres(string nomCompletGestionnaire, string message = null)
         {
             InitializeComponent();
             DetailsMembre = new RelayCommand<Membre>(AfficherDetailsMembre);
             ModifierMembre = new RelayCommand<Membre>(AfficherModifierMembre);
+            SupprimerMembre = new RelayCommand<Membre>(SupprimerMembreListBox);
             gestionMembre = new GestionMembre(membreDB);
             
             this.nomCompletGestionnaire = nomCompletGestionnaire;
@@ -74,13 +76,25 @@ namespace TP2_14E_A2022.Pages
             PageModifierMembre pageModifierMembre = new PageModifierMembre(membre, nomCompletGestionnaire, gestionMembre);
             this.NavigationService.Navigate(pageModifierMembre);
         }
+        public void SupprimerMembreListBox(Membre membre)
+        {
+            if (membre != null)
+            {
+                if (membreDB.SupprimerMembre(membre.Id))
+                {
+                    MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+                    MessageValidation.MessageQueue.Enqueue($"Le membre {membre.Prenom} {membre.Nom} a été supprimé.");
+                    ListeDesMembres.Remove(membre);
+                    MembresListBox.ItemsSource = null;
+                    MembresListBox.ItemsSource = ListeDesMembres;
+                }
+            }
+
+        }
         private void Logo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
             this.NavigationService.Navigate(pageMenu);
         }
-
-      
     }
-    
 }
