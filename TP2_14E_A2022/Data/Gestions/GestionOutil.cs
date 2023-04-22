@@ -8,11 +8,8 @@ namespace TP2_14E_A2022.Data.Gestions;
 
 public class GestionOutil : IGestionOutil
 {
-    //Peut être possiblement enlevé.
-    //private readonly IGestionOutil _gestionOutil;
     private readonly IOutilDB _outilDb;
     public List<Outils> outils;
-    
     public GestionOutil(IOutilDB  outilDb)
     {
         _outilDb = outilDb;
@@ -27,6 +24,10 @@ public class GestionOutil : IGestionOutil
         //outils = OutilDb.GetOutils();
     }
     
+    public List<Outils> LireTousLesOutils()
+    {
+        return _outilDb.GetOutils();
+    }
     public Outils CreerOutil(ObjectId id, string nom, string description, bool estBrise)
     {
         if (id == default(ObjectId))
@@ -49,4 +50,16 @@ public class GestionOutil : IGestionOutil
 
         return outil;
     }
+    
+    public void SupprimerOutil(ObjectId id)
+    {
+        _outilDb.SupprimerOutil(id);
+    }
+
+    public void ModifierOutil(Outils outil)
+    {
+        _outilDb.ModifierOutil(outil);
+    }
+    
+    
 }

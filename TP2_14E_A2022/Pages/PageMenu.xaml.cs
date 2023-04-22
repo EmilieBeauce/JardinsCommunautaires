@@ -35,6 +35,13 @@ namespace TP2_14E_A2022.Pages
 
             this.NavigationService.Navigate(pageConnexion);
         }
+        
+        private void BtnOutil_Click(object sender, RoutedEventArgs e)
+        {
+            OutilCreate outilCreate = new OutilCreate();
+
+            this.NavigationService.Navigate(outilCreate);
+        }
 
         private void BtnMembre_Click(object sender, RoutedEventArgs e)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
@@ -47,6 +48,39 @@ public class OutilDB : IOutilDB
         catch (Exception ex)
         {
             MessageBox.Show(MESSAGE_ERREUR_CONNEXION+ ex.Message, MESSAGE_ERREUR, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+    
+    public void SupprimerOutil(ObjectId id)
+    {
+        try
+        {
+            var db = dal.GetDatabase();
+            var filter = Builders<Outils>.Filter.Eq(o => o.Id, id);
+            db.GetCollection<Outils>("Outils").DeleteOne(filter);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(MESSAGE_ERREUR_CONNEXION + ex.Message, MESSAGE_ERREUR, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    public void ModifierOutil(Outils outil)
+    {
+        try
+        {
+            var db = dal.GetDatabase();
+            var filter = Builders<Outils>.Filter.Eq(o => o.Id, outil.Id);
+            var update = Builders<Outils>.Update
+                .Set(o => o.Nom, outil.Nom)
+                .Set(o => o.Description, outil.Description)
+                .Set(o => o.EstBrise, outil.EstBrise);
+
+            db.GetCollection<Outils>("Outils").UpdateOne(filter, update);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(MESSAGE_ERREUR_CONNEXION + ex.Message, MESSAGE_ERREUR, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
