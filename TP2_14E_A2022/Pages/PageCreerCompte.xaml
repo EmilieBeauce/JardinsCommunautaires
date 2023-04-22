@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TP2_14E_A2022.Pages"
+      xmlns:local="clr-namespace:TP2_14E_A2022.Pages" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageCreerCompte">
@@ -12,6 +13,11 @@
         <Style x:Key="errorMessage" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Red" />
         </Style>
+        <Style x:Key="SnackbarErrorStyle" TargetType="materialDesign:Snackbar">
+            <Setter Property="Foreground" Value="#B3FFFFFF" />
+            <Setter Property="Background" Value="Red"/>
+        </Style>
+      
     </Page.Resources>
 
     <Grid Background="White" ShowGridLines="True" Margin="20,20,20,20">
@@ -21,9 +27,14 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Source="../Ressources/logo.png" MaxHeight="200" MaxWidth="200" Margin="-386,115,26,115" Height="180" ></Image>
+        <Image Source="../Ressources/logo.png" MaxHeight="200" MaxWidth="200" Margin="90,115,480,106" MouseLeftButtonUp="Image_MouseLeftButtonUp" />
+        <materialDesign:Snackbar x:Name="MessageValidation" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">
+            <materialDesign:Snackbar.MessageQueue>
+                <materialDesign:SnackbarMessageQueue/>
+            </materialDesign:Snackbar.MessageQueue>
+        </materialDesign:Snackbar>
+        <StackPanel VerticalAlignment="Top" Height="400" Margin="347,80,0,0" HorizontalAlignment="Left" Width="395">
 
-        <StackPanel VerticalAlignment="Center" Height="378" Margin="300,0,40,0">
             <TextBlock IsHitTestVisible="False" Text="Prénom" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF009019"></TextBlock>
             <TextBox  Width="250"  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="prenomTextBox" Margin="2" BorderBrush="Black"/>
             <TextBlock x:Name="prenomErreurTextBlock" Style="{StaticResource errorMessage}" HorizontalAlignment="Center" />
@@ -44,15 +55,8 @@
             <PasswordBox  Width="250"  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="confirmationPasswordBox" Margin="2" BorderBrush="Black"/>
             <TextBlock x:Name="confirmationErreurTextBlock" Style="{StaticResource errorMessage}" HorizontalAlignment="Center" />
 
-            <Button Style="{StaticResource boutonBleu}" MinWidth="100" MaxWidth="200" Click="BoutonCreerCompte_Click" Margin="5,5,5,5" Height="30" BorderBrush="{DynamicResource MaterialDesignLightBackground}" Foreground="{DynamicResource MaterialDesignLightForeground}" Background="#FF7DB569">
-                <UIElement.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </UIElement.RenderTransform> S'inscrire
+            <Button Style="{StaticResource boutonBleu}" MinWidth="100" MaxWidth="200" Click="BoutonCreerCompte_Click" Margin="5,25,5,5" Height="30" BorderBrush="{DynamicResource MaterialDesignLightBackground}" Foreground="{DynamicResource MaterialDesignLightForeground}" Background="#FF7DB569">
+                S'inscrire
             </Button>
         </StackPanel>
 

@@ -20,8 +20,6 @@ namespace TP2_14E_A2022.Data.Gestions
         public interface IGestionConnexion
         {
             Gestionnaire CreerCompteGestionnaire(string prenom, string nom, string courriel, string motDePasse);
-            bool ValiderSiConnexionFonctionne(string courriel, string motDePasse);
-            bool ValiderSiDonneesConnexionConcordes(string courriel, string motDePasse);
         }
 
         public PageConnexionBD pageConnexionBD;
@@ -36,57 +34,20 @@ namespace TP2_14E_A2022.Data.Gestions
 
         public Gestionnaire CreerCompteGestionnaire( string prenom, string nom, string courriel, string motDePasse)
         {
-            
-            if (gestionnaires.Exists(g => g.Courriel == courriel))
-            {
-                throw new Exception("Un compte avec ce courriel existe déjà.");
-            }
-            
-            var objectId = ObjectId.GenerateNewId();
-            gestionnaires.Add(new Gestionnaire(objectId, prenom, nom, courriel, motDePasse));
-            return gestionnaires.Last();
-        }
-
-        public bool ValiderSiConnexionFonctionne(string courriel, string motDePasse)
-        {
-            bool estConnecte = false;
-            if (courriel == null || motDePasse == null || courriel == "" || motDePasse == "")
-            {
-                
-                return estConnecte;
-            }
-
             try
             {
-                estConnecte = ValiderSiDonneesConnexionConcordes(courriel, motDePasse);
+                var objectId = ObjectId.GenerateNewId();
+                gestionnaires.Add(new Gestionnaire(objectId, prenom, nom, courriel, motDePasse));
+                return gestionnaires.Last();
             }
+
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de la connexion : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }           
-
-            return estConnecte;
-        }
-
-        public bool ValiderSiDonneesConnexionConcordes(string courriel, string motDePasse)
-        {
-            try
-            {
-                Gestionnaire gestionnaire = gestionnaires.FirstOrDefault(g => g.Courriel == courriel);
-                if (gestionnaire != null && gestionnaire.MotDePasse == motDePasse)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Une erreur s'est produite lors de la recherche du gestionnaire.", ex);
+                Console.WriteLine("Une erreur s'est produite lors de la création du gestionnaire.", ex);
+                return null;
             }
         }
+
         /** validation si le nom est valide */
         public bool NomEstValide(string nom) {
 
@@ -112,7 +73,7 @@ namespace TP2_14E_A2022.Data.Gestions
                 return true;
             }
         }
-        public bool CourrielEstVIde(string courriel) 
+        public bool CourrielEstVide(string courriel) 
         { 
             if (courriel == null || courriel == "" )
             {
@@ -184,7 +145,17 @@ namespace TP2_14E_A2022.Data.Gestions
             }
         }
 
-     
-       
+        /** confirmation n'est pas null ou vide*/
+        public bool ConfirmationEstVide(string confirmation)
+        {
+            if (string.IsNullOrWhiteSpace(confirmation))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

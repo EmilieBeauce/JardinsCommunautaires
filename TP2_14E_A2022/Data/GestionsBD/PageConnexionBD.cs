@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 using System.Windows;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
+using static TP2_14E_A2022.Data.GestionsBD.PageConnexionBD;
 
 namespace TP2_14E_A2022.Data.GestionsBD
 {
-    public interface IPageConnexionBD
-    {
-        List<Gestionnaire> GetGestionnaires();
-        bool ValiderSiConnexionFonctionne(string courriel, string motDePasse);
-    }
     public class PageConnexionBD : IPageConnexionBD
     {
+        public interface IPageConnexionBD
+        {
+            List<Gestionnaire> GetGestionnaires();
+        }
         private DAL dal;
         public GestionConnexion gestionConnexion;
 
@@ -36,8 +36,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Impossible de se connecter à la base de données " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                Console.WriteLine("Impossible de se connecter à la base de données ", ex.Message);
             }
             return gestionnaires;
         }
@@ -49,7 +48,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             return gestionnaire.Prenom + " " + gestionnaire.Nom;
         }
 
-        public bool LoginBD(string prenom, string nom, string courriel, string motDePasse)
+        public bool CreateGestionnaireBD(string prenom, string nom, string courriel, string motDePasse)
         {
             try
             {
@@ -62,7 +61,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de la création du compte : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine("Erreur : Le gestionnaire n'a pas rempli tous les champs convenablement", ex.Message);
                 return false;
             }
         }
@@ -90,25 +89,12 @@ namespace TP2_14E_A2022.Data.GestionsBD
             if (gestionnaire.MotDePasse == motDePasse)
             {
                 MotDePasseEstBon = true;
-                
             }
             else
             {
                 MotDePasseEstBon = false;
             }
             return MotDePasseEstBon;
-        }
-
-
-
-        List<Gestionnaire> IPageConnexionBD.GetGestionnaires()
-        {
-            throw new NotImplementedException();
-        }
-
-        bool IPageConnexionBD.ValiderSiConnexionFonctionne(string courriel, string motDePasse)
-        {
-            throw new NotImplementedException();
         }
     }
 }
