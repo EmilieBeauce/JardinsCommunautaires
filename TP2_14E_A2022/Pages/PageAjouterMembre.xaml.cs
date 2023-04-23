@@ -25,13 +25,15 @@ namespace TP2_14E_A2022.Pages
     {
 
         private MembreDB membreDB = new MembreDB();
-        private GestionMembre gestionMembre;
         public string nomCompletGestionnaire;
         public PageAjouterMembre(string nomCompletGestionnaire)
         {
             InitializeComponent();
             membreDB = new MembreDB();
+
             this.nomCompletGestionnaire = nomCompletGestionnaire;
+
+            nomCompletTextBlock.Text = nomCompletGestionnaire;
         }
 
         private void Button_Ajouter_Membre_Click(object sender, object e)

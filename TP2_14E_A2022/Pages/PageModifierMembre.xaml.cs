@@ -33,6 +33,7 @@ namespace TP2_14E_A2022.Pages
             this.nomCompletGestionnaire = nomCompletGestionnaire;
             this.gestionMembre = gestionMembre;
 
+            nomCompletTextBlock.Text = nomCompletGestionnaire;
             prenomTextBox.Text = membre.Prenom;
             nomTextBox.Text = membre.Nom;
         }
