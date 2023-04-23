@@ -11,6 +11,9 @@ using Moq;
 using System.Windows;
 using static TP2_14E_A2022.Data.Gestions.GestionConnexion;
 using ControlzEx.Standard;
+using System.Text.RegularExpressions;
+using static TP2_14E_A2022.Data.GestionsBD.PageConnexionBD;
+using TP2_14E_A2022.Utils;
 
 namespace TP2_14E_A2022.Data.Gestions
 {
@@ -22,17 +25,16 @@ namespace TP2_14E_A2022.Data.Gestions
             Gestionnaire CreerCompteGestionnaire(string prenom, string nom, string courriel, string motDePasse);
         }
 
-        public PageConnexionBD pageConnexionBD;
+        public IPageConnexionBD pageConnexionBD;
         public List<Gestionnaire> gestionnaires; 
 
-        public GestionConnexion(PageConnexionBD pageConnexionBD)
+        public GestionConnexion(IPageConnexionBD pageConnexionBD)
         {
             this.pageConnexionBD = pageConnexionBD;
             gestionnaires = pageConnexionBD.GetGestionnaires();
         }
 
-
-        public Gestionnaire CreerCompteGestionnaire( string prenom, string nom, string courriel, string motDePasse)
+        public virtual Gestionnaire CreerCompteGestionnaire( string prenom, string nom, string courriel, string motDePasse)
         {
             try
             {
@@ -40,21 +42,17 @@ namespace TP2_14E_A2022.Data.Gestions
                 gestionnaires.Add(new Gestionnaire(objectId, prenom, nom, courriel, motDePasse));
                 return gestionnaires.Last();
             }
-
             catch (Exception ex)
             {
-                Console.WriteLine("Une erreur s'est produite lors de la création du gestionnaire.", ex);
-                return null;
+                throw new Exception(ErrorMessages.GestionnaireCreationError, ex);
             }
         }
-
         /** validation si le nom est valide */
-        public bool NomEstValide(string nom) {
-
+        public bool NomEstValide(string nom) 
+        {
             if (string.IsNullOrWhiteSpace(nom))
             {
                 return false;
-
             }
             else
             {
@@ -83,23 +81,25 @@ namespace TP2_14E_A2022.Data.Gestions
             {
                 return false;
             }
-        
         }
         public bool CourrielEstConforme(string courriel)
         {
+            string patronCourriel = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
-            if (courriel.Contains("@") && courriel.Contains("."))
+
+            if (Regex.IsMatch(courriel, patronCourriel, RegexOptions.IgnoreCase))
             {
                 return true;
             }
             else
-            { 
-                return false; 
+            {
+                return false;
             }
         }
         public bool CourrielExiste(string courriel)
         {
-            if (gestionnaires.Exists(g => g.Courriel == courriel))
+
+            if (gestionnaires.Exists(g => g.Courriel == courriel) || courriel == null)
             {
                 return false;
             }
@@ -111,7 +111,7 @@ namespace TP2_14E_A2022.Data.Gestions
         /** mot de passe valide */
         public bool MotDePasseEstVide(string motDePasse)
         {
-            if (string.IsNullOrWhiteSpace(motDePasse))
+            if (string.IsNullOrWhiteSpace(motDePasse) || motDePasse == "")
             {
                 return true;
             }

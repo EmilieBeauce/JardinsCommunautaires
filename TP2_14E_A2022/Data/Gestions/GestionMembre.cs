@@ -25,7 +25,6 @@ namespace TP2_14E_A2022.Data.Gestions
         public Membre CreerMembre(string prenom, string nom, ObjectId? idAdresseCivique,
             ObjectId? idLot, ObjectId? idCotisation)
         {
-
             var objectId = ObjectId.GenerateNewId();
             membres.Add(new Membre(objectId, prenom, nom, idAdresseCivique, idLot, idCotisation));
             return membres.Last();
@@ -35,10 +34,7 @@ namespace TP2_14E_A2022.Data.Gestions
                        ObjectId? idLot, ObjectId? idCotisation)
         {
             var membre = membres.Find(m => m.Id == id);
-            if (membre == null)
-            {
-                throw new Exception("Ce membre n'existe pas.");
-            }
+         
             membre.Prenom = prenom;
             membre.Nom = nom;
             membre.IdAdresseCivique = idAdresseCivique;
@@ -57,7 +53,6 @@ namespace TP2_14E_A2022.Data.Gestions
             {
                 return string.Empty;
             }
-           
         }
 
         public string GetCotisationMessage(Membre membre)
