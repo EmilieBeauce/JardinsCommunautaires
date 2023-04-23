@@ -38,9 +38,9 @@ namespace TP2_14E_A2022.Pages
         
         private void BtnOutil_Click(object sender, RoutedEventArgs e)
         {
-            OutilCreate outilCreate = new OutilCreate();
+            PageLireOutils lireOutils = new PageLireOutils();
 
-            this.NavigationService.Navigate(outilCreate);
+            this.NavigationService.Navigate(lireOutils);
         }
 
         private void BtnMembre_Click(object sender, RoutedEventArgs e)

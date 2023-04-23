@@ -12,7 +12,8 @@ public partial class PageLireOutils : Page
 {
     private readonly OutilDB _pageConnexionBd = new OutilDB();
     private GestionOutil _gestionOutil;
-    
+    private string nomCompletGestionnaire;
+
     public PageLireOutils()
     {
         InitializeComponent();
@@ -48,6 +49,7 @@ public partial class PageLireOutils : Page
         }
     }
 
+
     private void ModifyButton_Click(object sender, RoutedEventArgs e)
     {
         var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
@@ -57,7 +59,19 @@ public partial class PageLireOutils : Page
             NavigationService.Navigate(modifierOutilPage);
         }
     }
-    
+
+    private void Retour_Click(object sender, RoutedEventArgs e)
+    {
+        PageMenu mainPage = new PageMenu(nomCompletGestionnaire);
+        this.NavigationService.Navigate(mainPage);
+    }
+
+    private void Ajouter_Click(object sender, RoutedEventArgs e)
+    {
+        OutilCreate pageCreate = new OutilCreate();
+        this.NavigationService.Navigate(pageCreate);
+    }
+
     private void OutilsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
         var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
