@@ -1,0 +1,22 @@
+﻿<Page x:Class="TP2_14E_A2022.Pages.PageLireUnOutil"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:TP2_14E_A2022.Pages"
+      mc:Ignorable="d"
+      Title="PageLireUnOutil" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="ID:" FontWeight="Bold" />
+            <TextBlock Text="{Binding Id}" />
+            <TextBlock Text="Nom:" FontWeight="Bold" />
+            <TextBlock Text="{Binding Nom}" />
+            <TextBlock Text="Description:" FontWeight="Bold" />
+            <TextBlock Text="{Binding Description}" />
+            <TextBlock Text="Est Brise:" FontWeight="Bold" />
+            <CheckBox IsChecked="{Binding EstBrise}" IsEnabled="False" />
+            <Button Content="Retour" Margin="0,10,0,0" Click="BackButton_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

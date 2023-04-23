@@ -8,13 +8,10 @@ public interface IGestionOutil
 {
     Outils CreerOutil(ObjectId id, string nom, string description, bool estBrise);
     List<Outils> LireTousLesOutils();
-    
     void SupprimerOutil(ObjectId id);
     void ModifierOutil(Outils outil);
     
+    Outils GetOutilById(ObjectId id);
     
     
-    // TODO:
-    //Outils ModifierOutil(string nom, string description, bool estBrise);
-    //Outils SupprimerOutil(string nom, string description, bool estBrise);
 }

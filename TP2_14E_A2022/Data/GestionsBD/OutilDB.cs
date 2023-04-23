@@ -83,6 +83,24 @@ public class OutilDB : IOutilDB
             MessageBox.Show(MESSAGE_ERREUR_CONNEXION + ex.Message, MESSAGE_ERREUR, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+    
+    public Outils GetOutilById(ObjectId id)
+    {
+        Outils outil = null;
+
+        try
+        {
+            var db = dal.GetDatabase();
+            var collection = db.GetCollection<Outils>("Outils");
+            outil = collection.Find(o => o.Id == id).FirstOrDefault();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(MESSAGE_ERREUR_CONNEXION + ex.Message, MESSAGE_ERREUR, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        return outil;
+    }
 
 
 }

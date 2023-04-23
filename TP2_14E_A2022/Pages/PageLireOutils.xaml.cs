@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
 using TP2_14E_A2022.Data.GestionsBD;
@@ -56,4 +57,19 @@ public partial class PageLireOutils : Page
             NavigationService.Navigate(modifierOutilPage);
         }
     }
+    
+    private void OutilsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
+        if (selectedOutil != null)
+        {
+            var outil = _gestionOutil.GetOutilById(selectedOutil.Id.Value);
+            if (outil != null)
+            {
+                var lireOutilWindow = new PageLireUnOutil(outil);
+                NavigationService.Navigate(lireOutilWindow);
+            }
+        }
+    }
+
 }
