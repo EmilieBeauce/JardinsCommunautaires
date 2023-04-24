@@ -45,7 +45,7 @@ namespace TP2_14E_A2022.Pages
 
         private void BtnMembre_Click(object sender, RoutedEventArgs e)
         {
-            PageMembre pageMembre = new PageMembre(nomCompletGestionnaire);
+            PageMembres pageMembre = new PageMembres(nomCompletGestionnaire);
             this.NavigationService.Navigate(pageMembre);
         }
     }

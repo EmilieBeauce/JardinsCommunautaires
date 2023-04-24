@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
 using TP2_14E_A2022.Data.GestionsBD;
 
@@ -24,40 +25,41 @@ namespace TP2_14E_A2022.Pages
     {
 
         private MembreDB membreDB = new MembreDB();
-        private GestionMembre gestionMembre;
         public string nomCompletGestionnaire;
         public PageAjouterMembre(string nomCompletGestionnaire)
         {
             InitializeComponent();
             membreDB = new MembreDB();
+
             this.nomCompletGestionnaire = nomCompletGestionnaire;
+
+            nomCompletTextBlock.Text = nomCompletGestionnaire;
         }
 
         private void Button_Ajouter_Membre_Click(object sender, object e)
         {
             string nom = nomTextBox.Text;
             string prenom = prenomTextBox.Text;
-            bool payeCotisation = (bool)payerCotisationCheckBox.IsChecked;
 
             MembreDB membreDB = new MembreDB();
-            bool estCree = membreDB.AjouterMembre(prenom, nom, null, null, null, payeCotisation);
+            bool estCree = membreDB.AjouterMembre(prenom, nom, null, null, null);
 
             if (estCree)
-
             {
-                MessageBox.Show("Compte créé avec succès.");
-                PageMembre pageMembre = new PageMembre(nomCompletGestionnaire);
-                this.NavigationService.Navigate(pageMembre);
+                PageMembres pageMembres = new PageMembres(nomCompletGestionnaire, "Ajout du nouveau membre réussie");
+                this.NavigationService.Navigate(pageMembres);
             }
             else
             {
-                MessageBox.Show("Erreur lors de la création du compte.");
+                MessageValidation.Style = (Style)FindResource("SnackbarErrorStyle");
+                MessageValidation.MessageQueue.Enqueue("Erreur lors de l'ajout du compte");
             }
         }
 
         private void BoutonDeconnexion_Click(object sender, MouseButtonEventArgs e)
         {
-
+            PageConnexion pageConnexion = new PageConnexion();
+            this.NavigationService.Navigate(pageConnexion);
         }
 
         private void Button_Ajouter_Adresse_Click(object sender, object e)

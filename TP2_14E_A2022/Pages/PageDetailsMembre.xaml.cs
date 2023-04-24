@@ -29,9 +29,11 @@ namespace TP2_14E_A2022.Pages
         {
             InitializeComponent();
             MembreSelectionne = membre;
+            
             this.DataContext = this;
             this.nomCompletGestionnaire = nomCompletGestionnaire;
             this.gestionMembre = gestionMembre;
+            
             AdresseMessageTxt.Text = gestionMembre.GetAdresseMessage(MembreSelectionne);
             CotisationMessageTxt.Text = gestionMembre.GetCotisationMessage(MembreSelectionne);
             LotMessageTxt.Text = gestionMembre.GetLotMessage(MembreSelectionne);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.GestionsBD;
 
@@ -22,40 +23,26 @@ namespace TP2_14E_A2022.Data.Gestions
         }
 
         public Membre CreerMembre(string prenom, string nom, ObjectId? idAdresseCivique,
-            ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
+            ObjectId? idLot, ObjectId? idCotisation)
         {
-
             var objectId = ObjectId.GenerateNewId();
-            membres.Add(new Membre(objectId, prenom, nom, idAdresseCivique, idLot, idCotisation, payeCotisation));
+            membres.Add(new Membre(objectId, prenom, nom, idAdresseCivique, idLot, idCotisation));
             return membres.Last();
         }
 
         public Membre ModifierMembre(ObjectId id, string prenom, string nom, ObjectId? idAdresseCivique,
-                       ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
+                       ObjectId? idLot, ObjectId? idCotisation)
         {
             var membre = membres.Find(m => m.Id == id);
-            if (membre == null)
-            {
-                throw new Exception("Ce membre n'existe pas.");
-            }
+         
             membre.Prenom = prenom;
             membre.Nom = nom;
             membre.IdAdresseCivique = idAdresseCivique;
             membre.IdLot = idLot;
             membre.IdCotisation = idCotisation;
-            membre.PayeCotisation = payeCotisation;
             return membre;
         }
-        public Membre SupprimerMembre (ObjectId id)
-        {
-            var membre = membres.Find(m => m.Id == id);
-            if (membre == null)
-            {
-                throw new Exception("Ce membre n'existe pas.");
-            }
-            membres.Remove(membre);
-            return membre;
-        }
+    
         public string GetAdresseMessage(Membre membre)
         {
             if (membre.IdAdresseCivique == null)
@@ -66,7 +53,6 @@ namespace TP2_14E_A2022.Data.Gestions
             {
                 return string.Empty;
             }
-           
         }
 
         public string GetCotisationMessage(Membre membre)

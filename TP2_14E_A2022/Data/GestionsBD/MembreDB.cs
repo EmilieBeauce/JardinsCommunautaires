@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using DynamicData.Kernel;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
+using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 using static TP2_14E_A2022.Data.Gestions.GestionConnexion;
 
 namespace TP2_14E_A2022.Data.GestionsBD
@@ -39,14 +41,14 @@ namespace TP2_14E_A2022.Data.GestionsBD
             return membres;
         }
         /** ajouter un membre */
-        public bool AjouterMembre(string prenom, string nom, ObjectId? adresseCivique, ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
+        public bool AjouterMembre(string prenom, string nom, ObjectId? adresseCivique, ObjectId? idLot, ObjectId? idCotisation)
         {
             try
             {
                 MembreDB membreDB = new MembreDB();
                 gestionMembre = new GestionMembre(membreDB);
                 var db = dal.GetDatabase();
-                Membre membre = gestionMembre.CreerMembre(prenom, nom, adresseCivique, idLot, idCotisation, payeCotisation);
+                Membre membre = gestionMembre.CreerMembre(prenom, nom, adresseCivique, idLot, idCotisation);
                 db.GetCollection<Membre>("Membres").InsertOne(membre);
                 return true;
             }
@@ -57,7 +59,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             }
         }
         /** voir le detail d'un membre */
-        public Membre GetMembre(ObjectId? idMembre)
+        public Membre GetMembre(ObjectId idMembre)
         {
             Membre membre = new Membre();
             try
@@ -72,13 +74,27 @@ namespace TP2_14E_A2022.Data.GestionsBD
             return membre;
         }
         /** modifier un membre */
-        public bool ModifierMembre(ObjectId idMembre, string prenom, string nom, ObjectId? idAdresseCivique, ObjectId? idLot, ObjectId? idCotisation, bool payeCotisation)
+        public bool ModifierMembreDB(ObjectId idMembre, string prenom, string nom, ObjectId? idAdresseCivique, ObjectId? idLot, ObjectId? idCotisation)
         {
             try
             {
                 var db = dal.GetDatabase();
-                Membre membre = gestionMembre.ModifierMembre(idMembre, prenom, nom, idAdresseCivique, idLot, idCotisation, payeCotisation);
-                db.GetCollection<Membre>("Membres").ReplaceOne(m => m.Id == idMembre, membre);
+                var membreCollection = db.GetCollection<Membre>("Membres");
+                var membre = membreCollection.Find(m => m.Id == idMembre).FirstOrDefault();
+
+                if (membre == null)
+                {
+                    MessageBox.Show("Ce membre n'existe pas.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+                membre.Prenom = prenom;
+                membre.Nom = nom;
+                membre.IdAdresseCivique = idAdresseCivique;
+                membre.IdLot = idLot;
+                membre.IdCotisation = idCotisation;
+
+                membreCollection.ReplaceOne(m => m.Id == idMembre, membre);
                 return true;
             }
             catch (Exception ex)
