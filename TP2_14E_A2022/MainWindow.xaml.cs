@@ -24,7 +24,7 @@ namespace TP2_14E_A2022
         public MainWindow()
         {
             InitializeComponent();
-            _NavigationFrame.Navigate(new PageLireOutils());
+            _NavigationFrame.Navigate(new PageConnexion());
 
         }
 

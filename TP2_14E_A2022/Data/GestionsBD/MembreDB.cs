@@ -41,14 +41,14 @@ namespace TP2_14E_A2022.Data.GestionsBD
             return membres;
         }
         /** ajouter un membre */
-        public bool AjouterMembre(string prenom, string nom, ObjectId? adresseCivique, ObjectId? idLot, ObjectId? idCotisation)
+        public bool AjouterMembre(string prenom, string nom, bool estPaye, ObjectId? adresseCivique,  ObjectId? idLot, ObjectId? idCotisation)
         {
             try
             {
                 MembreDB membreDB = new MembreDB();
                 gestionMembre = new GestionMembre(membreDB);
                 var db = dal.GetDatabase();
-                Membre membre = gestionMembre.CreerMembre(prenom, nom, adresseCivique, idLot, idCotisation);
+                Membre membre = gestionMembre.CreerMembre(prenom, nom, estPaye, adresseCivique, idLot, idCotisation);
                 db.GetCollection<Membre>("Membres").InsertOne(membre);
                 return true;
             }
@@ -118,5 +118,82 @@ namespace TP2_14E_A2022.Data.GestionsBD
                 return false;
             }
         }
+        
+        public void UpdateEstPayeStatusInDatabase()
+        {
+            try
+            {
+                var db = dal.GetDatabase();
+
+                var filter = Builders<Membre>.Filter.Empty;
+                var update = Builders<Membre>.Update.Set("EstPaye", true);
+                db.GetCollection<Membre>("Membres").UpdateMany(filter, update);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la mise à jour du statut EstPaye : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        
+        public void UpdateMembreEstPaye(ObjectId membreId, bool estPaye)
+        {
+            try
+            {
+                var db = dal.GetDatabase();
+                var membreCollection = db.GetCollection<Membre>("Membres");
+
+                var filter = Builders<Membre>.Filter.Eq(m => m.Id, membreId);
+                var update = Builders<Membre>.Update.Set(m => m.EstPaye, estPaye);
+
+                if (estPaye)
+                {
+                    update = update.Set(m => m.Cotisation, 0);
+                }
+
+                membreCollection.UpdateOne(filter, update);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la mise à jour du statut EstPaye : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        public bool UpdateCotisation(ObjectId memberId, int newCotisation)
+        {
+            try
+            {
+                var db = dal.GetDatabase();
+                var membreCollection = db.GetCollection<Membre>("Membres");
+                var membre = membreCollection.Find(m => m.Id == memberId).FirstOrDefault();
+
+                if (membre == null)
+                {
+                    MessageBox.Show("Ce membre n'existe pas.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                
+                if (membre.EstPaye)
+                {
+                    newCotisation = 0;
+                }
+
+                membre.Cotisation = newCotisation;
+
+                var filter = Builders<Membre>.Filter.Eq(m => m.Id, memberId);
+                var update = Builders<Membre>.Update.Set(m => m.Cotisation, newCotisation);
+
+                membreCollection.UpdateOne(filter, update);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la mise à jour de la cotisation : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+
+
+        
+
+
     }
 }

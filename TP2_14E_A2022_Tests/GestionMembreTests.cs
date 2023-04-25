@@ -55,11 +55,12 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             var gestionMembre = new GestionMembre(mockMembreDB.Object);
             string prenom = "Jean";
             string nom = "Dupont";
+            bool estPaye = false;
             ObjectId idAdresseCivique = ObjectId.GenerateNewId();
             ObjectId idLot = ObjectId.GenerateNewId();
             ObjectId idCotisation = ObjectId.GenerateNewId();
 
-            var membre = gestionMembre.CreerMembre(prenom, nom, idAdresseCivique, idLot, idCotisation);
+            var membre = gestionMembre.CreerMembre(prenom, nom, estPaye, idAdresseCivique, idLot, idCotisation);
 
             Assert.AreEqual(membres.Last(), membre);
         }
@@ -71,12 +72,13 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             var gestionMembre = new GestionMembre(mockMembreDB.Object);
             string prenom = "Jean";
             string nom = "Dupont";
+            bool estPaye = false;
             ObjectId idAdresseCivique = ObjectId.GenerateNewId();
             ObjectId idLot = ObjectId.GenerateNewId();
             ObjectId idCotisation = ObjectId.GenerateNewId();
 
             // Act
-            var membre = gestionMembre.CreerMembre(prenom, nom, idAdresseCivique, idLot, idCotisation);
+            var membre = gestionMembre.CreerMembre(prenom, nom, estPaye, idAdresseCivique, idLot, idCotisation);
 
             // Assert
             Assert.AreNotEqual(membres.Count, 0);

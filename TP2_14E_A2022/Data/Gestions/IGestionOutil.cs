@@ -10,7 +10,6 @@ public interface IGestionOutil
     List<Outils> LireTousLesOutils();
     void SupprimerOutil(ObjectId id);
     void ModifierOutil(Outils outil);
-    
     Outils GetOutilById(ObjectId id);
     
     

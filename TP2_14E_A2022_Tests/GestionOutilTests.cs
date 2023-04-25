@@ -113,6 +113,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             var outils = mock.Object.LireTousLesOutils();
 
             // Assert
+            //mauvais valide que c nul et que c le bon comte = 2 test
             Assert.IsNotNull(outils);
             Assert.AreEqual(expectedOutils.Count, outils.Count);
             CollectionAssert.AreEqual(expectedOutils, outils);
