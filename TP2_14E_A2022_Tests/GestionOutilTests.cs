@@ -55,7 +55,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             var estBrise = false;
 
             // Act and Assert
-            Assert.ThrowsException<ArgumentException>(() => gestionOutil.CreerOutil(id, invalidNom, invalidDescription, estBrise));
+            Assert.ThrowsException<ArgumentNullException>(() => gestionOutil.CreerOutil(id, invalidNom, invalidDescription, estBrise));
         }
 
         
