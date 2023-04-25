@@ -42,7 +42,7 @@ namespace TP2_14E_A2022.Pages
             string prenom = prenomTextBox.Text;
 
             MembreDB membreDB = new MembreDB();
-            bool estCree = membreDB.AjouterMembre(prenom, nom, null, null, null);
+            bool estCree = membreDB.AjouterMembre(prenom, nom, false, null, null, null);
 
             if (estCree)
             {

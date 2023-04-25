@@ -55,6 +55,7 @@ namespace TP2_14E_A2022.Pages
             ListeDesMembres = membreDB.GetMembres();
             MembresListBox.ItemsSource = ListeDesMembres;
             this.DataContext = this;
+            ShowWarningForUnpaidMembers();
         }
         private void Button_Ajouter_Membre_Click(object sender, RoutedEventArgs e)
         {
@@ -96,5 +97,21 @@ namespace TP2_14E_A2022.Pages
             PageMenu pageMenu = new PageMenu(nomCompletGestionnaire);
             this.NavigationService.Navigate(pageMenu);
         }
+        
+        private void ShowWarningForUnpaidMembers()
+        {
+            foreach (var membre in ListeDesMembres)
+            {
+                if (!membre.EstPaye)
+                {
+                    // Customize the warning message as needed
+                    string warningMessage = $"Le membre {membre.Prenom} {membre.Nom} n'a pas encore payé.";
+                    MessageValidation.MessageQueue.Enqueue(warningMessage);
+                }
+                
+            }
+        }
+        
+        
     }
 }

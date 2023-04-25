@@ -42,6 +42,7 @@ Title="PageDetailsMembre">
                 <TextBlock Text="{Binding MembreSelectionne.Prenom}"  FontWeight="Bold" FontSize="16"/>
                 <TextBlock Text=" " />
                 <TextBlock Text="{Binding MembreSelectionne.Nom}" FontWeight="Bold" FontSize="16"/>
+                <TextBlock x:Name="FeeAmountTextBlock" FontWeight="Bold" FontSize="16" />
             </StackPanel>
             <!-- adresse -->
             <TextBlock Text="Adresse" FontWeight="Bold" FontSize="20" Margin="0,20,0,0"/>
@@ -53,6 +54,9 @@ Title="PageDetailsMembre">
             <TextBlock Text="{Binding Ville}" FontSize="16"/>
             <TextBlock x:Name="CotisationMessageTxt" FontSize="16" FontStyle="Italic" />
             <TextBlock x:Name="LotMessageTxt" FontSize="16" FontStyle="Italic"/>
+            <Button Content="Retour" Margin="0,10,0,0" Click="BackButton_Click" />
+            <CheckBox x:Name="EstPayeCheckBox" Content="Payé" IsChecked="{Binding MembreSelectionne.EstPaye, Mode=TwoWay}" Checked="EstPayeCheckBox_Checked" Unchecked="EstPayeCheckBox_Unchecked" Margin="0,20,0,0" />
+            
         </StackPanel>
 
     </Grid>
