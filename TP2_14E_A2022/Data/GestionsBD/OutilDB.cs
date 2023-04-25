@@ -20,6 +20,12 @@ public class OutilDB : IOutilDB
     {
         dal = new DAL();
     }
+    
+    private IMongoCollection<Outils> GetOutilsCollection()
+    {
+        var db = dal.GetDatabase();
+        return db.GetCollection<Outils>("Outils");
+    }
 
     public virtual List<Outils> GetOutils()
     {
@@ -27,9 +33,9 @@ public class OutilDB : IOutilDB
         
         try
         {
-            var db = dal.GetDatabase();
-            outils = db.GetCollection<Outils>("Outils").Aggregate().ToList();
+            outils = GetOutilsCollection().Aggregate().ToList();        
         }
+
         catch (Exception ex)
         {
             MessageBox.Show(MESSAGE_ERREUR_CONNEXION + ex.Message, MESSAGE_ERREUR, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -42,8 +48,7 @@ public class OutilDB : IOutilDB
     {
         try
         {
-            var db = dal.GetDatabase();
-            db.GetCollection<Outils>("Outils").InsertOne(outil);
+            GetOutilsCollection().InsertOne(outil);
         }
         catch (Exception ex)
         {
@@ -55,9 +60,8 @@ public class OutilDB : IOutilDB
     {
         try
         {
-            var db = dal.GetDatabase();
             var filter = Builders<Outils>.Filter.Eq(o => o.Id, id);
-            db.GetCollection<Outils>("Outils").DeleteOne(filter);
+            GetOutilsCollection().DeleteOne(filter);
         }
         catch (Exception ex)
         {
@@ -69,14 +73,13 @@ public class OutilDB : IOutilDB
     {
         try
         {
-            var db = dal.GetDatabase();
             var filter = Builders<Outils>.Filter.Eq(o => o.Id, outil.Id);
             var update = Builders<Outils>.Update
                 .Set(o => o.Nom, outil.Nom)
                 .Set(o => o.Description, outil.Description)
                 .Set(o => o.EstBrise, outil.EstBrise);
 
-            db.GetCollection<Outils>("Outils").UpdateOne(filter, update);
+            GetOutilsCollection().UpdateOne(filter, update);
         }
         catch (Exception ex)
         {
@@ -90,8 +93,7 @@ public class OutilDB : IOutilDB
 
         try
         {
-            var db = dal.GetDatabase();
-            var collection = db.GetCollection<Outils>("Outils");
+            var collection = GetOutilsCollection();
             outil = collection.Find(o => o.Id == id).FirstOrDefault();
         }
         catch (Exception ex)

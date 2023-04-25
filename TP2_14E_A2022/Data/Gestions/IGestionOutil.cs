@@ -12,5 +12,4 @@ public interface IGestionOutil
     void ModifierOutil(Outils outil);
     Outils GetOutilById(ObjectId id);
     
-    
 }
