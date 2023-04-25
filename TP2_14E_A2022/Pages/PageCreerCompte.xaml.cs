@@ -73,7 +73,7 @@ namespace TP2_14E_A2022.Pages
                 courrielErreurTextBlock.Text = "Cette adresse courriel n'est pas conforme devrait avoir un '@' ou un '.'.";
                 estValide = false;
             }
-            else if (!gestionConnexion.CourrielExiste(courriel))
+            else if (gestionConnexion.CourrielExiste(courriel))
             {
                 courrielErreurTextBlock.Text = "Veuillez entrer un courriel qui n'est pas utilisé.";
                 estValide = false;
