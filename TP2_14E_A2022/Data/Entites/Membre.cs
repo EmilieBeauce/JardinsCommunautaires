@@ -23,9 +23,7 @@ namespace TP2_14E_A2022.Data.Entites
         private DateTime _dateInscription;
         private ObjectId? _idAdresseCivique;
         private ObjectId? _idLot;
-        private ObjectId? _idCotisation;
         #endregion
-
         #region Propriétés
         public ObjectId Id
         {
@@ -75,18 +73,12 @@ namespace TP2_14E_A2022.Data.Entites
             get { return _idLot; }
             set { _idLot = value; }
         }
-        public ObjectId? IdCotisation
-        {
-            get { return _idCotisation; }
-            set { _idCotisation = value; }
-        }
-
         #endregion
         #region constructeur
         public Membre() { }
       
         public Membre(ObjectId id, string prenom, string nom, bool estPaye, ObjectId? idAdresseCivique, 
-            ObjectId? idLot, ObjectId? idCotisation, int _cotisation, DateTime _dateInscription)
+            ObjectId? idLot, int cotisation, DateTime dateInscription)
         {
             Id = id;
             Prenom = prenom;
@@ -94,9 +86,8 @@ namespace TP2_14E_A2022.Data.Entites
             EstPaye = estPaye;
             IdAdresseCivique = idAdresseCivique;
             IdLot = idLot;
-            IdCotisation = idCotisation;
-            Cotisation = _cotisation;
-            DateInscription = _dateInscription;
+            Cotisation = cotisation;
+            DateInscription = dateInscription;
         }
         #endregion
 

@@ -48,13 +48,13 @@ namespace TP2_14E_A2022.Data.Gestions
                 cotisation = 0;
             }
 
-            membres.Add(new Membre(objectId, prenom, nom, estPaye, idAdresseCivique, idLot, idCotisation, cotisation, inscriptionDate));
+            membres.Add(new Membre(objectId, prenom, nom, estPaye, idAdresseCivique, idLot, cotisation, inscriptionDate));
 
             return membres.Last();
         }
 
         public Membre ModifierMembre(ObjectId id, string prenom, string nom, ObjectId? idAdresseCivique,
-            ObjectId? idLot, ObjectId? idCotisation)
+            ObjectId? idLot)
         {
             if (string.IsNullOrEmpty(prenom))
             {
@@ -72,7 +72,7 @@ namespace TP2_14E_A2022.Data.Gestions
             membre.Nom = nom;
             membre.IdAdresseCivique = idAdresseCivique;
             membre.IdLot = idLot;
-            membre.IdCotisation = idCotisation;
+       
             
             return membre;
         }
@@ -80,9 +80,6 @@ namespace TP2_14E_A2022.Data.Gestions
         public string GetAdresseMessage(Membre membre) =>
             membre.IdAdresseCivique == null ? "Adresse à compléter" : string.Empty;
 
-        public string GetCotisationMessage(Membre membre) =>
-            membre.IdCotisation == null ? "Cotisation à venir" : string.Empty;
-        
         public string GetLotMessage(Membre membre) =>
             membre.IdLot == null ? "Attribution de lot à faire" : string.Empty;
 
