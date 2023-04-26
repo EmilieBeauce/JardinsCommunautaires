@@ -72,7 +72,6 @@ namespace TP2_14E_A2022.Data.Gestions
             membre.Nom = nom;
             membre.IdAdresseCivique = idAdresseCivique;
             membre.IdLot = idLot;
-       
             
             return membre;
         }
@@ -127,10 +126,15 @@ namespace TP2_14E_A2022.Data.Gestions
 
         public Membre GetMembreById(ObjectId membreId)
         {
+            if (membreId == default(ObjectId))
+            {
+                throw new ArgumentException("Invalid ObjectId provided.");
+            }
+
             return membreDb.GetMembre(membreId);
         }
 
-        public void UpdateMembreCotisation(ObjectId membreId, int newCotisation)
+        public virtual void UpdateMembreCotisation(ObjectId membreId, int newCotisation)
         {
             if (membreId == default(ObjectId))
             {
@@ -143,7 +147,9 @@ namespace TP2_14E_A2022.Data.Gestions
         public int CalculateCotisation(DateTime dateInscription)
         {
             int cotisation = 20;
-            TimeSpan timeSinceInscription = GetCustomDate() - dateInscription;
+            
+            // Pour tester la cotisation, juste remplacer le DateTime.Now par GetCustomDate(). 
+            TimeSpan timeSinceInscription = DateTime.Now - dateInscription;
             int yearsPassed = (int)(timeSinceInscription.TotalDays / 365.25);
             int weeksPassed = (int)(timeSinceInscription.TotalDays - (yearsPassed * 365.25)) / 7;
 

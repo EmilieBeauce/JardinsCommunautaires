@@ -2,10 +2,25 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="clr-namespace:TP2_14E_A2022.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:global="clr-namespace:"
       Title="PageModifierOutil"
       Height="450"
       Width="800"
       Background="White">
+
+    <Page.Resources>
+        <Style x:Key="errorMessage" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+        <Style x:Key="SnackbarSuccessStyle" TargetType="{x:Type materialDesign:Snackbar}">
+            <Setter Property="Foreground" Value="#B3FFFFFF" />
+            <Setter Property="Background" Value="LightGreen"/>
+        </Style>
+        <global:BoolToBrushConverter x:Key="BoolToBrushConverter" />
+        <materialDesign:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <local:BoolToTooltipConverter x:Key="BoolToTooltipConverter" />
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,7 +33,22 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,19,25,0" Click="RetourMainMenuButton_Click" Grid.Column="2" Width="133"/>
+        <materialDesign:Snackbar x:Name="MessageValidation" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <materialDesign:Snackbar.MessageQueue>
+                <materialDesign:SnackbarMessageQueue/>
+            </materialDesign:Snackbar.MessageQueue>
+        </materialDesign:Snackbar>
+
+        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,20,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label FontSize="15" Content="Bonjour" />
+                <TextBlock x:Name="nomCompletTextBlock" Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click">Me déconnecter</TextBlock>
+        </StackPanel>
+
+
+        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,90,25,0" Click="RetourMainMenuButton_Click" Grid.Column="2" Width="133"/>
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
         <Rectangle Fill="#FF7DB569" IsHitTestVisible="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,-55"/>
         <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="350" Margin="32,20,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="342" Fill="#FFF7FBF9"/>

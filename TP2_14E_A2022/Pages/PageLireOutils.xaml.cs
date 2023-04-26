@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using MaterialDesignThemes.Wpf;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
 using TP2_14E_A2022.Data.GestionsBD;
@@ -14,9 +16,11 @@ public partial class PageLireOutils : Page
     private GestionOutil _gestionOutil;
     private string nomCompletGestionnaire;
 
-    public PageLireOutils()
+    public PageLireOutils(string nomCompletGestionnaire, string message = null)
     {
         InitializeComponent();
+        this.nomCompletGestionnaire = nomCompletGestionnaire;
+        nomCompletTextBlock.Text = nomCompletGestionnaire;
         try
         {
             _pageConnexionBd = new OutilDB();
@@ -26,6 +30,12 @@ public partial class PageLireOutils : Page
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
+        }
+        
+        if (!string.IsNullOrEmpty(message))
+        {
+            MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+            MessageValidation.MessageQueue.Enqueue(message);
         }
     }
     
@@ -44,6 +54,8 @@ public partial class PageLireOutils : Page
             if (result == MessageBoxResult.Yes)
             {
                 _gestionOutil.SupprimerOutil(selectedOutil.Id.Value);
+                MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+                MessageValidation.MessageQueue.Enqueue($"Le membre {selectedOutil.Nom} a été supprimé.");
                 LoadOutils();
             }
         }
@@ -55,7 +67,7 @@ public partial class PageLireOutils : Page
         var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
         if (selectedOutil != null)
         {
-            var modifierOutilPage = new PageModifierOutil(_gestionOutil, selectedOutil);
+            var modifierOutilPage = new PageModifierOutil(nomCompletGestionnaire,_gestionOutil, selectedOutil);
             NavigationService.Navigate(modifierOutilPage);
         }
     }
@@ -68,22 +80,25 @@ public partial class PageLireOutils : Page
 
     private void Ajouter_Click(object sender, RoutedEventArgs e)
     {
-        OutilCreate pageCreate = new OutilCreate();
+        OutilCreate pageCreate = new OutilCreate(nomCompletGestionnaire);
         this.NavigationService.Navigate(pageCreate);
     }
-
-    private void OutilsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    
+    private void ViewButton_Click(object sender, RoutedEventArgs e)
     {
         var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
         if (selectedOutil != null)
         {
-            var outil = _gestionOutil.GetOutilById(selectedOutil.Id.Value);
-            if (outil != null)
-            {
-                var lireOutilWindow = new PageLireUnOutil(outil);
-                NavigationService.Navigate(lireOutilWindow);
-            }
+            var viewOutilPage = new PageLireUnOutil(nomCompletGestionnaire,selectedOutil);
+            NavigationService.Navigate(viewOutilPage);
         }
     }
+
+    private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
+    {
+        PageConnexion pageConnexion = new PageConnexion();
+        this.NavigationService.Navigate(pageConnexion);
+    }
+
 
 }

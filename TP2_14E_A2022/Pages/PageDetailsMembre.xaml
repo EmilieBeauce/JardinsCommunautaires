@@ -20,7 +20,7 @@ Title="PageDetailsMembre">
         </Style>
     </Page.Resources>
 
-    <Grid  Margin="20,20,20,20" Background="White">
+    <Grid Background="White">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*" />
@@ -34,32 +34,42 @@ Title="PageDetailsMembre">
         </Grid.RowDefinitions>
 
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"  MouseLeftButtonUp="Logo_MouseLeftButtonUp" />
+        <Rectangle Fill="#FF7DB569" IsHitTestVisible="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,-55"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="350" Margin="32,20,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="342" Fill="#FFF7FBF9"/>
+        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,90,25,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
 
-        <StackPanel VerticalAlignment="Top"  Grid.Column="1"  Height="395" Margin="20,30,30,0" Grid.RowSpan="2">
-            <TextBlock Text="Détails du membre" FontWeight="Bold" FontSize="20" Margin="0,10,0,20"/>
+        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,20,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label FontSize="15" Content="Bonjour" />
+                <TextBlock x:Name="nomCompletTextBlock" Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click">Me déconnecter</TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Height="208" Width="309">
             <!-- nom et prénom -->
             <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
-                <TextBlock Text="{Binding MembreSelectionne.Prenom}"  FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="{Binding MembreSelectionne.Prenom}" FontWeight="Bold" Foreground="#FF009019"/>
                 <TextBlock Text=" " />
-                <TextBlock Text="{Binding MembreSelectionne.Nom}" FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="{Binding MembreSelectionne.Nom}" FontWeight="Bold" Foreground="#FF009019"/>
             </StackPanel>
 
             <!-- adresse -->
             <TextBlock Text="Adresse" FontWeight="Bold" FontSize="20" Margin="0,20,0,0"/>
+            <TextBlock Text=" " />
             <TextBlock x:Name="AdresseMessageTxt" FontSize="16" FontStyle="Italic" />
-            <TextBlock Text="{Binding NuméroImmeuble}" FontSize="16"/>
+            <!--<TextBlock Text="{Binding NuméroImmeuble}" FontSize="16"/>
             <TextBlock Text="{Binding Unité}" FontSize="16"/>
             <TextBlock Text="{Binding Rue}" FontSize="16"/>
             <TextBlock Text="{Binding CodePostal}" FontSize="16"/>
-            <TextBlock Text="{Binding Ville}" FontSize="16"/>
-           
+            <TextBlock Text="{Binding Ville}" FontSize="16"/>-->
+
             <StackPanel Orientation="Horizontal" >
                 <CheckBox x:Name="EstPayeCheckBox" FontSize="16" Content="Payé" Margin="0,-2,50,10" IsChecked="{Binding MembreSelectionne.EstPaye, Mode=TwoWay}" Checked="EstPayeCheckBox_Checked" Unchecked="EstPayeCheckBox_Unchecked"  />
                 <TextBlock x:Name="FeeAmountTextBlock"  FontStyle="Italic" FontSize="16" Margin="0,0,0,0"/>
-             </StackPanel>
-            
+            </StackPanel>
+
             <TextBlock x:Name="LotMessageTxt" FontSize="16" FontStyle="Italic"/>
-            <Button Content="Retour" Margin="0,10,0,0" Click="BackButton_Click" />
 
         </StackPanel>
 

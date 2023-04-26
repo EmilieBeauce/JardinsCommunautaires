@@ -50,13 +50,7 @@ namespace TP2_14E_A2022.Pages
             membre.Prenom = nouveauPrenom;
             membre.Nom = nouveauNom;
 
-            bool modificationReussie = gestionMembre.membreDb.ModifierMembreDB(
-                    membre.Id,
-                    nouveauPrenom,
-                    nouveauNom,
-                    membre.IdAdresseCivique,
-                    membre.IdLot
-                );
+            bool modificationReussie = gestionMembre.membreDb.ModifierMembreDB(membre);
 
             if (modificationReussie)
             {

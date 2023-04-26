@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using MongoDB.Bson;
@@ -12,17 +13,25 @@ public partial class OutilCreate : Page
 {
     private readonly OutilDB _pageConnexionBd = new OutilDB();
     public GestionOutil gestionOutil;
-    
+    public string nomCompletGestionnaire;
 
-    public OutilCreate()
+    public OutilCreate(string nomCompletGestionnaire, string message = null)
     {
         InitializeComponent();
         gestionOutil = new GestionOutil(_pageConnexionBd);
+        this.nomCompletGestionnaire = nomCompletGestionnaire;
+            
+        nomCompletTextBlock.Text = nomCompletGestionnaire;
+        
+        if (!string.IsNullOrEmpty(message))
+        {
+            MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+            MessageValidation.MessageQueue.Enqueue(message);
+        }
     }
 
     private void CreateButton_Click(object sender, RoutedEventArgs e)
     {
-        // Reset error messages
         NomErreurTextBlock.Text = "";
         DescriptionErreurTextBlock.Text = "";
 
@@ -31,17 +40,14 @@ public partial class OutilCreate : Page
         string description = DescriptionTextBox.Text;
         bool estBrise = EstBriseCheckBox.IsChecked ?? false;
 
-        // Validation variables
         bool isValid = true;
 
-        // Nom validation
         if (!gestionOutil.NomEstValide(nom))
         {
             NomErreurTextBlock.Text = "Veuillez entrer le nom.";
             isValid = false;
         }
 
-        // Description validation
         if (!gestionOutil.DescriptionEstValide(description))
         {
             DescriptionErreurTextBlock.Text = "Veuillez entrer la description.";
@@ -50,16 +56,26 @@ public partial class OutilCreate : Page
 
         if (isValid)
         {
+           
             Outils outil = new Outils(objectId, nom, description, estBrise);
             _pageConnexionBd.CreerOutil(outil);
-            MessageBox.Show("Outil ajouté à la base de données.");
+
+            PageLireOutils pageLireOutils = new PageLireOutils(nomCompletGestionnaire, "Outil mis à jour avec succès!");
+            
+            NavigationService.Navigate(pageLireOutils);
+
         }
     }
 
+    private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
+    {
+        PageConnexion pageConnexion = new PageConnexion();
+        this.NavigationService.Navigate(pageConnexion);
+    }
 
     private void RetourMainMenuButton_Click(object sender, RoutedEventArgs e)
     {
-        PageLireOutils lireOutils = new PageLireOutils();
+        PageLireOutils lireOutils = new PageLireOutils(nomCompletGestionnaire);
         this.NavigationService.Navigate(lireOutils);
     }
 }
