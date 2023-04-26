@@ -111,7 +111,10 @@ namespace TP2_14E_A2022.Pages
                 
             }
         }
-        
-        
+
+        private void MembresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

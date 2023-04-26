@@ -65,7 +65,7 @@
                  BorderBrush="Black"
                  BorderThickness="1"
                      Width="554"
-                     Height="278" Background="#FFF4F8F3" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="0.269,0.576"  >
+                     Height="278" Background="#FFF4F8F3" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="0.269,0.576" SelectionChanged="MembresListBox_SelectionChanged"  >
 
                 <ListBox.Resources>
                     <Style TargetType="{x:Type ListBoxItem}">

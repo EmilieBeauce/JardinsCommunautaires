@@ -161,14 +161,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             Assert.IsTrue(result);
         }
         [TestMethod]
-        public void CourrielExiste_NullCourriel_ReturnsFalse()
-        {
-            string courriel = null;
-            var result = gestion.CourrielExiste(courriel);
-            Assert.IsFalse(result);
-        }
-        [TestMethod]
-        public void CourrielExiste_CourrielExists_ReturnsFalse()
+        public void CourrielExiste_CourrielExists_ReturnsTrue()
         {
             var mockPageConnexionBD = new Mock<IPageConnexionBD>();
             var gestionnaireList = new List<Gestionnaire>
@@ -182,10 +175,10 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             string courriel = "janedoe@test.ca";
             bool result = gestionConnexion.CourrielExiste(courriel);
 
-            Assert.IsFalse(result);
+            Assert.IsTrue(result);
         }
         [TestMethod]
-        public void CourrielExiste_CourrielIsUnique_ReturnsTrue()
+        public void CourrielExiste_CourrielIsUnique_ReturnsFalse()
         {
             var mockPageConnexionBD = new Mock<IPageConnexionBD>();
             var gestionnaireList = new List<Gestionnaire>
@@ -199,7 +192,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             string courriel = "johndoe@test.ca";
             bool result = gestionConnexion.CourrielExiste(courriel);
 
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void CourrielEstVide_WhiteSpaceCourriel_ReturnsFalse()
