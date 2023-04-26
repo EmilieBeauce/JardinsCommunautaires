@@ -88,5 +88,11 @@ namespace TP2_14E_A2022.Pages
             var pageLireOutils = new PageMenu(nomCompletGestionnaire);
             NavigationService.Navigate(pageLireOutils);
         }
+
+        private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
+        {
+            PageConnexion pageConnexion = new PageConnexion();
+            this.NavigationService.Navigate(pageConnexion);
+        }
     }
 }

@@ -28,16 +28,17 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
-            <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
-                <Label FontSize="15"  >Bonjour</Label>
-                <TextBlock x:Name="nomCompletTextBlock"  Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"  ></TextBlock>
-            </StackPanel >
+        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top" Margin="45,0,25,0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label FontSize="15" Content="Bonjour"/>
+                <TextBlock x:Name="nomCompletTextBlock" Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"/>
+            </StackPanel>
             <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click">Me déconnecter</TextBlock>
-        </StackPanel >
+        </StackPanel>
+
 
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="140" Width="143"/>
-        <Button Content="Retour" Background="#FF7DB569" Click="Retour_Click" Margin="556,89,10,19" Grid.Column="2"/>
+        <Button Content="Retour" Background="#FF7DB569" Click="Retour_Click" Margin="591,89,25,19" Grid.Column="2" Grid.ColumnSpan="2"/>
 
         <wpf:Snackbar x:Name="MessageValidation" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top">
             <wpf:Snackbar.MessageQueue>
@@ -90,6 +91,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Ajouter" Background="#FF7DB569" Click="Ajouter_Click" Margin="108,86,457,22" Grid.Column="2"/>
+        <Button Content="Ajouter" Background="#FF7DB569" Click="Ajouter_Click" Margin="108,89,457,19" Grid.Column="2"/>
     </Grid>
 </Page>

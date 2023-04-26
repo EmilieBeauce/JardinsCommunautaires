@@ -39,7 +39,7 @@
             </materialDesign:Snackbar.MessageQueue>
         </materialDesign:Snackbar>
 
-        <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
+        <StackPanel Grid.Column="1"  Orientation="Vertical" VerticalAlignment="Bottom"  Margin="395,0,25,91" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
                 <Label FontSize="15"  >Bonjour</Label>
                 <TextBlock x:Name="nomCompletTextBlock"  Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"  ></TextBlock>
