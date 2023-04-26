@@ -39,17 +39,14 @@ public partial class OutilCreate : Page
         string description = DescriptionTextBox.Text;
         bool estBrise = EstBriseCheckBox.IsChecked ?? false;
 
-        // Validation variables
         bool isValid = true;
 
-        // Nom validation
         if (!gestionOutil.NomEstValide(nom))
         {
             NomErreurTextBlock.Text = "Veuillez entrer le nom.";
             isValid = false;
         }
 
-        // Description validation
         if (!gestionOutil.DescriptionEstValide(description))
         {
             DescriptionErreurTextBlock.Text = "Veuillez entrer la description.";

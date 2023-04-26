@@ -18,6 +18,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
     {
         private const string MESSAGE_ERREUR_CONNEXION = "Impossible de se connecter à la base de données";
         private const string MESSAGE_ERREUR = "Erreur";
+        
         private DAL dal;
 
         public MembreDB()
@@ -147,7 +148,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
                 MessageBox.Show("Erreur lors de la mise à jour du statut EstPaye : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public bool UpdateCotisation(ObjectId memberId, int newCotisation)
+        public virtual bool UpdateCotisation(ObjectId memberId, int newCotisation)
         {
             try
             {

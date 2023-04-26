@@ -86,7 +86,7 @@ public class GestionOutil : IGestionOutil
     {
         if (id == default(ObjectId))
         {
-            throw new ArgumentException(string.Format(MESSAGE_ERREUR, nameof(id)), nameof(id));        
+            throw new ArgumentException(string.Format(MESSAGE_ERREUR, nameof(id)));        
         }
         
         return _outilDb.GetOutilById(id);

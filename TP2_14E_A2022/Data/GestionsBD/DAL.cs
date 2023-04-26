@@ -14,6 +14,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
     {
         private const string CHAINE_CONNEXION = "mongodb://localhost:27017/TP2DB";
         private const string NOM_BD = "TP2DB";
+        private const string MESSAGE_ERREUR = "Impossible de se connecter à la base de données. Erreur";
         private readonly MongoClient _mongoDBClient;
 
         public DAL()
@@ -29,7 +30,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Impossible de se connecter à la base de données. Erreur: {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{MESSAGE_ERREUR} {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
         }
@@ -42,7 +43,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Impossible d'ouvrir la connexion à la base de données. Erreur: {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{MESSAGE_ERREUR} {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
         }

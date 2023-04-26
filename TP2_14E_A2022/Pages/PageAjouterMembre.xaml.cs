@@ -23,9 +23,9 @@ namespace TP2_14E_A2022.Pages
     /// </summary>
     public partial class PageAjouterMembre : Page
     {
-
         private MembreDB membreDB = new MembreDB();
         public string nomCompletGestionnaire;
+        
         public PageAjouterMembre(string nomCompletGestionnaire)
         {
             InitializeComponent();
@@ -41,14 +41,11 @@ namespace TP2_14E_A2022.Pages
             string nom = nomTextBox.Text;
             string prenom = prenomTextBox.Text;
 
-            // Create an instance of GestionMembre
             MembreDB membreDB = new MembreDB();
             GestionMembre gestionMembre = new GestionMembre(membreDB);
 
-            // Validation variables
             bool isValid = true;
 
-            // Prenom validation
             if (!gestionMembre.PrenomEstValide(prenom))
             {
                 prenomErrorTextBlock.Text = "Veuillez entrer le prénom.";
@@ -59,7 +56,6 @@ namespace TP2_14E_A2022.Pages
                 prenomErrorTextBlock.Text = string.Empty;
             }
 
-            // Nom validation
             if (!gestionMembre.NomEstValide(nom))
             {
                 nomErrorTextBlock.Text = "Veuillez entrer le nom.";
