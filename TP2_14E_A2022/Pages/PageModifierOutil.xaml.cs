@@ -11,7 +11,7 @@ public partial class PageModifierOutil : Page
     private readonly Outils _selectedOutil;
     public string nomCompletGestionnaire;
 
-    public PageModifierOutil(string nomCompletGestionnaire, IGestionOutil gestionOutil, Outils selectedOutil)
+    public PageModifierOutil(string nomCompletGestionnaire, IGestionOutil gestionOutil, Outils selectedOutil, string message = null)
     {
         InitializeComponent();
         _gestionOutil = gestionOutil;
@@ -24,6 +24,12 @@ public partial class PageModifierOutil : Page
         NomTextBox.Text = _selectedOutil.Nom;
         DescriptionTextBox.Text = _selectedOutil.Description;
         EstBriseCheckBox.IsChecked = _selectedOutil.EstBrise;
+        
+        if (!string.IsNullOrEmpty(message))
+        {
+            MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+            MessageValidation.MessageQueue.Enqueue(message);
+        }
     }
 
     private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -58,7 +64,11 @@ public partial class PageModifierOutil : Page
             _selectedOutil.EstBrise = EstBriseCheckBox.IsChecked.GetValueOrDefault();
 
             _gestionOutil.ModifierOutil(_selectedOutil);
-            NavigationService.GoBack();
+
+            PageLireOutils pageLireOutils = new PageLireOutils(nomCompletGestionnaire, "Outil ajouté avec succès!");
+            NavigationService.Navigate(pageLireOutils);
+
+
         }
     }
 

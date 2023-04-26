@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using MongoDB.Bson;
@@ -59,7 +60,8 @@ public partial class OutilCreate : Page
             Outils outil = new Outils(objectId, nom, description, estBrise);
             _pageConnexionBd.CreerOutil(outil);
 
-            PageLireOutils pageLireOutils = new PageLireOutils("Ajout de l'outil avec succès!");
+            PageLireOutils pageLireOutils = new PageLireOutils(nomCompletGestionnaire, "Outil mis à jour avec succès!");
+            
             NavigationService.Navigate(pageLireOutils);
 
         }

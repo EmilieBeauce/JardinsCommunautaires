@@ -15,6 +15,7 @@ public partial class PageLireUnOutil : Page
             
         nomCompletTextBlock.Text = nomCompletGestionnaire;
         DataContext = outil;
+        
     }
     
     private void BackButton_Click(object sender, RoutedEventArgs e)
