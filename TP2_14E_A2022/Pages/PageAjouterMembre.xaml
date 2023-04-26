@@ -54,9 +54,12 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Height="208" Width="195">
             <TextBlock Text="Prénom" Foreground="#FF009019" Height="14" />
             <TextBox x:Name="prenomTextBox" />
+            <TextBlock x:Name="prenomErrorTextBlock" Style="{StaticResource errorMessage}" />
             <TextBlock Text="Nom" Foreground="#FF009019" Height="14" />
             <TextBox x:Name="nomTextBox" RenderTransformOrigin="0.483,-0.753" />
+            <TextBlock x:Name="nomErrorTextBlock" Style="{StaticResource errorMessage}" />
         </StackPanel>
+
 
         <Button x:Name="AjouterMembre" MinWidth="100" MaxWidth="200" Click="Button_Ajouter_Membre_Click"  Foreground="{DynamicResource MaterialDesignDarkForeground}" Background="#FF7DB569" Content="Ajouter le membre" Grid.ColumnSpan="3" Margin="175,290,175,-12" IsDefault="True" Grid.Row="1">
         </Button>

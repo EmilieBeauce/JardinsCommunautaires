@@ -25,11 +25,13 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Height="208" Width="195">
             <TextBlock Text="Nom" Foreground="#FF009019" Height="14" />
-            <TextBox Name="NomTextBox" Margin="0,0,0,20" />
+            <TextBox Name="NomTextBox" Margin="0,0,0,0" />
+            <TextBlock x:Name="NomError" Foreground="Red" Height="14" Visibility="Collapsed" />
 
-            <TextBlock Text="Description" Foreground="#FF009019" Height="14" />
-            <TextBox Name="DescriptionTextBox" Margin="0,0,0,20" />
-            <CheckBox Name="EstBriseCheckBox" Content="Est Brise" Foreground="#FF009019" />
+            <TextBlock Text="Description" Foreground="#FF009019" Margin="0,10,0,0" Height="14" />
+            <TextBox Name="DescriptionTextBox" Margin="0,0,0,0" />
+            <TextBlock x:Name="DescriptionError"  Foreground="Red" Height="14" Visibility="Collapsed" />
+            <CheckBox Name="EstBriseCheckBox" Margin="0, 20, 0, 0" Content="Est Brise" Foreground="#FF009019" />
         </StackPanel>
 
         <Button MinWidth="100" MaxWidth="200" Click="UpdateButton_Click" Foreground="{DynamicResource MaterialDesignDarkForeground}" Background="#FF7DB569" Content="Mettre à jour" Grid.ColumnSpan="3" Margin="175,247,175,31" IsDefault="True" Grid.Row="1">

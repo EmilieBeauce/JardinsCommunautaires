@@ -92,4 +92,9 @@ public class GestionOutil : IGestionOutil
         return _outilDb.GetOutilById(id);
     }
     
+    public bool NomEstValide(string nom) => !string.IsNullOrWhiteSpace(nom);
+
+    public bool DescriptionEstValide(string description) => !string.IsNullOrWhiteSpace(description);
+
+    
 }

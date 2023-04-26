@@ -36,23 +36,53 @@ namespace TP2_14E_A2022.Pages
             nomCompletTextBlock.Text = nomCompletGestionnaire;
         }
 
-        private void Button_Ajouter_Membre_Click(object sender, object e)
+        private void Button_Ajouter_Membre_Click(object sender, RoutedEventArgs e)
         {
             string nom = nomTextBox.Text;
             string prenom = prenomTextBox.Text;
 
+            // Create an instance of GestionMembre
             MembreDB membreDB = new MembreDB();
-            bool estCree = membreDB.AjouterMembre(prenom, nom, false, null, null, null);
+            GestionMembre gestionMembre = new GestionMembre(membreDB);
 
-            if (estCree)
+            // Validation variables
+            bool isValid = true;
+
+            // Prenom validation
+            if (!gestionMembre.PrenomEstValide(prenom))
             {
-                PageMembres pageMembres = new PageMembres(nomCompletGestionnaire, "Ajout du nouveau membre réussie");
-                this.NavigationService.Navigate(pageMembres);
+                prenomErrorTextBlock.Text = "Veuillez entrer le prénom.";
+                isValid = false;
             }
             else
             {
-                MessageValidation.Style = (Style)FindResource("SnackbarErrorStyle");
-                MessageValidation.MessageQueue.Enqueue("Erreur lors de l'ajout du compte");
+                prenomErrorTextBlock.Text = string.Empty;
+            }
+
+            // Nom validation
+            if (!gestionMembre.NomEstValide(nom))
+            {
+                nomErrorTextBlock.Text = "Veuillez entrer le nom.";
+                isValid = false;
+            }
+            else
+            {
+                nomErrorTextBlock.Text = string.Empty;
+            }
+
+            if (isValid)
+            {
+                bool estCree = membreDB.AjouterMembre(prenom, nom, false, null, null, null);
+
+                if (estCree)
+                {
+                    PageMembres pageMembres = new PageMembres(nomCompletGestionnaire, "Ajout du nouveau membre réussie");
+                    this.NavigationService.Navigate(pageMembres);
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de l'ajout du compte", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

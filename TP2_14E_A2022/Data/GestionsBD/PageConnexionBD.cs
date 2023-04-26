@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using MongoDB.Bson;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
 using static TP2_14E_A2022.Data.GestionsBD.PageConnexionBD;
@@ -21,44 +22,44 @@ namespace TP2_14E_A2022.Data.GestionsBD
         }
         private DAL dal;
         public GestionConnexion gestionConnexion;
+        private const string MESSAGE_ERREUR = "Impossible de se connecter à la base de données ";
 
         public PageConnexionBD()
         {
             dal = new DAL();
         }
-        /** faire une listes de gestionnaires*/
+
+        private IMongoCollection<Gestionnaire> GetGestionnairesCollection()
+        {
+            var db = dal.GetDatabase();
+            return db.GetCollection<Gestionnaire>("Gestionnaires");
+        }
         public virtual List<Gestionnaire> GetGestionnaires()
         {
-            var gestionnaires = new List<Gestionnaire>();
-
             try
             {
-                var db = dal.GetDatabase();
-                gestionnaires = db.GetCollection<Gestionnaire>("Gestionnaires").Aggregate().ToList();
+                return GetGestionnairesCollection().Aggregate().ToList();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Impossible de se connecter à la base de données ", ex.Message);
+                Console.WriteLine(MESSAGE_ERREUR, ex.Message);
+                
+                return new List<Gestionnaire>();
             }
-            return gestionnaires;
         }
-        /** aller chercher le nom et prenom du gestionaire pour des fin d'afficahge*/
+
         public string GetPrenomNomGestionnaire(string courriel)
         {
-            var db = dal.GetDatabase();
-            var gestionnaire = db.GetCollection<Gestionnaire>("Gestionnaires").Find(g => g.Courriel == courriel).FirstOrDefault();
-            return gestionnaire.Prenom + " " + gestionnaire.Nom;
+            var gestionnaire = GetGestionnairesCollection().Find(g => g.Courriel == courriel).FirstOrDefault();
+            return gestionnaire != null ? $"{gestionnaire.Prenom} {gestionnaire.Nom}" : string.Empty;
         }
-        /** créer un gestionnaire */
+        
         public bool CreateGestionnaireBD(string prenom, string nom, string courriel, string motDePasse)
         {
             try
             {
-                PageConnexionBD pageConnexionBD = new PageConnexionBD();
-                gestionConnexion = new GestionConnexion(pageConnexionBD);
-                var db = dal.GetDatabase();
-                Gestionnaire gestionnaire = gestionConnexion.CreerCompteGestionnaire(prenom, nom, courriel, motDePasse);
-                db.GetCollection<Gestionnaire>("Gestionnaires").InsertOne(gestionnaire);
+                var gestionnaire = new Gestionnaire(ObjectId.GenerateNewId(), prenom, nom, courriel, motDePasse);
+                GetGestionnairesCollection().InsertOne(gestionnaire);
                 return true;
             }
             catch (Exception ex)
@@ -67,36 +68,17 @@ namespace TP2_14E_A2022.Data.GestionsBD
                 return false;
             }
         }
-        /** Valider si le courriel existe*/
+        
         public bool ValiderSiCourrielExiste(string courriel)
         {
-            var db = dal.GetDatabase();
-            var gestionnaire = db.GetCollection<Gestionnaire>("Gestionnaires").Find(g => g.Courriel == courriel).FirstOrDefault();
-            if (gestionnaire == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            var gestionnaire = GetGestionnairesCollection().Find(g => g.Courriel == courriel).FirstOrDefault();
+            return gestionnaire != null;
         }
-        /** Valider Si le Mot De Passe Est Le Bon */
+        
         public bool ValiderSiMotDePasseEstLeBon(string courriel, string motDePasse)
         {
-            var db = dal.GetDatabase();
-            var MotDePasseEstBon = false;
-          
-            var gestionnaire = db.GetCollection<Gestionnaire>("Gestionnaires").Find(g => g.Courriel == courriel).FirstOrDefault();
-            if (gestionnaire.MotDePasse == motDePasse)
-            {
-                MotDePasseEstBon = true;
-            }
-            else
-            {
-                MotDePasseEstBon = false;
-            }
-            return MotDePasseEstBon;
+            var gestionnaire = GetGestionnairesCollection().Find(g => g.Courriel == courriel).FirstOrDefault();
+            return gestionnaire != null && gestionnaire.MotDePasse == motDePasse;
         }
     }
 }

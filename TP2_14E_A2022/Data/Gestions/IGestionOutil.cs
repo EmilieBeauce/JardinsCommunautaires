@@ -11,5 +11,7 @@ public interface IGestionOutil
     void SupprimerOutil(ObjectId id);
     void ModifierOutil(Outils outil);
     Outils GetOutilById(ObjectId id);
+    bool NomEstValide(string nom);
+    bool DescriptionEstValide(string description);
     
 }
