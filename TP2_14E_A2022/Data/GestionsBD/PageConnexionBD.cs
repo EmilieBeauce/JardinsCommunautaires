@@ -15,11 +15,6 @@ namespace TP2_14E_A2022.Data.GestionsBD
 {
     public class PageConnexionBD : IPageConnexionBD
     {
-        public interface IPageConnexionBD
-        {
-            List<Gestionnaire> GetGestionnaires();
-            bool CreateGestionnaireBD(string prenom, string nom, string courriel, string motDePasse);
-        }
         private DAL dal;
         public GestionConnexion gestionConnexion;
         private const string MESSAGE_ERREUR = "Impossible de se connecter à la base de données ";

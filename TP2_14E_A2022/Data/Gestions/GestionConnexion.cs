@@ -20,12 +20,8 @@ namespace TP2_14E_A2022.Data.Gestions
     
     public class GestionConnexion : IGestionConnexion
     {
-        public interface IGestionConnexion
-        {
-            Gestionnaire CreerCompteGestionnaire(string prenom, string nom, string courriel, string motDePasse);
-        }
+        private readonly IPageConnexionBD pageConnexionBD;
 
-        public IPageConnexionBD pageConnexionBD;
         public List<Gestionnaire> gestionnaires; 
 
         public GestionConnexion(IPageConnexionBD pageConnexionBD)
@@ -81,12 +77,13 @@ namespace TP2_14E_A2022.Data.Gestions
                 return false;
             }
         }
-        
         public bool MotDePasseEstVide(string motDePasse) => string.IsNullOrWhiteSpace(motDePasse);
 
         public bool MotDePasseEstConforme(string motDePasse) => motDePasse.Length >= 8;
 
         public bool MotDePasseEstEgaleConfirmation(string motDePasse, string confirmation) => motDePasse == confirmation;
+
+        /** confirmation n'est pas null ou vide*/
 
         public bool ConfirmationEstVide(string confirmation) => string.IsNullOrWhiteSpace(confirmation);
     }
