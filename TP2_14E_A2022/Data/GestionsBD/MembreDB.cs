@@ -75,7 +75,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
             return membre;
         }
         /** modifier un membre */
-        public bool ModifierMembreDB(ObjectId idMembre, string prenom, string nom, ObjectId? idAdresseCivique, ObjectId? idLot, ObjectId? idCotisation)
+        public bool ModifierMembreDB(ObjectId idMembre, string prenom, string nom, ObjectId? idAdresseCivique, ObjectId? idLot)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
                 membre.Nom = nom;
                 membre.IdAdresseCivique = idAdresseCivique;
                 membre.IdLot = idLot;
-                membre.IdCotisation = idCotisation;
+                
 
                 membreCollection.ReplaceOne(m => m.Id == idMembre, membre);
                 return true;

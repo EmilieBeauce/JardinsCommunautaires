@@ -68,7 +68,7 @@ namespace TP2_14E_A2022.Data.Gestions
         }
         public bool CourrielExiste(string courriel)
         {
-            if (gestionnaires.Exists(g => g.Courriel == courriel) || courriel == null)
+            if (gestionnaires.Exists(g => g.Courriel == courriel))
             {
                 return true;
             }

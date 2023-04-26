@@ -90,7 +90,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         {
             // Arrange
             
-            var membres = new List<Membre>() { new Membre() { Id = ObjectId.GenerateNewId(), Prenom = "Jean", Nom = "Dupont", IdAdresseCivique = null, IdLot = null, IdCotisation = null } };
+            var membres = new List<Membre>() { new Membre() { Id = ObjectId.GenerateNewId(), Prenom = "Jean", Nom = "Dupont", IdAdresseCivique = null, IdLot = null } };
             mockMembreDB.Setup(m => m.GetMembres()).Returns(membres);
             var gestionMembre = new GestionMembre(mockMembreDB.Object);
 
@@ -102,14 +102,14 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             ObjectId nouveauIdCotisation = ObjectId.GenerateNewId();
 
             // Act
-            var membreModifie = gestionMembre.ModifierMembre(idMembre, nouveauPrenom, nouveauNom, nouveauIdAdresseCivique, nouveauIdLot, nouveauIdCotisation);
+            var membreModifie = gestionMembre.ModifierMembre(idMembre, nouveauPrenom, nouveauNom, nouveauIdAdresseCivique, nouveauIdLot);
 
             // Assert
             Assert.AreEqual(nouveauPrenom, membreModifie.Prenom);
             Assert.AreEqual(nouveauNom, membreModifie.Nom);
             Assert.AreEqual(nouveauIdAdresseCivique, membreModifie.IdAdresseCivique);
             Assert.AreEqual(nouveauIdLot, membreModifie.IdLot);
-            Assert.AreEqual(nouveauIdCotisation, membreModifie.IdCotisation);
+        
         }
 
         [TestMethod]
@@ -135,32 +135,6 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
 
             // Act
             var message = gestionMembre.GetAdresseMessage(membre);
-
-            // Assert
-            Assert.AreEqual("", message);
-        }
-        [TestMethod]
-        public void GetCotisationMessage_RetourneLeBonMessage_QuandIdCotisationEstNull()
-        {
-            // Arrange
-            var membre = new Membre() { IdCotisation = null };
-            var gestionMembre = new GestionMembre(new MembreDB());
-
-            // Act
-            var message = gestionMembre.GetCotisationMessage(membre);
-
-            // Assert
-            Assert.AreEqual("Cotisation à venir", message);
-        }
-        [TestMethod]
-        public void GetCotisationMessage_RetourneAucunMessage_QuandIdCotisationExiste()
-        {
-            // Arrange
-            var membre = new Membre() { IdCotisation = ObjectId.GenerateNewId() };
-            var gestionMembre = new GestionMembre(new MembreDB());
-
-            // Act
-            var message = gestionMembre.GetCotisationMessage(membre);
 
             // Assert
             Assert.AreEqual("", message);

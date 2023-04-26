@@ -39,7 +39,6 @@ namespace TP2_14E_A2022.Pages
                 MembreSelectionne = gestionMembre.GetMembreById(membre);
             
                 AdresseMessageTxt.Text = gestionMembre.GetAdresseMessage(MembreSelectionne);
-                CotisationMessageTxt.Text = gestionMembre.GetCotisationMessage(MembreSelectionne);
                 LotMessageTxt.Text = gestionMembre.GetLotMessage(MembreSelectionne);
                 UpdateFeeAmount(MembreSelectionne.EstPaye);
             }
@@ -47,8 +46,6 @@ namespace TP2_14E_A2022.Pages
             {
                 MessageBox.Show("Erreur lors de la création de la page: " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
-
         }
 
         private void Logo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -78,11 +75,8 @@ namespace TP2_14E_A2022.Pages
             }
 
             gestionMembre.UpdateMembreCotisation(MembreSelectionne.Id, MembreSelectionne.Cotisation);
-            FeeAmountTextBlock.Text = $"Fees amount: {MembreSelectionne.Cotisation}$";
+            FeeAmountTextBlock.Text = $" Montant de la cotisation: {MembreSelectionne.Cotisation}$";
         }
-
-
-
 
         private void EstPayeCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -94,7 +88,5 @@ namespace TP2_14E_A2022.Pages
             var pageLireOutils = new PageMenu(nomCompletGestionnaire);
             NavigationService.Navigate(pageLireOutils);
         }
-        
-        
     }
 }
