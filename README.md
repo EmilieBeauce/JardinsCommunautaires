@@ -1,3 +1,3 @@
 # JardinsCommunautaires
 
-équipier : Emilie Beauce et Viktor Vanic
+Coéquipiers : Emilie Beauce et Viktor Vanic
