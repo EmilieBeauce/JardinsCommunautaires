@@ -65,7 +65,6 @@ namespace TP2_14E_A2022.Data.Gestions
             }
         }
 
-        
         public bool CourrielEstConforme(string courriel)
         {
             string patronCourriel = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
@@ -75,11 +74,11 @@ namespace TP2_14E_A2022.Data.Gestions
         {
             if (gestionnaires.Exists(g => g.Courriel == courriel) || courriel == null)
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
         

@@ -52,7 +52,7 @@ namespace TP2_14E_A2022.Pages
                 courrielErreurTextBlock.Text = "Veuillez entrer votre adresse courriel.";
                 courrielEstValide = false;
             }
-            else if (gestionConnexion.CourrielExiste(courriel))
+            else if (!gestionConnexion.CourrielExiste(courriel))
             {
                 courrielErreurTextBlock.Text = "L'adresse courriel n'existe pas.";
                 courrielEstValide = false;
@@ -62,21 +62,28 @@ namespace TP2_14E_A2022.Pages
                 courrielErreurTextBlock.Text = "";
                 courrielEstValide = true;
             }
-
-            if (gestionConnexion.MotDePasseEstVide(motDePasse))
+            if (courrielEstValide)
             {
-                mdpErreurTextBlock.Text = "Veuillez entrer votre mot de passe.";
-                mdpEstValide = false;
-            }
-            else if (!pageConnexionBD.ValiderSiMotDePasseEstLeBon(courriel, motDePasse) && courrielEstValide)
-            {
-                mdpErreurTextBlock.Text = "Le mot de passe est incorrect.";
-                mdpEstValide = false;
+                if (gestionConnexion.MotDePasseEstVide(motDePasse))
+                {
+                    mdpErreurTextBlock.Text = "Veuillez entrer votre mot de passe.";
+                    mdpEstValide = false;
+                }
+                else if (!pageConnexionBD.ValiderSiMotDePasseEstLeBon(courriel, motDePasse))
+                {
+                    mdpErreurTextBlock.Text = "Le mot de passe est incorrect.";
+                    mdpEstValide = false;
+                }
+                else
+                {
+                    mdpErreurTextBlock.Text = "";
+                    mdpEstValide = true;
+                }
             }
             else
             {
                 mdpErreurTextBlock.Text = "";
-                mdpEstValide = true;
+                mdpEstValide = false;
             }
 
             if (mdpEstValide && courrielEstValide)

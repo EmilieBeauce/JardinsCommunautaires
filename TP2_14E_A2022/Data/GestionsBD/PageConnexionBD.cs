@@ -86,6 +86,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
         {
             var db = dal.GetDatabase();
             var MotDePasseEstBon = false;
+          
             var gestionnaire = db.GetCollection<Gestionnaire>("Gestionnaires").Find(g => g.Courriel == courriel).FirstOrDefault();
             if (gestionnaire.MotDePasse == motDePasse)
             {
