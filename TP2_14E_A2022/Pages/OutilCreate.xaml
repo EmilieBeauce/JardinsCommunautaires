@@ -39,7 +39,15 @@
             </materialDesign:Snackbar.MessageQueue>
         </materialDesign:Snackbar>
 
-        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,19,25,0" Click="RetourMainMenuButton_Click" Grid.Column="2" Width="133"/>
+        <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
+            <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
+                <Label FontSize="15" Content="Bonjour"/>
+                <TextBlock x:Name="nomCompletTextBlock"  Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"/>
+            </StackPanel>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click"><Run Text="Me déconnecter"/></TextBlock>
+        </StackPanel>
+        
+        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,90,25,0" Click="RetourMainMenuButton_Click" Grid.Column="2" Width="133"/>
 
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
 

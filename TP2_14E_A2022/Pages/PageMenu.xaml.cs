@@ -38,7 +38,7 @@ namespace TP2_14E_A2022.Pages
         
         private void BtnOutil_Click(object sender, RoutedEventArgs e)
         {
-            PageLireOutils lireOutils = new PageLireOutils();
+            PageLireOutils lireOutils = new PageLireOutils(nomCompletGestionnaire);
 
             this.NavigationService.Navigate(lireOutils);
         }

@@ -16,9 +16,11 @@ public partial class PageLireOutils : Page
     private GestionOutil _gestionOutil;
     private string nomCompletGestionnaire;
 
-    public PageLireOutils(string message = null)
+    public PageLireOutils(string nomCompletGestionnaire, string message = null)
     {
         InitializeComponent();
+        this.nomCompletGestionnaire = nomCompletGestionnaire;
+        nomCompletTextBlock.Text = nomCompletGestionnaire;
         try
         {
             _pageConnexionBd = new OutilDB();
@@ -65,7 +67,7 @@ public partial class PageLireOutils : Page
         var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
         if (selectedOutil != null)
         {
-            var modifierOutilPage = new PageModifierOutil(_gestionOutil, selectedOutil);
+            var modifierOutilPage = new PageModifierOutil(nomCompletGestionnaire,_gestionOutil, selectedOutil);
             NavigationService.Navigate(modifierOutilPage);
         }
     }
@@ -78,7 +80,7 @@ public partial class PageLireOutils : Page
 
     private void Ajouter_Click(object sender, RoutedEventArgs e)
     {
-        OutilCreate pageCreate = new OutilCreate();
+        OutilCreate pageCreate = new OutilCreate(nomCompletGestionnaire);
         this.NavigationService.Navigate(pageCreate);
     }
     
@@ -87,9 +89,15 @@ public partial class PageLireOutils : Page
         var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
         if (selectedOutil != null)
         {
-            var viewOutilPage = new PageLireUnOutil(selectedOutil);
+            var viewOutilPage = new PageLireUnOutil(nomCompletGestionnaire,selectedOutil);
             NavigationService.Navigate(viewOutilPage);
         }
+    }
+
+    private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
+    {
+        PageConnexion pageConnexion = new PageConnexion();
+        this.NavigationService.Navigate(pageConnexion);
     }
 
 

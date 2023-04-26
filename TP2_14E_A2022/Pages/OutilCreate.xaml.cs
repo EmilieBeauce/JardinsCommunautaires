@@ -12,12 +12,15 @@ public partial class OutilCreate : Page
 {
     private readonly OutilDB _pageConnexionBd = new OutilDB();
     public GestionOutil gestionOutil;
-    
+    public string nomCompletGestionnaire;
 
-    public OutilCreate(string message = null)
+    public OutilCreate(string nomCompletGestionnaire, string message = null)
     {
         InitializeComponent();
         gestionOutil = new GestionOutil(_pageConnexionBd);
+        this.nomCompletGestionnaire = nomCompletGestionnaire;
+            
+        nomCompletTextBlock.Text = nomCompletGestionnaire;
         
         if (!string.IsNullOrEmpty(message))
         {
@@ -65,10 +68,15 @@ public partial class OutilCreate : Page
         }
     }
 
+    private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
+    {
+        PageConnexion pageConnexion = new PageConnexion();
+        this.NavigationService.Navigate(pageConnexion);
+    }
 
     private void RetourMainMenuButton_Click(object sender, RoutedEventArgs e)
     {
-        PageLireOutils lireOutils = new PageLireOutils();
+        PageLireOutils lireOutils = new PageLireOutils(nomCompletGestionnaire);
         this.NavigationService.Navigate(lireOutils);
     }
 }

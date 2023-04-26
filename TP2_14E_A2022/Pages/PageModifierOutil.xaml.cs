@@ -9,13 +9,17 @@ public partial class PageModifierOutil : Page
 {
     private readonly IGestionOutil _gestionOutil;
     private readonly Outils _selectedOutil;
+    public string nomCompletGestionnaire;
 
-    public PageModifierOutil(IGestionOutil gestionOutil, Outils selectedOutil)
+    public PageModifierOutil(string nomCompletGestionnaire, IGestionOutil gestionOutil, Outils selectedOutil)
     {
         InitializeComponent();
         _gestionOutil = gestionOutil;
         _selectedOutil = selectedOutil;
 
+        this.nomCompletGestionnaire = nomCompletGestionnaire;
+            
+        nomCompletTextBlock.Text = nomCompletGestionnaire;
         // Populate the form with the selected outil's data
         NomTextBox.Text = _selectedOutil.Nom;
         DescriptionTextBox.Text = _selectedOutil.Description;
@@ -58,7 +62,12 @@ public partial class PageModifierOutil : Page
         }
     }
 
-
+    private void BoutonDeconnexion_Click(object sender, RoutedEventArgs e)
+    {
+        PageConnexion pageConnexion = new PageConnexion();
+        this.NavigationService.Navigate(pageConnexion);
+    }
+    
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
         NavigationService.GoBack();
@@ -66,7 +75,7 @@ public partial class PageModifierOutil : Page
 
     private void RetourMainMenuButton_Click(object sender, RoutedEventArgs e)
     {
-        var listeoutils = new PageLireOutils();
+        var listeoutils = new PageLireOutils(nomCompletGestionnaire);
         NavigationService.Navigate(listeoutils);
     }
 }

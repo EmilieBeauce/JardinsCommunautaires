@@ -17,7 +17,15 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,19,25,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
+        <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
+            <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
+                <Label FontSize="15"  >Bonjour</Label>
+                <TextBlock x:Name="nomCompletTextBlock"  Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"  ></TextBlock>
+            </StackPanel >
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click">Me déconnecter</TextBlock>
+        </StackPanel >
+
+        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="42,93,0,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
 
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
 
@@ -36,7 +44,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Est Brise:" FontWeight="Bold" Foreground="#FF009019" VerticalAlignment="Center" />
-               
+
                 <CheckBox IsChecked="{Binding EstBrise}" IsEnabled="False" Width="140" RenderTransformOrigin="0.5,0.5" >
                     <CheckBox.RenderTransform>
                         <TransformGroup>

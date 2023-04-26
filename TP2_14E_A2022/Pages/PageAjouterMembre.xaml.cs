@@ -72,7 +72,8 @@ namespace TP2_14E_A2022.Pages
 
             if (isValid)
             {
-                bool estCree = membreDB.AjouterMembre(prenom, nom, false, null, null, null);
+                Membre nouveauMembre = new Membre { Prenom = prenom, Nom = nom };
+                bool estCree = membreDB.AjouterMembre(nouveauMembre);
 
                 if (estCree)
                 {

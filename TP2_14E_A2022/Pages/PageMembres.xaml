@@ -107,52 +107,54 @@
                 </ListBox.RenderTransform>
 
                 <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="260"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="50"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="260"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Prenom}" Margin="0,6,20,0"/>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Prenom}" Margin="0,6,20,0"/>
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,6,20,0">
-                            <TextBlock Text="{Binding Nom}" />
-                            <materialDesign:PackIcon Kind="Alert" Foreground="{Binding EstPaye, Converter={StaticResource BoolToBrushConverter}}" ToolTip="{Binding EstPaye, Converter={StaticResource BoolToTooltipConverter}}" />
-                        </StackPanel>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Prenom}" Margin="0,6,20,0"/>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Prenom}" Margin="0,6,20,0"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,6,20,0">
+                                <TextBlock Text="{Binding Nom}" />
+                                <materialDesign:PackIcon Kind="Alert" Foreground="{Binding EstPaye, Converter={StaticResource BoolToBrushConverter}}" ToolTip="{Binding EstPaye, Converter={StaticResource BoolToTooltipConverter}}" />
+                            </StackPanel>
 
-                        <!-- Update Grid.Column values for other elements -->
-                        <Button Grid.Column="3" HorizontalAlignment="Right"
+                            <!-- Update Grid.Column values for other elements -->
+                            <Button Grid.Column="3" HorizontalAlignment="Right"
                                 Command="{Binding DataContext.DetailsMembre, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                 CommandParameter="{Binding}"
                                 Style="{StaticResource MaterialDesignFlatButton}">
-                            <wpf:PackIcon Kind="Eye" />
-                        </Button>
-                        <Button Grid.Column="4" HorizontalAlignment="Right"
+                                <wpf:PackIcon Kind="Eye" />
+                            </Button>
+                            <Button Grid.Column="4" HorizontalAlignment="Right"
                                 Command="{Binding DataContext.ModifierMembre, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                 CommandParameter="{Binding}"
                                 Style="{StaticResource MaterialDesignFlatButton}">
-                            <wpf:PackIcon Kind="Pencil" />
-                        </Button>
-                        <Button Grid.Column="5" HorizontalAlignment="Right"
+                                <wpf:PackIcon Kind="Pencil" />
+                            </Button>
+                            <Button Grid.Column="5" HorizontalAlignment="Right"
                                 Command="{Binding DataContext.SupprimerMembre, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                                 CommandParameter="{Binding}"
                                 Style="{StaticResource MaterialDesignFlatButton}">
-                            <wpf:PackIcon Kind="Delete" />
-                        </Button>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+                                <wpf:PackIcon Kind="Delete" />
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
 
 
             </ListBox>
         </StackPanel>
 
-        <Button x:Name="Ajouter_un_Membre" Style="{StaticResource boutonBleu}" MinWidth="100" MaxWidth="200" Click="Button_Ajouter_Membre_Click" BorderBrush="{DynamicResource MaterialDesignLightBackground}" Foreground="{DynamicResource MaterialDesignDarkForeground}" Background="#FF7DB569" Content="Ajouter un membre" Grid.ColumnSpan="3" Margin="172,64,178,47" IsDefault="True"/>
+        <Button  x:Name="Ajouter_un_Membre" Content="Ajouter" Background="#FF7DB569" Click="Button_Ajouter_Membre_Click" Margin="178,84,300,24" Grid.ColumnSpan="2"/>
+
+
     </Grid>
 </Page>
 

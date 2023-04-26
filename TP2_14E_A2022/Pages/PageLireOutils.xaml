@@ -15,9 +15,9 @@
             <Setter Property="Background" Value="LightGreen"/>
         </Style>
     </Page.Resources>
-    
+
     <Grid Background="White">
-             <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="21*" />
             <ColumnDefinition Width="29*"/>
             <ColumnDefinition Width="700*" />
@@ -28,16 +28,24 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
+            <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
+                <Label FontSize="15"  >Bonjour</Label>
+                <TextBlock x:Name="nomCompletTextBlock"  Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"  ></TextBlock>
+            </StackPanel >
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click">Me déconnecter</TextBlock>
+        </StackPanel >
+
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="140" Width="143"/>
-        <Button Content="Retour" Background="#FF7DB569" Click="Retour_Click" Margin="590,19,25,89" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button Content="Retour" Background="#FF7DB569" Click="Retour_Click" Margin="556,89,10,19" Grid.Column="2"/>
 
         <wpf:Snackbar x:Name="MessageValidation" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top">
             <wpf:Snackbar.MessageQueue>
                 <wpf:SnackbarMessageQueue/>
             </wpf:Snackbar.MessageQueue>
         </wpf:Snackbar>
-        
-        
+
+
         <Rectangle Fill="#FF7DB569" IsHitTestVisible="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-55"/>
         <Rectangle Height="350" Margin="14,20,35,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Fill="#FFF7FBF9" Grid.ColumnSpan="3" Grid.Column="1"/>
 
@@ -82,6 +90,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Ajouter" Background="#FF7DB569" Click="Ajouter_Click" Margin="590,70,25,38" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button Content="Ajouter" Background="#FF7DB569" Click="Ajouter_Click" Margin="108,86,457,22" Grid.Column="2"/>
     </Grid>
 </Page>

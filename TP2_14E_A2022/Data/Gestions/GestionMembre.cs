@@ -127,10 +127,15 @@ namespace TP2_14E_A2022.Data.Gestions
 
         public Membre GetMembreById(ObjectId membreId)
         {
+            if (membreId == default(ObjectId))
+            {
+                throw new ArgumentException("Invalid ObjectId provided.");
+            }
+
             return membreDb.GetMembre(membreId);
         }
 
-        public void UpdateMembreCotisation(ObjectId membreId, int newCotisation)
+        public virtual void UpdateMembreCotisation(ObjectId membreId, int newCotisation)
         {
             if (membreId == default(ObjectId))
             {
