@@ -52,7 +52,7 @@ namespace TP2_14E_A2022.Pages
                 courrielErreurTextBlock.Text = "Veuillez entrer votre adresse courriel.";
                 courrielEstValide = false;
             }
-            else if (gestionConnexion.CourrielExiste(courriel))
+            else if (!gestionConnexion.CourrielExiste(courriel))
             {
                 courrielErreurTextBlock.Text = "L'adresse courriel n'existe pas.";
                 courrielEstValide = false;
