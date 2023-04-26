@@ -40,8 +40,16 @@ namespace TP2_14E_A2022.Data.Gestions
             }
 
             var objectId = ObjectId.GenerateNewId();
-            membres.Add(new Membre(objectId, prenom, nom, estPaye, idAdresseCivique, idLot, idCotisation, 0, DateTime.Now));
-            
+            DateTime inscriptionDate = DateTime.Now;
+            int cotisation = CalculateCotisation(inscriptionDate);
+    
+            if (estPaye)
+            {
+                cotisation = 0;
+            }
+
+            membres.Add(new Membre(objectId, prenom, nom, estPaye, idAdresseCivique, idLot, idCotisation, cotisation, inscriptionDate));
+
             return membres.Last();
         }
 
@@ -87,7 +95,6 @@ namespace TP2_14E_A2022.Data.Gestions
 
             membreDb.UpdateMembreEstPaye(membreId, estPaye);
         }
-
         public int CalculateFeesAndSetEstPayeStatus()
         {
             DateTime currentDate = GetCustomDate();
@@ -111,6 +118,21 @@ namespace TP2_14E_A2022.Data.Gestions
             return 0;
         }
         
+        public bool PrenomEstValide(string prenom)
+        {
+            return !string.IsNullOrWhiteSpace(prenom);
+        }
+
+        public bool NomEstValide(string nom)
+        {
+            return !string.IsNullOrWhiteSpace(nom);
+        }
+
+        public Membre GetMembreById(ObjectId membreId)
+        {
+            return membreDb.GetMembre(membreId);
+        }
+
         public void UpdateMembreCotisation(ObjectId membreId, int newCotisation)
         {
             if (membreId == default(ObjectId))
@@ -124,7 +146,9 @@ namespace TP2_14E_A2022.Data.Gestions
         public int CalculateCotisation(DateTime dateInscription)
         {
             int cotisation = 20;
-            int weeksPassed = (int)(GetCustomDate() - dateInscription).TotalDays / 7;
+            TimeSpan timeSinceInscription = GetCustomDate() - dateInscription;
+            int yearsPassed = (int)(timeSinceInscription.TotalDays / 365.25);
+            int weeksPassed = (int)(timeSinceInscription.TotalDays - (yearsPassed * 365.25)) / 7;
 
             if (weeksPassed > 0)
             {
@@ -133,12 +157,13 @@ namespace TP2_14E_A2022.Data.Gestions
 
             return cotisation;
         }
-        
+
+
         /// <summary>
         /// Utilisé pour testé la date de la cotisation, simplement remplacé le DateNow par celle-ci.
         /// </summary>
         /// <returns></returns>
-        public DateTime GetCustomDate() => new DateTime(2023, 5, 30);
+        public DateTime GetCustomDate() => new DateTime(2023, 6, 30);
         
     }
 }

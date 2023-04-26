@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using MongoDB.Bson;
 using TP2_14E_A2022.Data.Entites;
+using TP2_14E_A2022.Data.Gestions;
 using TP2_14E_A2022.Data.GestionsBD;
 
 namespace TP2_14E_A2022.Pages;
@@ -10,43 +11,40 @@ namespace TP2_14E_A2022.Pages;
 public partial class OutilCreate : Page
 {
     private readonly OutilDB _pageConnexionBd = new OutilDB();
-    public string nomCompletGestionnaire;
+    public GestionOutil gestionOutil;
+    
 
     public OutilCreate()
     {
         InitializeComponent();
-        try
-        {
-            _pageConnexionBd = new OutilDB();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
+        gestionOutil = new GestionOutil(_pageConnexionBd);
     }
 
     private void CreateButton_Click(object sender, RoutedEventArgs e)
     {
-        // Validation variables
-        bool isValid = true;
-        string errorMsg = string.Empty;
+        // Reset error messages
+        NomErreurTextBlock.Text = "";
+        DescriptionErreurTextBlock.Text = "";
 
         var objectId = ObjectId.GenerateNewId();
         string nom = NomTextBox.Text;
         string description = DescriptionTextBox.Text;
         bool estBrise = EstBriseCheckBox.IsChecked ?? false;
 
+        // Validation variables
+        bool isValid = true;
+
         // Nom validation
-        if (string.IsNullOrWhiteSpace(nom))
+        if (!gestionOutil.NomEstValide(nom))
         {
-            errorMsg += "Veuillez entrer le nom.\n";
+            NomErreurTextBlock.Text = "Veuillez entrer le nom.";
             isValid = false;
         }
 
         // Description validation
-        if (string.IsNullOrWhiteSpace(description))
+        if (!gestionOutil.DescriptionEstValide(description))
         {
-            errorMsg += "Veuillez entrer la description.\n";
+            DescriptionErreurTextBlock.Text = "Veuillez entrer la description.";
             isValid = false;
         }
 
@@ -56,11 +54,8 @@ public partial class OutilCreate : Page
             _pageConnexionBd.CreerOutil(outil);
             MessageBox.Show("Outil ajouté à la base de données.");
         }
-        else
-        {
-            MessageBox.Show(errorMsg);
-        }
     }
+
 
     private void RetourMainMenuButton_Click(object sender, RoutedEventArgs e)
     {

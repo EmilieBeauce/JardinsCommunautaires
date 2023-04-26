@@ -69,7 +69,7 @@ namespace TP2_14E_A2022.Pages
         }
         public void AfficherDetailsMembre(Membre membre)
         {
-            PageDetailsMembre pageDetailsMembre = new PageDetailsMembre(membre, nomCompletGestionnaire, gestionMembre);
+            PageDetailsMembre pageDetailsMembre = new PageDetailsMembre(membre.Id, nomCompletGestionnaire, gestionMembre);
             this.NavigationService.Navigate(pageDetailsMembre);
         }
         public void AfficherModifierMembre(Membre membre)

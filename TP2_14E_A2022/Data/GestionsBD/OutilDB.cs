@@ -11,10 +11,8 @@ namespace TP2_14E_A2022.Data.GestionsBD;
 public class OutilDB : IOutilDB
 {
     private DAL dal;
-    public GestionOutil gestionOutil;
     private const string MESSAGE_ERREUR_CONNEXION = "Impossible de se connecter à la base de données";
     private const string MESSAGE_ERREUR = "ERREUR";
-
     
     public OutilDB()
     {

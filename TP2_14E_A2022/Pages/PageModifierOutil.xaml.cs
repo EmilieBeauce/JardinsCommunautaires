@@ -24,16 +24,49 @@ public partial class PageModifierOutil : Page
 
     private void UpdateButton_Click(object sender, RoutedEventArgs e)
     {
-        _selectedOutil.Nom = NomTextBox.Text;
-        _selectedOutil.Description = DescriptionTextBox.Text;
-        _selectedOutil.EstBrise = EstBriseCheckBox.IsChecked.GetValueOrDefault();
+        bool isNomValid = _gestionOutil.NomEstValide(NomTextBox.Text);
+        bool isDescriptionValid = _gestionOutil.DescriptionEstValide(DescriptionTextBox.Text);
 
-        _gestionOutil.ModifierOutil(_selectedOutil);
-        NavigationService.GoBack();
+        if (isNomValid)
+        {
+            NomError.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            NomError.Text = "Nom invalide.";
+            NomError.Visibility = Visibility.Visible;
+        }
+
+        if (isDescriptionValid)
+        {
+            DescriptionError.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            DescriptionError.Text = "Description invalide.";
+            DescriptionError.Visibility = Visibility.Visible;
+        }
+
+        if (isNomValid && isDescriptionValid)
+        {
+            _selectedOutil.Nom = NomTextBox.Text;
+            _selectedOutil.Description = DescriptionTextBox.Text;
+            _selectedOutil.EstBrise = EstBriseCheckBox.IsChecked.GetValueOrDefault();
+
+            _gestionOutil.ModifierOutil(_selectedOutil);
+            NavigationService.GoBack();
+        }
     }
+
 
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
         NavigationService.GoBack();
+    }
+
+    private void RetourMainMenuButton_Click(object sender, RoutedEventArgs e)
+    {
+        var listeoutils = new PageLireOutils();
+        NavigationService.Navigate(listeoutils);
     }
 }
