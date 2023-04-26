@@ -39,84 +39,88 @@ namespace TP2_14E_A2022.Pages
             string courriel = courrielTextBox.Text;
             string motDePasse = mdpPasswordBox.Password;
             string confirmationMotDePasse = confirmationPasswordBox.Password;
-            bool estValide = false;
+            bool prenomEstValide = false;
+            bool nomEstValide = false;
+            bool courrielEstValide = false;
+            bool motDePasseEstValide = false;
+            bool confirmationEstValide = false;
 
             if (!gestionConnexion.NomEstValide(nom))
             {
                 nomErreurTextBlock.Text = "Veuillez entrer votre nom.";
-                estValide = false;
+                nomEstValide = false;
             }
             else
             {
                 nomErreurTextBlock.Text = "";
-                estValide = true;
+                nomEstValide = true;
             }
 
             if (!gestionConnexion.PrenomEstValide(prenom))
             {
                 prenomErreurTextBlock.Text = "Veuillez entrer votre prénom.";
-                estValide = false;
+                prenomEstValide = false;
             }
             else
             {
                 prenomErreurTextBlock.Text = "";
-                estValide = true;
+                prenomEstValide = true;
             }
 
             if (gestionConnexion.CourrielEstVide(courriel))
             {
                 courrielErreurTextBlock.Text = "Veuillez entrer votre adresse courriel.";
-                estValide = false;
+               courrielEstValide = false;
             }
             else if (!gestionConnexion.CourrielEstConforme(courriel))
             {
                 courrielErreurTextBlock.Text = "Cette adresse courriel n'est pas conforme devrait avoir un '@' ou un '.'.";
-                estValide = false;
+                courrielEstValide = false;
             }
             else if (gestionConnexion.CourrielExiste(courriel))
             {
                 courrielErreurTextBlock.Text = "Veuillez entrer un courriel qui n'est pas utilisé.";
-                estValide = false;
+                courrielEstValide = false;
             }
             else
             {
                 courrielErreurTextBlock.Text = "";
-                estValide = true;
+                courrielEstValide = true;
             }
 
             if (gestionConnexion.MotDePasseEstVide(motDePasse))
             {
                 mdpErreurTextBlock.Text = "Veuillez entrer votre mot de passe.";
-                estValide = false;
+                motDePasseEstValide = false;
             }
             else if (!gestionConnexion.MotDePasseEstConforme(motDePasse))
             {
                 mdpErreurTextBlock.Text = "Veuillez avoir un mot de passe d'au moins 8 caractères.";
-                estValide = false;
+                motDePasseEstValide = false;
             }
             else
             {
                 mdpErreurTextBlock.Text = "";
-                estValide = true;
+                motDePasseEstValide = true;
             }
 
             if (gestionConnexion.ConfirmationEstVide(confirmationMotDePasse))
             {
                 confirmationErreurTextBlock.Text = "Veuillez confirmer votre mot de passe.";
-                estValide = false;
+                confirmationEstValide = false;
             }
             else if (!gestionConnexion.MotDePasseEstEgaleConfirmation(motDePasse, confirmationMotDePasse))
             {
                 confirmationErreurTextBlock.Text = "Les deux mots de passe ne correspondent pas";
-                estValide = false;
+                confirmationEstValide = false;
             }
             else
             {
                 confirmationErreurTextBlock.Text = "";
-                estValide = true;
+                confirmationEstValide = true;
             }
 
-            if (estValide)
+            if (confirmationEstValide && motDePasseEstValide && nomEstValide && prenomEstValide && courrielEstValide)
             {
                 PageConnexionBD pageConnexionBD = new PageConnexionBD();
                 bool estCree = pageConnexionBD.CreateGestionnaireBD(prenom, nom, courriel, motDePasse);
