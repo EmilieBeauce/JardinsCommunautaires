@@ -78,11 +78,13 @@ namespace TP2_14E_A2022.Data.Gestions
             }
         }
         public bool MotDePasseEstVide(string motDePasse) => string.IsNullOrWhiteSpace(motDePasse);
-        /** validation si le mot de passe est conforme */
+
         public bool MotDePasseEstConforme(string motDePasse) => motDePasse.Length >= 8;
-        /** validation si le mot de passe est égale a la confirmation */
+
         public bool MotDePasseEstEgaleConfirmation(string motDePasse, string confirmation) => motDePasse == confirmation;
+
         /** confirmation n'est pas null ou vide*/
+
         public bool ConfirmationEstVide(string confirmation) => string.IsNullOrWhiteSpace(confirmation);
     }
 }

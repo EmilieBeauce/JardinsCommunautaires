@@ -176,6 +176,67 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             outilDbMock.Verify(repo => repo.SupprimerOutil(outil.Id.Value), Times.Once);
             Assert.IsNull(deletedOutil);
         }
+        
+        [TestMethod]
+        public void NomEstValide_With_Valid_Nom()
+        {
+            // Arrange
+            var outilDbMock = new Mock<IOutilDB>();
+            var gestionOutil = new GestionOutil(outilDbMock.Object);
+            string validNom = "Test Outil";
+
+            // Act
+            bool result = gestionOutil.NomEstValide(validNom);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void NomEstValide_With_Invalid_Nom()
+        {
+            // Arrange
+            var outilDbMock = new Mock<IOutilDB>();
+            var gestionOutil = new GestionOutil(outilDbMock.Object);
+            string invalidNom = string.Empty;
+
+            // Act
+            bool result = gestionOutil.NomEstValide(invalidNom);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void DescriptionEstValide_With_Valid_Description()
+        {
+            // Arrange
+            var outilDbMock = new Mock<IOutilDB>();
+            var gestionOutil = new GestionOutil(outilDbMock.Object);
+            string validDescription = "This is a valid description.";
+
+            // Act
+            bool result = gestionOutil.DescriptionEstValide(validDescription);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void DescriptionEstValide_With_Invalid_Description()
+        {
+            // Arrange
+            var outilDbMock = new Mock<IOutilDB>();
+            var gestionOutil = new GestionOutil(outilDbMock.Object);
+            string invalidDescription = string.Empty;
+
+            // Act
+            bool result = gestionOutil.DescriptionEstValide(invalidDescription);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+        
 
         
     }

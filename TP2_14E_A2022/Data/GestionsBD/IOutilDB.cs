@@ -8,7 +8,6 @@ public interface IOutilDB
 {
     List<Outils> GetOutils();
     void CreerOutil(Outils outil);
-    
     void SupprimerOutil(ObjectId id);
     void ModifierOutil(Outils outil);
     Outils GetOutilById(ObjectId id);

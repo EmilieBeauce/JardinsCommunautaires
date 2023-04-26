@@ -58,6 +58,7 @@ namespace TP2_14E_A2022.Data.GestionsBD
                 return false;
             }
         }
+
         /** voir le detail d'un membre */
         public Membre GetMembre(ObjectId idMembre)
         {

@@ -6,17 +6,49 @@
       xmlns:local="clr-namespace:TP2_14E_A2022.Pages"
       mc:Ignorable="d"
       Title="PageLireUnOutil" Height="450" Width="800">
-    <Grid>
-        <StackPanel Margin="10">
-            <TextBlock Text="ID:" FontWeight="Bold" />
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="0.4*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,19,25,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
+
+        <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+
+        <Rectangle Fill="#FF7DB569" IsHitTestVisible="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,-55"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="350" Margin="32,20,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="342" Fill="#FFF7FBF9"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Height="208" Width="195">
+            <TextBlock Text="ID:" FontWeight="Bold" Foreground="#FF009019" />
             <TextBlock Text="{Binding Id}" />
-            <TextBlock Text="Nom:" FontWeight="Bold" />
+
+            <TextBlock Text="Nom:" FontWeight="Bold" Foreground="#FF009019" />
             <TextBlock Text="{Binding Nom}" />
-            <TextBlock Text="Description:" FontWeight="Bold" />
+
+            <TextBlock Text="Description:" FontWeight="Bold" Foreground="#FF009019" />
             <TextBlock Text="{Binding Description}" />
-            <TextBlock Text="Est Brise:" FontWeight="Bold" />
-            <CheckBox IsChecked="{Binding EstBrise}" IsEnabled="False" />
-            <Button Content="Retour" Margin="0,10,0,0" Click="BackButton_Click" />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Est Brise:" FontWeight="Bold" Foreground="#FF009019" VerticalAlignment="Center" />
+               
+                <CheckBox IsChecked="{Binding EstBrise}" IsEnabled="False" Width="140" RenderTransformOrigin="0.5,0.5" >
+                    <CheckBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </CheckBox.RenderTransform>
+                </CheckBox>
+            </StackPanel>
         </StackPanel>
+
     </Grid>
 </Page>

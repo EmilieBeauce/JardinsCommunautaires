@@ -1,7 +1,9 @@
 ﻿using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using MahApps.Metro.Controls;
@@ -11,6 +13,8 @@ namespace TP2_14E_A2022.Data.Entites
     public class Membre
     {
         #region Attributs
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private ObjectId _id;
         private string _prenom;
         private string _nom;
@@ -50,11 +54,15 @@ namespace TP2_14E_A2022.Data.Entites
             get { return _nom; }
             set { _nom = value; }
         }
-        
+
         public bool EstPaye
         {
             get { return _estPaye; }
-            set { _estPaye = value; }
+            set
+            {
+                _estPaye = value;
+                OnPropertyChanged();
+            }
         }
 
         public ObjectId? IdAdresseCivique
@@ -77,7 +85,8 @@ namespace TP2_14E_A2022.Data.Entites
         #region constructeur
         public Membre() { }
       
-        public Membre(ObjectId id, string prenom, string nom, bool estPaye, ObjectId? idAdresseCivique, ObjectId? idLot, ObjectId? idCotisation, int _cotisation, DateTime _dateInscription)
+        public Membre(ObjectId id, string prenom, string nom, bool estPaye, ObjectId? idAdresseCivique, 
+            ObjectId? idLot, ObjectId? idCotisation, int _cotisation, DateTime _dateInscription)
         {
             Id = id;
             Prenom = prenom;
@@ -91,5 +100,10 @@ namespace TP2_14E_A2022.Data.Entites
         }
         #endregion
 
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

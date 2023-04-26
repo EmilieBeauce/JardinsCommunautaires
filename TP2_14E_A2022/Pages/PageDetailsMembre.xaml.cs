@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MongoDB.Bson;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
 using TP2_14E_A2022.Data.GestionsBD;
@@ -26,18 +27,27 @@ namespace TP2_14E_A2022.Pages
         public Membre MembreSelectionne { get; set; }
         public string nomCompletGestionnaire;
         private GestionMembre gestionMembre;
-        public PageDetailsMembre(Membre membre, string nomCompletGestionnaire, GestionMembre gestionMembre)
+        public PageDetailsMembre(ObjectId membre, string nomCompletGestionnaire, GestionMembre gestionMembre)
         {
-            InitializeComponent();
-            MembreSelectionne = membre;
-            this.DataContext = this;
-            this.nomCompletGestionnaire = nomCompletGestionnaire;
-            this.gestionMembre = gestionMembre;
+            try
+            {
+                InitializeComponent();
+
+                this.DataContext = this;
+                this.nomCompletGestionnaire = nomCompletGestionnaire;
+                this.gestionMembre = gestionMembre;
+                MembreSelectionne = gestionMembre.GetMembreById(membre);
             
-            AdresseMessageTxt.Text = gestionMembre.GetAdresseMessage(MembreSelectionne);
-            CotisationMessageTxt.Text = gestionMembre.GetCotisationMessage(MembreSelectionne);
-            LotMessageTxt.Text = gestionMembre.GetLotMessage(MembreSelectionne);
-            UpdateFeeAmount();
+                AdresseMessageTxt.Text = gestionMembre.GetAdresseMessage(MembreSelectionne);
+                CotisationMessageTxt.Text = gestionMembre.GetCotisationMessage(MembreSelectionne);
+                LotMessageTxt.Text = gestionMembre.GetLotMessage(MembreSelectionne);
+                UpdateFeeAmount(MembreSelectionne.EstPaye);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la création de la page: " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
 
         }
 
@@ -49,37 +59,34 @@ namespace TP2_14E_A2022.Pages
         
         private void EstPayeCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            gestionMembre.UpdateMembreEstPaye(MembreSelectionne.Id, true);
-            int feeAmount = gestionMembre.CalculateCotisation(MembreSelectionne.DateInscription);
-            MembreSelectionne.Cotisation = feeAmount;
+            UpdateFeeAmount(true);
+        }
+
+        public void UpdateFeeAmount(bool estPaye)
+        {
+            MembreSelectionne.EstPaye = estPaye;
+            gestionMembre.UpdateMembreEstPaye(MembreSelectionne.Id, estPaye);
 
             if (MembreSelectionne.EstPaye)
             {
-                gestionMembre.UpdateMembreCotisation(MembreSelectionne.Id, 0);
+                MembreSelectionne.Cotisation = 0;
             }
             else
             {
-                gestionMembre.UpdateMembreCotisation(MembreSelectionne.Id, MembreSelectionne.Cotisation);
+                int feeAmount = gestionMembre.CalculateCotisation(MembreSelectionne.DateInscription);
+                MembreSelectionne.Cotisation = feeAmount;
             }
 
-            FeeAmountTextBlock.Text = $"Fees: {feeAmount}$";
+            gestionMembre.UpdateMembreCotisation(MembreSelectionne.Id, MembreSelectionne.Cotisation);
+            FeeAmountTextBlock.Text = $"Fees amount: {MembreSelectionne.Cotisation}$";
         }
-        
-        public void UpdateFeeAmount()
-        {
-            int feeAmount = gestionMembre.CalculateCotisation(MembreSelectionne.DateInscription);
-            MembreSelectionne.Cotisation = feeAmount;
-    
-            // Update the estPaye status and cotisation amount in the database
-            gestionMembre.UpdateMembreEstPaye(MembreSelectionne.Id, MembreSelectionne.EstPaye);
-            new MembreDB().UpdateCotisation(MembreSelectionne.Id, MembreSelectionne.Cotisation);
-    
-            FeeAmountTextBlock.Text = $"Fees: {feeAmount}$";
-        }
+
+
+
 
         private void EstPayeCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            gestionMembre.UpdateMembreEstPaye(MembreSelectionne.Id, false);
+            UpdateFeeAmount(false);        
         }
         
         private void BackButton_Click(object sender, RoutedEventArgs e)
