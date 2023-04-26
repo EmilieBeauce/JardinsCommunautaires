@@ -36,4 +36,10 @@ public partial class PageModifierOutil : Page
     {
         NavigationService.GoBack();
     }
+
+    private void RetourMainMenuButton_Click(object sender, RoutedEventArgs e)
+    {
+        var listeoutils = new PageLireOutils();
+        NavigationService.Navigate(listeoutils);
+    }
 }
