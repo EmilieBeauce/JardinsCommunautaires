@@ -14,15 +14,20 @@ public partial class OutilCreate : Page
     public GestionOutil gestionOutil;
     
 
-    public OutilCreate()
+    public OutilCreate(string message = null)
     {
         InitializeComponent();
         gestionOutil = new GestionOutil(_pageConnexionBd);
+        
+        if (!string.IsNullOrEmpty(message))
+        {
+            MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+            MessageValidation.MessageQueue.Enqueue(message);
+        }
     }
 
     private void CreateButton_Click(object sender, RoutedEventArgs e)
     {
-        // Reset error messages
         NomErreurTextBlock.Text = "";
         DescriptionErreurTextBlock.Text = "";
 
@@ -50,9 +55,13 @@ public partial class OutilCreate : Page
 
         if (isValid)
         {
+           
             Outils outil = new Outils(objectId, nom, description, estBrise);
             _pageConnexionBd.CreerOutil(outil);
-            MessageBox.Show("Outil ajouté à la base de données.");
+
+            PageLireOutils pageLireOutils = new PageLireOutils("Ajout de l'outil avec succès!");
+            NavigationService.Navigate(pageLireOutils);
+
         }
     }
 

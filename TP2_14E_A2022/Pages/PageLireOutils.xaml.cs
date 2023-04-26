@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using MaterialDesignThemes.Wpf;
 using TP2_14E_A2022.Data.Entites;
 using TP2_14E_A2022.Data.Gestions;
 using TP2_14E_A2022.Data.GestionsBD;
@@ -14,7 +16,7 @@ public partial class PageLireOutils : Page
     private GestionOutil _gestionOutil;
     private string nomCompletGestionnaire;
 
-    public PageLireOutils()
+    public PageLireOutils(string message = null)
     {
         InitializeComponent();
         try
@@ -26,6 +28,12 @@ public partial class PageLireOutils : Page
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
+        }
+        
+        if (!string.IsNullOrEmpty(message))
+        {
+            MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+            MessageValidation.MessageQueue.Enqueue(message);
         }
     }
     
@@ -44,6 +52,8 @@ public partial class PageLireOutils : Page
             if (result == MessageBoxResult.Yes)
             {
                 _gestionOutil.SupprimerOutil(selectedOutil.Id.Value);
+                MessageValidation.Style = (Style)FindResource("SnackbarSuccessStyle");
+                MessageValidation.MessageQueue.Enqueue($"Le membre {selectedOutil.Nom} a été supprimé.");
                 LoadOutils();
             }
         }
@@ -71,19 +81,16 @@ public partial class PageLireOutils : Page
         OutilCreate pageCreate = new OutilCreate();
         this.NavigationService.Navigate(pageCreate);
     }
-
-    private void OutilsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    
+    private void ViewButton_Click(object sender, RoutedEventArgs e)
     {
         var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
         if (selectedOutil != null)
         {
-            var outil = _gestionOutil.GetOutilById(selectedOutil.Id.Value);
-            if (outil != null)
-            {
-                var lireOutilWindow = new PageLireUnOutil(outil);
-                NavigationService.Navigate(lireOutilWindow);
-            }
+            var viewOutilPage = new PageLireUnOutil(selectedOutil);
+            NavigationService.Navigate(viewOutilPage);
         }
     }
+
 
 }
