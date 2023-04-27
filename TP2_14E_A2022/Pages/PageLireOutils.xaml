@@ -7,6 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
       mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="PageLireOutils" Height="450" Width="800">
 
     <Page.Resources>
@@ -16,19 +17,18 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="White">
+    <Grid Background="White" Margin="0,-39,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="21*" />
-            <ColumnDefinition Width="29*"/>
-            <ColumnDefinition Width="700*" />
-            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="0.4*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.45*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top" Margin="45,0,25,0" Grid.ColumnSpan="2">
+        <StackPanel Grid.Column="1"  Margin="0,0,20,0" Orientation="Vertical" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Label FontSize="15" Content="Bonjour"/>
                 <TextBlock x:Name="nomCompletTextBlock" Style="{DynamicResource overLabel}" FontSize="15" VerticalAlignment="Center"/>
@@ -37,8 +37,8 @@
         </StackPanel>
 
 
-        <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="140" Width="143"/>
-        <Button Content="Retour" Background="#FF7DB569" Click="Retour_Click" Margin="591,89,25,19" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" VerticalAlignment="Center" Height="152" Margin="0,0,50,0"/>
+        <Button MinWidth="100" Content="Retour" Background="#FF7DB569" Click="Retour_Click" Margin="0,0,0,23" HorizontalAlignment="Center" Width="156" Grid.Column="2" Height="32" VerticalAlignment="Bottom"/>
 
         <wpf:Snackbar x:Name="MessageValidation" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top">
             <wpf:Snackbar.MessageQueue>
@@ -48,8 +48,8 @@
 
 
         <Rectangle Fill="#FF7DB569" IsHitTestVisible="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-55"/>
-        <ListBox x:Name="OutilsListBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
-         Margin="14,20,35,0" Height="350"
+        <ListBox x:Name="OutilsListBox" Grid.Row="1" Grid.ColumnSpan="3"
+         Margin="124,0,124,-47" Height="350"
          BorderBrush="Black" BorderThickness="1"
          Background="#FFF7FBF9">
             <!-- ... -->
@@ -66,32 +66,63 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Update the bindings to match your Outils properties -->
-                        <TextBlock Grid.Column="0" Text="{Binding Nom}" Margin="0,6,20,0"/>
+                        <TextBlock Grid.Column="0" Text="{Binding Nom}" Margin="0,6,20,0">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding EstBrise}" Value="True">
+                                            <Setter Property="Foreground" Value="Red" />
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,6,20,0">
-                            <TextBlock Text="{Binding Description}" />
+                            <TextBlock Text="{Binding Description}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding EstBrise}" Value="True">
+                                                <Setter Property="Foreground" Value="Red" />
+
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                             <!-- Add any additional bindings or elements as needed -->
                         </StackPanel>
 
-                        <!-- Update Grid.Column values for other elements -->
                         <Button Grid.Column="3" HorizontalAlignment="Right"
-Click="(_, e) => ViewButton_Click(_, e, (Outils)DataContext)" Style="{StaticResource MaterialDesignFlatButton}">
-                            <wpf:PackIcon Kind="Eye" />
-                        </Button>
-                        <Button Grid.Column="4" HorizontalAlignment="Right"
-Click="(_, e) => ModifyButton_Click(_, e, (Outils)DataContext)" Style="{StaticResource MaterialDesignFlatButton}">
+        Click="ModifyButton_Click"
+        Style="{StaticResource MaterialDesignFlatButton}">
                             <wpf:PackIcon Kind="Pencil" />
                         </Button>
-                        <Button Grid.Column="5" HorizontalAlignment="Right"
-Click="(_, e) => DeleteButton_Click(_, e, (Outils)DataContext)" Style="{StaticResource MaterialDesignFlatButton}">
+                        <Button Grid.Column="4" HorizontalAlignment="Right"
+        Click="DeleteButton_Click"
+        Style="{StaticResource MaterialDesignFlatButton}">
                             <wpf:PackIcon Kind="Delete" />
                         </Button>
+                        <Button Grid.Column="5" HorizontalAlignment="Right"
+        Click="ViewButton_Click"
+        Style="{StaticResource MaterialDesignFlatButton}">
+                            <wpf:PackIcon Kind="Eye" />
+                        </Button>
+
 
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
+
+
         </ListBox>
 
-        <Button Content="Ajouter" Background="#FF7DB569" Click="Ajouter_Click" Margin="108,89,457,19" Grid.Column="2"/>
+
+        <Button Content="Ajouter" Background="#FF7DB569" Click="Ajouter_Click" Margin="0,0,300,23" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="134" Height="32" VerticalAlignment="Bottom"/>
 
     </Grid>
 

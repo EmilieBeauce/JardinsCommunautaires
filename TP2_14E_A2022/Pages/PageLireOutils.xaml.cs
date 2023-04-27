@@ -16,6 +16,8 @@ public partial class PageLireOutils : Page
     private GestionOutil _gestionOutil;
     private string nomCompletGestionnaire;
 
+    
+
     public PageLireOutils(string nomCompletGestionnaire, string message = null)
     {
         InitializeComponent();
@@ -45,9 +47,10 @@ public partial class PageLireOutils : Page
     }
 
 
-    private void DeleteButton_Click(object sender, RoutedEventArgs e, Outils selectedOutil)
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
-        selectedOutil = (Outils)OutilsListBox.SelectedItem;
+        Button button = sender as Button;
+        Outils selectedOutil = button?.DataContext as Outils;
         if (selectedOutil != null && selectedOutil.Id.HasValue)
         {
             MessageBoxResult result = MessageBox.Show("Es-tu sûre?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -62,9 +65,10 @@ public partial class PageLireOutils : Page
         }
     }
 
-    private void ModifyButton_Click(object sender, RoutedEventArgs e, Outils selectedOutil)
+    private void ModifyButton_Click(object sender, RoutedEventArgs e)
     {
-        selectedOutil = (Outils)OutilsListBox.SelectedItem;
+        Button button = sender as Button;
+        Outils selectedOutil = button?.DataContext as Outils;
         if (selectedOutil != null)
         {
             var modifierOutilPage = new PageModifierOutil(nomCompletGestionnaire, _gestionOutil, selectedOutil);
@@ -84,9 +88,10 @@ public partial class PageLireOutils : Page
         this.NavigationService.Navigate(pageCreate);
     }
 
-    private void ViewButton_Click(object sender, RoutedEventArgs e, Outils selectedOutil)
+    private void ViewButton_Click(object sender, RoutedEventArgs e)
     {
-        selectedOutil = (Outils)OutilsListBox.SelectedItem;
+        Button button = sender as Button;
+        Outils selectedOutil = button?.DataContext as Outils;
         if (selectedOutil != null)
         {
             var viewOutilPage = new PageLireUnOutil(nomCompletGestionnaire, selectedOutil);

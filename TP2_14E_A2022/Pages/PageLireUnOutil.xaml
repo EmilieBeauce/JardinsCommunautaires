@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TP2_14E_A2022.Pages"
       mc:Ignorable="d"
       Title="PageLireUnOutil" Height="450" Width="800">
-    <Grid Background="White">
+    <Grid Background="White" Margin="0,-39,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*" />
             <ColumnDefinition Width="0.8*" />
@@ -16,8 +16,8 @@
             <RowDefinition Height="0.45*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
-        
+
+
 
         <StackPanel Grid.Column="2"  Orientation="Vertical" VerticalAlignment="top"  Margin="0,0,20,0">
             <StackPanel Orientation="Horizontal"   HorizontalAlignment="Right"   >
@@ -26,9 +26,7 @@
             </StackPanel >
             <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource overLabel}" FontSize="16" HorizontalAlignment="Right" MouseLeftButtonUp="BoutonDeconnexion_Click">Me déconnecter</TextBlock>
         </StackPanel >
-
-        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="42,93,0,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
-
+        <Button MinWidth="100" Content="Retour" Background="#FF7DB569" Click="BackButton_Click" Margin="0,0,0,23" HorizontalAlignment="Center" Width="156" Grid.Column="2" Height="32" VerticalAlignment="Bottom"/>
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
 
         <Rectangle Fill="#FF7DB569" IsHitTestVisible="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,-55"/>

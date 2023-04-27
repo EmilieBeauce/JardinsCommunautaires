@@ -36,7 +36,7 @@ Title="PageDetailsMembre">
         <Image Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"  MouseLeftButtonUp="Logo_MouseLeftButtonUp" />
         <Rectangle Fill="#FF7DB569" IsHitTestVisible="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,-55"/>
         <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="350" Margin="32,20,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="342" Fill="#FFF7FBF9"/>
-        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,90,25,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
+        <Button MinWidth="100" Content="Retour" Background="#FF7DB569" Click="BackButton_Click" Margin="0,0,0,23" HorizontalAlignment="Center" Width="156" Grid.Column="2" Height="32" VerticalAlignment="Bottom"/>
 
         <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,20,0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
