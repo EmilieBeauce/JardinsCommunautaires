@@ -124,7 +124,7 @@ namespace TP2_14E_A2022.Data.Gestions
             return !string.IsNullOrWhiteSpace(nom);
         }
 
-        public Membre GetMembreById(ObjectId membreId)
+        public virtual Membre GetMembreById(ObjectId membreId)
         {
             if (membreId == default(ObjectId))
             {

@@ -97,20 +97,21 @@
                         </StackPanel>
 
                         <Button Grid.Column="3" HorizontalAlignment="Right"
+                                Click="ViewButton_Click"
+                                Style="{StaticResource MaterialDesignFlatButton}">
+                            <wpf:PackIcon Kind="Eye" />
+                        </Button>
+                        <Button Grid.Column="4" HorizontalAlignment="Right"
         Click="ModifyButton_Click"
         Style="{StaticResource MaterialDesignFlatButton}">
                             <wpf:PackIcon Kind="Pencil" />
                         </Button>
-                        <Button Grid.Column="4" HorizontalAlignment="Right"
+                        <Button Grid.Column="5" HorizontalAlignment="Right"
         Click="DeleteButton_Click"
         Style="{StaticResource MaterialDesignFlatButton}">
                             <wpf:PackIcon Kind="Delete" />
                         </Button>
-                        <Button Grid.Column="5" HorizontalAlignment="Right"
-        Click="ViewButton_Click"
-        Style="{StaticResource MaterialDesignFlatButton}">
-                            <wpf:PackIcon Kind="Eye" />
-                        </Button>
+                        
 
 
                     </Grid>
