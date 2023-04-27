@@ -63,9 +63,9 @@ Title="PageDetailsMembre">
             <TextBlock Text="{Binding CodePostal}" FontSize="16"/>
             <TextBlock Text="{Binding Ville}" FontSize="16"/>
 
-            <StackPanel Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0" >
                 <CheckBox x:Name="EstPayeCheckBox" FontSize="16" Content="Payé" Margin="0,-2,50,20" IsChecked="{Binding MembreSelectionne.EstPaye, Mode=TwoWay}" Checked="EstPayeCheckBox_Checked" Unchecked="EstPayeCheckBox_Unchecked"  />
-                <TextBlock x:Name="FeeAmountTextBlock"  FontStyle="Italic" FontSize="16" Margin="0,0,0,20"/>
+                <TextBlock x:Name="FeeAmountTextBlock"  FontStyle="Italic" FontSize="16" />
             </StackPanel>
 
             <TextBlock x:Name="LotMessageTxt" FontSize="16" FontStyle="Italic"  Margin="0,0,0,0"/>
