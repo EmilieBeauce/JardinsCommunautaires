@@ -48,49 +48,52 @@
 
 
         <Rectangle Fill="#FF7DB569" IsHitTestVisible="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-55"/>
-        <Rectangle Height="350" Margin="14,20,35,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Fill="#FFF7FBF9" Grid.ColumnSpan="3" Grid.Column="1"/>
+        <ListBox x:Name="OutilsListBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+         Margin="14,20,35,0" Height="350"
+         BorderBrush="Black" BorderThickness="1"
+         Background="#FFF7FBF9">
+            <!-- ... -->
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="260"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="OutilsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
-                  Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center" Height="267" Width="700" Margin="0,33,0,0">
-            <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Nom}" IsReadOnly="True" />
-                <DataGridTextColumn  Binding="{Binding Description}" IsReadOnly="True" />
-                <DataGridTemplateColumn Header="Est Brise" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding EstBrise}" IsHitTestVisible="False" Focusable="False"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Margin="40, 0, 0, 0" Click="DeleteButton_Click" Style="{StaticResource MaterialDesignFlatButton}"  HorizontalAlignment="Left">
-                                <materialDesign:PackIcon Kind="Delete" />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Margin="40, 0, 0, 0" Click="ModifyButton_Click" Style="{StaticResource MaterialDesignFlatButton}"  HorizontalAlignment="Left">
-                                <materialDesign:PackIcon Kind="Pencil" />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Margin="40, 0, 0, 0" Click="ViewButton_Click" Style="{StaticResource MaterialDesignFlatButton}"  HorizontalAlignment="Left">
-                                <materialDesign:PackIcon Kind="Eye" />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                        <!-- Update the bindings to match your Outils properties -->
+                        <TextBlock Grid.Column="0" Text="{Binding Nom}" Margin="0,6,20,0"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,6,20,0">
+                            <TextBlock Text="{Binding Description}" />
+                            <!-- Add any additional bindings or elements as needed -->
+                        </StackPanel>
+
+                        <!-- Update Grid.Column values for other elements -->
+                        <Button Grid.Column="3" HorizontalAlignment="Right"
+Click="(_, e) => ViewButton_Click(_, e, (Outils)DataContext)" Style="{StaticResource MaterialDesignFlatButton}">
+                            <wpf:PackIcon Kind="Eye" />
+                        </Button>
+                        <Button Grid.Column="4" HorizontalAlignment="Right"
+Click="(_, e) => ModifyButton_Click(_, e, (Outils)DataContext)" Style="{StaticResource MaterialDesignFlatButton}">
+                            <wpf:PackIcon Kind="Pencil" />
+                        </Button>
+                        <Button Grid.Column="5" HorizontalAlignment="Right"
+Click="(_, e) => DeleteButton_Click(_, e, (Outils)DataContext)" Style="{StaticResource MaterialDesignFlatButton}">
+                            <wpf:PackIcon Kind="Delete" />
+                        </Button>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
         <Button Content="Ajouter" Background="#FF7DB569" Click="Ajouter_Click" Margin="108,89,457,19" Grid.Column="2"/>
+
     </Grid>
+
+
 </Page>
