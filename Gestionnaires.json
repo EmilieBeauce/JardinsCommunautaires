@@ -1,0 +1,65 @@
+[{
+  "_id": {
+    "$oid": "643064df7e9775f44c3bdc02"
+  },
+  "Courriel": "user@test.com",
+  "MotDePasse": "123456",
+  "Nom": "Roy",
+  "Prenom": "Raymond"
+},{
+  "_id": {
+    "$oid": "643348cb691086d68b0fa398"
+  },
+  "Prenom": "Julie",
+  "Nom": "Beauce",
+  "Courriel": "jb@test.com",
+  "MotDePasse": "123456"
+},{
+  "_id": {
+    "$oid": "64335190a07f0e09d36cfc4e"
+  },
+  "Prenom": "Armande",
+  "Nom": "Beauce",
+  "Courriel": "ab@test.com",
+  "MotDePasse": "123456"
+},{
+  "_id": {
+    "$oid": "6443e868d23cb437cb082eba"
+  },
+  "Prenom": "Alice",
+  "Nom": "Beauce",
+  "Courriel": "alice@test.com",
+  "MotDePasse": "123456"
+},{
+  "_id": {
+    "$oid": "6443ef0a0c1dcef771a47d50"
+  },
+  "Prenom": "Josée",
+  "Nom": "Roy",
+  "Courriel": "josee@test.com",
+  "MotDePasse": "12345678"
+},{
+  "_id": {
+    "$oid": "6443ef56d13be301742674ee"
+  },
+  "Prenom": "Gertrude",
+  "Nom": "Robitaille",
+  "Courriel": "gr@test.com",
+  "MotDePasse": "12345678"
+},{
+  "_id": {
+    "$oid": "6443efd25b4083facd031aa6"
+  },
+  "Prenom": "Jammal",
+  "Nom": "Tanguay",
+  "Courriel": "jt@test.com",
+  "MotDePasse": "12345678"
+},{
+  "_id": {
+    "$oid": "644524a8af22d6f8ee3d2a2f"
+  },
+  "Prenom": "Jean",
+  "Nom": "DeLaFontaine",
+  "Courriel": "jdlf@gmail.com",
+  "MotDePasse": "12345678"
+}]

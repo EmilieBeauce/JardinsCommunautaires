@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "6449c06fbf735c10bb41a3a0"
+  },
+  "Cotisation": 0,
+  "Prenom": "Alice",
+  "DateInscription": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "Nom": "Beauce",
+  "EstPaye": true,
+  "IdAdresseCivique": null,
+  "IdLot": null
+},{
+  "_id": {
+    "$oid": "6449c07bbf735c10bb41a3a1"
+  },
+  "Cotisation": 160,
+  "Prenom": "Marie",
+  "DateInscription": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "Nom": "Genest",
+  "EstPaye": false,
+  "IdAdresseCivique": null,
+  "IdLot": null
+},{
+  "_id": {
+    "$oid": "6449c086bf735c10bb41a3a2"
+  },
+  "Cotisation": 0,
+  "Prenom": "Marc",
+  "DateInscription": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "Nom": "Dubé",
+  "EstPaye": false,
+  "IdAdresseCivique": null,
+  "IdLot": null
+},{
+  "_id": {
+    "$oid": "6449c091bf735c10bb41a3a3"
+  },
+  "Cotisation": 160,
+  "Prenom": "Pédro",
+  "DateInscription": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "Nom": "Gentile",
+  "EstPaye": false,
+  "IdAdresseCivique": null,
+  "IdLot": null
+}]
