@@ -40,7 +40,7 @@
         </Grid.RowDefinitions>
 
         <Image x:Name="Logo" Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonUp="Logo_MouseLeftButtonUp"/>
-        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,84,0,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
+        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,120,0,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
 
         <wpf:Snackbar x:Name="MessageValidation" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">
             <wpf:Snackbar.MessageQueue>
@@ -151,7 +151,7 @@
             </ListBox>
         </StackPanel>
 
-        <Button  x:Name="Ajouter_un_Membre" Content="Ajouter" Background="#FF7DB569" Click="Button_Ajouter_Membre_Click" Margin="0,0,327,24" Height="32" VerticalAlignment="Bottom" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="133"/>
+        <Button  x:Name="Ajouter_un_Membre" Content="Ajouter" Background="#FF7DB569" Click="Button_Ajouter_Membre_Click" Margin="0,0,300,22" Height="32" VerticalAlignment="Bottom" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="133"/>
 
 
     </Grid>
