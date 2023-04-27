@@ -16,6 +16,8 @@ public partial class PageLireOutils : Page
     private GestionOutil _gestionOutil;
     private string nomCompletGestionnaire;
 
+    
+
     public PageLireOutils(string nomCompletGestionnaire, string message = null)
     {
         InitializeComponent();
@@ -38,19 +40,21 @@ public partial class PageLireOutils : Page
             MessageValidation.MessageQueue.Enqueue(message);
         }
     }
-    
+
     private void LoadOutils()
     {
-        OutilsDataGrid.ItemsSource = _gestionOutil.LireTousLesOutils();
+        OutilsListBox.ItemsSource = _gestionOutil.LireTousLesOutils();
     }
+
 
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
-        var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
+        Button button = sender as Button;
+        Outils selectedOutil = button?.DataContext as Outils;
         if (selectedOutil != null && selectedOutil.Id.HasValue)
         {
             MessageBoxResult result = MessageBox.Show("Es-tu sûre?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-        
+
             if (result == MessageBoxResult.Yes)
             {
                 _gestionOutil.SupprimerOutil(selectedOutil.Id.Value);
@@ -61,13 +65,13 @@ public partial class PageLireOutils : Page
         }
     }
 
-
     private void ModifyButton_Click(object sender, RoutedEventArgs e)
     {
-        var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
+        Button button = sender as Button;
+        Outils selectedOutil = button?.DataContext as Outils;
         if (selectedOutil != null)
         {
-            var modifierOutilPage = new PageModifierOutil(nomCompletGestionnaire,_gestionOutil, selectedOutil);
+            var modifierOutilPage = new PageModifierOutil(nomCompletGestionnaire, _gestionOutil, selectedOutil);
             NavigationService.Navigate(modifierOutilPage);
         }
     }
@@ -83,13 +87,14 @@ public partial class PageLireOutils : Page
         OutilCreate pageCreate = new OutilCreate(nomCompletGestionnaire);
         this.NavigationService.Navigate(pageCreate);
     }
-    
+
     private void ViewButton_Click(object sender, RoutedEventArgs e)
     {
-        var selectedOutil = (Outils)OutilsDataGrid.SelectedItem;
+        Button button = sender as Button;
+        Outils selectedOutil = button?.DataContext as Outils;
         if (selectedOutil != null)
         {
-            var viewOutilPage = new PageLireUnOutil(nomCompletGestionnaire,selectedOutil);
+            var viewOutilPage = new PageLireUnOutil(nomCompletGestionnaire, selectedOutil);
             NavigationService.Navigate(viewOutilPage);
         }
     }

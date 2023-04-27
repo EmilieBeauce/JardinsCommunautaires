@@ -16,8 +16,6 @@ namespace TP2_14E_A2022
     /// </summary>
     public partial class App : Application
     {
-        private MembreDB membreDb;
-        
         public App()
         {
             this.DispatcherUnhandledException += App_DispatcherUnhandledException;

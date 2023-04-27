@@ -8,7 +8,8 @@
       xmlns:local="clr-namespace:TP2_14E_A2022.Pages" 
       xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-      xmlns:global="clr-namespace:"
+      xmlns:converters="clr-namespace:TP2_14E_A2022.Pages"
+
       x:Class="TP2_14E_A2022.Pages.PageMembres"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -23,7 +24,6 @@
             <Setter Property="Foreground" Value="#B3FFFFFF" />
             <Setter Property="Background" Value="LightGreen"/>
         </Style>
-        <global:BoolToBrushConverter x:Key="BoolToBrushConverter" />
         <materialDesign:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <local:BoolToTooltipConverter x:Key="BoolToTooltipConverter" />
     </Page.Resources>
@@ -42,7 +42,7 @@
         </Grid.RowDefinitions>
 
         <Image x:Name="Logo" Source="../Ressources/logo.png" MaxHeight="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonUp="Logo_MouseLeftButtonUp"/>
-        <Button Content="Retour" Background="#FF7DB569" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,120,0,0" Click="BackButton_Click" Grid.Column="2" Width="133"/>
+        <Button MinWidth="100" Content="Retour" Background="#FF7DB569" Click="BackButton_Click" Margin="0,0,0,23" HorizontalAlignment="Center" Width="156" Grid.Column="2" Height="32" VerticalAlignment="Bottom"/>
 
         <wpf:Snackbar x:Name="MessageValidation" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">
             <wpf:Snackbar.MessageQueue>
@@ -123,7 +123,7 @@
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Prenom}" Margin="0,6,20,0"/>
                             <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,6,20,0">
                                 <TextBlock Text="{Binding Nom}" />
-                                <materialDesign:PackIcon Kind="Alert" Foreground="{Binding EstPaye, Converter={StaticResource BoolToBrushConverter}}" ToolTip="{Binding EstPaye, Converter={StaticResource BoolToTooltipConverter}}" />
+                                <materialDesign:PackIcon Kind="Alert" Foreground="{Binding EstPaye}" ToolTip="{Binding EstPaye, Converter={StaticResource BoolToTooltipConverter}}" />
                             </StackPanel>
 
                             <!-- Update Grid.Column values for other elements -->
