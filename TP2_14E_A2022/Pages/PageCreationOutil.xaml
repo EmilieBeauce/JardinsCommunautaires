@@ -63,7 +63,7 @@
             <TextBox Name="DescriptionTextBox" />
             <TextBlock x:Name="DescriptionErreurTextBlock" Style="{StaticResource errorMessage}" Margin="0,0,0,5"/>
 
-            <CheckBox Name="EstBriseCheckBox" Content="Est Brise?" Foreground="#FF009019" />
+            <CheckBox Name="EstBriseCheckBox" Content="Est brisé?" Foreground="#FF009019" />
         </StackPanel>
 
         <Button MinWidth="100" MaxWidth="200" Click="CreateButton_Click" Foreground="{DynamicResource MaterialDesignDarkForeground}" Background="#FF7DB569" Content="Créer" Grid.ColumnSpan="3" Margin="175,247,175,31" IsDefault="True" Grid.Row="1">
