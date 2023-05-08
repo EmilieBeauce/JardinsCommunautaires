@@ -22,17 +22,17 @@ jobs:
       uses: actions/setup-dotnet@v2 
       with:
         dotnet-version: 6.0.x
-        
+
     - name: Restore Dependencies
       run: dotnet restore
       
-    - name: Build 
-      run: dotnet build --no-restore
-      
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
     - name: Test
-      run: dotnet test --no-build --verbosity normal TP2_14E_A2022.sln
+      run: dotnet test --no-restore --no-build --configuration Release
       
-      
+    - name: Tests completed
+      run: echo "All tests completed successfully"
       
     - name: Create issue if tests fail
       if: ${{ failure() }}
@@ -61,5 +61,7 @@ jobs:
             });
           }
 
-      
+    - name: Checkout code
+      if: ${{ success() }}
+      uses: actions/checkout@v3
 
