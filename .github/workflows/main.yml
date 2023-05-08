@@ -23,6 +23,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
         
+    - name: Restore Material Design library
+      run: dotnet add package MaterialDesignThemes    
    
     - name: Restore Dependencies
       run: dotnet restore
