@@ -31,9 +31,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity detailed 
-      
-      
+      run: dotnet test --no-build --verbosity detailed
       
     - name: Create issue if tests fail
       if: ${{ failure() }}
@@ -64,5 +62,5 @@ jobs:
 
     - name: Checkout code
       if: ${{ success() }}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
