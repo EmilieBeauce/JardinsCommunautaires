@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Test
-      run: dotnet test --nobuild --verbosity normal
+      run: dotnet test --no-build --verbosity normal
       
       
       
@@ -38,17 +38,17 @@ jobs:
       if: ${{ failure() }}
       uses: actions/github-script@v5
       with:
+        github-token: ${{ secrets.SECRET_GITHUBACTION }}
         script: |
           const issueTitle = "Tests failed on ${context.ref}";
           const issueBody = "The tests failed on **${context.ref}**. Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.";
-          
+
           const existingIssue = await github.rest.issues.listForRepo({
             owner: context.repo.owner,
             repo: context.repo.repo,
             state: "open",
             labels: "tests-failed",
             filter: "all"
-           github-token: ${{ secrets.SECRET_GITHUBACTION }}
           });
 
           if (!existingIssue.data.find(issue => issue.title === issueTitle)) {
@@ -60,5 +60,6 @@ jobs:
               labels: ["tests-failed"]
             });
           }
+
       
 
