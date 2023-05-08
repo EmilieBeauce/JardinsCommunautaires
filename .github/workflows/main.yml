@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal TP2_14E_A2022_Tests.sln
+      run: dotnet test --no-build --verbosity normal 
       
       
       
