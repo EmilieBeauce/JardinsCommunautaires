@@ -31,7 +31,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity detailed
+      run: dotnet test --no-restore --verbosity detailed
       
     - name: Create issue if tests fail
       if: ${{ failure() }}
