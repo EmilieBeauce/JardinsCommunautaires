@@ -17,16 +17,22 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v2 
       with:
         dotnet-version: 6.0.x
+        
     - name: Restore Dependencies
       run: dotnet restore
+      
     - name: Build 
       run: dotnet build --no-restore
+      
     - name: Test
       run: dotnet test --nobuild --verbosity normal
+      
+      
       
     - name: Create issue if tests fail
       if: ${{ failure() }}
@@ -42,6 +48,7 @@ jobs:
             state: "open",
             labels: "tests-failed",
             filter: "all"
+           github-token: ${{ secrets.SECRET_GITHUBACTION }}
           });
 
           if (!existingIssue.data.find(issue => issue.title === issueTitle)) {
