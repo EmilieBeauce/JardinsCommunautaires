@@ -1,0 +1,65 @@
+name: Build and test
+# À chaque push et pull requestion, l'action est activé. 
+
+on:
+  push:
+    branches:
+    - main
+
+  pull_request:
+      branches:
+      - main
+      
+jobs:
+  
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2 
+      with:
+        dotnet-version: 6.0.x
+        
+    - name: Restore Dependencies
+      run: dotnet restore
+      
+    - name: Build 
+      run: dotnet build --no-restore
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+      
+      
+      
+    - name: Create issue if tests fail
+      if: ${{ failure() }}
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.SECRET_GITHUBACTION }}
+        script: |
+          const issueTitle = "Tests failed on ${context.ref}";
+          const issueBody = "The tests failed on **${context.ref}**. Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.";
+
+          const existingIssue = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: "open",
+            labels: "tests-failed",
+            filter: "all"
+          });
+
+          if (!existingIssue.data.find(issue => issue.title === issueTitle)) {
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: issueTitle,
+              body: issueBody,
+              labels: ["tests-failed"]
+            });
+          }
+
+      
+
