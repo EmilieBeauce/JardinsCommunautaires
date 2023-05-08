@@ -1,6 +1,0 @@
-C:\tp2_jardins_communautaires\TP2_14E_A2022Tests\bin\Debug\net6.0-windows\CoverletSourceRootsMapping
-C:\tp2_jardins_communautaires\TP2_14E_A2022Tests\obj\Debug\net6.0-windows\TP2_14E_A2022Tests.csproj.AssemblyReference.cache
-C:\tp2_jardins_communautaires\TP2_14E_A2022Tests\obj\Debug\net6.0-windows\TP2_14E_A2022Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\tp2_jardins_communautaires\TP2_14E_A2022Tests\obj\Debug\net6.0-windows\TP2_14E_A2022Tests.AssemblyInfoInputs.cache
-C:\tp2_jardins_communautaires\TP2_14E_A2022Tests\obj\Debug\net6.0-windows\TP2_14E_A2022Tests.AssemblyInfo.cs
-C:\tp2_jardins_communautaires\TP2_14E_A2022Tests\obj\Debug\net6.0-windows\TP2_14E_A2022Tests.csproj.CoreCompileInputs.cache
