@@ -42,13 +42,11 @@ namespace TP2_14E_A2022.Data.GestionsBD
                 return new List<Gestionnaire>();
             }
         }
-
         public string GetPrenomNomGestionnaire(string courriel)
         {
             var gestionnaire = GetGestionnairesCollection().Find(g => g.Courriel == courriel).FirstOrDefault();
             return gestionnaire != null ? $"{gestionnaire.Prenom} {gestionnaire.Nom}" : string.Empty;
         }
-        
         public bool CreateGestionnaireBD(string prenom, string nom, string courriel, string motDePasse)
         {
             try
