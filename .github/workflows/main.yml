@@ -40,7 +40,7 @@ jobs:
       if: ${{ failure() }}
       uses: actions/github-script@v5
       with:
-        github-token: ${{ secrets.SECRET_githubaction }}
+        github-token: ${{ secrets.SECRET_GITHUBACTION }}
         script: |
           const issueTitle = "Tests failed on ${context.ref}";
           const issueBody = "The tests failed on **${context.ref}**. Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.";
