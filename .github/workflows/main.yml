@@ -31,7 +31,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Test
-      run: dotnet test --no-restore --verbosity detailed
+      run: dotnet test --no-build --verbosity detailed
       
     - name: Tests completed
       run: echo "All tests completed successfully"
@@ -40,7 +40,7 @@ jobs:
       if: ${{ failure() }}
       uses: actions/github-script@v5
       with:
-        github-token: ${{ secrets.SECRET_GITHUBACTION }}
+        github-token: ${{ secrets.SECRET_githubaction }}
         script: |
           const issueTitle = "Tests failed on ${context.ref}";
           const issueBody = "The tests failed on **${context.ref}**. Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.";
