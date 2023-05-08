@@ -13,6 +13,7 @@
 .idea/**/shelf
 .idea/
 
+#yo
 # AWS User-specific
 .idea/**/aws.xml
 
