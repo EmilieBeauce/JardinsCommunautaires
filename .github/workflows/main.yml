@@ -30,7 +30,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
     - name: Test
-      run: dotnet test --no-restore --no-build --blame --verbosity=normal
+      run: dotnet test --no-restore --no-build --blame --verbosity=normal --logger trx
       
     - name: Tests completed
       run: echo "All tests completed successfully"
