@@ -158,7 +158,7 @@
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.1.0, )"
+              "version": "[16.2.0, )"
             },
             "MongoDB.Driver": {
               "target": "Package",
