@@ -1,6 +1,7 @@
 name: Build and test
 # À chaque push et pull requestion, l'action est activé. 
 
+
 on:
   push:
     branches:
@@ -29,7 +30,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
     - name: Test
-      run: dotnet test --no-restore --no-build --blame
+      run: dotnet test --no-restore --no-build --blame --verbosity=normal
       
     - name: Tests completed
       run: echo "All tests completed successfully"
