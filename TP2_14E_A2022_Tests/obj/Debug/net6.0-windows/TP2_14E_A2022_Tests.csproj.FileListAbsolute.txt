@@ -1,10 +1,7 @@
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\CoverletSourceRootsMapping
-C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\testhost.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\TP2_14E_A2022.deps.json
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\TP2_14E_A2022.runtimeconfig.json
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\TP2_14E_A2022.exe
-C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\testhost.exe
-C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
@@ -64,11 +61,13 @@ C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Micro
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.TestPlatform.CoreUtilities.dll
+C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.TestPlatform.CommunicationUtilities.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.TestPlatform.CrossPlatEngine.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.TestPlatform.Utilities.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.VisualStudio.TestPlatform.Common.dll
+C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\testhost.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\MongoDB.Bson.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\MongoDB.Driver.dll
@@ -82,7 +81,6 @@ C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\GalaS
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
-C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\NuGet.Frameworks.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\nunit.framework.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\ReactiveUI.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\SharpCompress.dll
@@ -90,6 +88,7 @@ C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\SkiaS
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Snappier.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Splat.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\System.Reactive.dll
+C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\System.Xml.XPath.XmlDocument.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\Tmds.DBus.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\ZstdSharp.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022_Tests\bin\Debug\net6.0-windows\ru\MaterialDesignExtensions.resources.dll

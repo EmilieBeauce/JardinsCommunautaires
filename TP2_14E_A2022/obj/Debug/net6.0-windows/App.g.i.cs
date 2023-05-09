@@ -63,7 +63,7 @@ namespace TP2_14E_A2022 {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/TP2_14E_A2022;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TP2_14E_A2022;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

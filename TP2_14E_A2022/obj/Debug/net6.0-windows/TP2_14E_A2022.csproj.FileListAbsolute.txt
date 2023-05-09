@@ -274,6 +274,7 @@ C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Styles\UICo
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageAjouterMembre.g.cs
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageConnexion.g.cs
+C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageCreationOutil.g.cs
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageCreerCompte.g.cs
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageDetailsMembre.g.cs
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageLireOutils.g.cs
@@ -290,6 +291,7 @@ C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\App.baml
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\MainWindow.baml
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageAjouterMembre.baml
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageConnexion.baml
+C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageCreationOutil.baml
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageCreerCompte.baml
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageDetailsMembre.baml
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageLireOutils.baml
@@ -309,5 +311,3 @@ C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\refint\TP2_
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\TP2_14E_A2022.pdb
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\TP2_14E_A2022.genruntimeconfig.cache
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\ref\TP2_14E_A2022.dll
-C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageCreationOutil.g.cs
-C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\Pages\PageCreationOutil.baml

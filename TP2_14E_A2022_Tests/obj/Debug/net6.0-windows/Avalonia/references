@@ -51,16 +51,16 @@ C:\Users\EmilieBeauce\.nuget\packages\microsoft.codeanalysis.common\3.4.0\lib\ne
 C:\Users\EmilieBeauce\.nuget\packages\microsoft.codeanalysis.scripting.common\3.4.0\lib\netstandard2.0\Microsoft.CodeAnalysis.Scripting.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\Microsoft.CSharp.dll
 C:\Users\EmilieBeauce\.nuget\packages\microsoft.extensions.logging.abstractions\2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\17.1.0\lib\netcoreapp2.1\Microsoft.TestPlatform.CommunicationUtilities.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\17.1.0\lib\netcoreapp2.1\Microsoft.TestPlatform.CoreUtilities.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\17.1.0\lib\netcoreapp2.1\Microsoft.TestPlatform.CrossPlatEngine.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\17.1.0\lib\netcoreapp2.1\Microsoft.TestPlatform.PlatformAbstractions.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\17.1.0\lib\netcoreapp2.1\Microsoft.TestPlatform.Utilities.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\16.2.0\lib\netstandard1.5\Microsoft.TestPlatform.CommunicationUtilities.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.objectmodel\16.2.0\lib\netstandard1.5\Microsoft.TestPlatform.CoreUtilities.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\16.2.0\lib\netstandard1.5\Microsoft.TestPlatform.CrossPlatEngine.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.objectmodel\16.2.0\lib\netstandard1.5\Microsoft.TestPlatform.PlatformAbstractions.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\16.2.0\lib\netstandard1.5\Microsoft.TestPlatform.Utilities.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\Microsoft.VisualBasic.Core.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\Microsoft.VisualBasic.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.codecoverage\17.1.0\lib\netcoreapp1.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\17.1.0\lib\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.Common.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\17.1.0\lib\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.codecoverage\16.2.0\lib\netcoreapp1.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\16.2.0\lib\netstandard1.5\Microsoft.VisualStudio.TestPlatform.Common.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.objectmodel\16.2.0\lib\netstandard1.5\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
 C:\Users\EmilieBeauce\.nuget\packages\mstest.testframework\2.2.8\lib\netstandard1.0\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
 C:\Users\EmilieBeauce\.nuget\packages\mstest.testframework\2.2.8\lib\netstandard1.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\Microsoft.Win32.Primitives.dll
@@ -76,7 +76,6 @@ C:\Users\EmilieBeauce\.nuget\packages\moq\4.18.4\lib\net6.0\Moq.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\mscorlib.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\netstandard.dll
 C:\Users\EmilieBeauce\.nuget\packages\newtonsoft.json\9.0.1\lib\netstandard1.0\Newtonsoft.Json.dll
-C:\Users\EmilieBeauce\.nuget\packages\nuget.frameworks\5.11.0\lib\netstandard2.0\NuGet.Frameworks.dll
 C:\Users\EmilieBeauce\.nuget\packages\nunit\3.13.3\lib\netstandard2.0\nunit.framework.dll
 C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\PresentationCore.dll
 C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\PresentationFramework.Aero.dll
@@ -265,7 +264,8 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\System
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\System.Xml.XmlSerializer.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\System.Xml.XPath.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.13\ref\net6.0\System.Xml.XPath.XDocument.dll
-C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\17.1.0\lib\netcoreapp2.1\testhost.dll
+C:\Users\EmilieBeauce\.nuget\packages\system.xml.xpath.xmldocument\4.0.1\ref\netstandard1.3\System.Xml.XPath.XmlDocument.dll
+C:\Users\EmilieBeauce\.nuget\packages\microsoft.testplatform.testhost\16.2.0\lib\netstandard1.5\testhost.dll
 C:\Users\EmilieBeauce\.nuget\packages\tmds.dbus\0.9.0\lib\netstandard2.0\Tmds.DBus.dll
 C:\tp2_jardins_communautaires\TP2_14E_A2022\obj\Debug\net6.0-windows\ref\TP2_14E_A2022.dll
 C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\UIAutomationClient.dll
