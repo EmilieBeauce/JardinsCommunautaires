@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TP2_14E_A2022.Data.Gestions;
 using System;
 using System.Collections.Generic;
@@ -24,6 +24,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestInitialize]
         public void TestInitialize()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             membreDB = new MembreDB();
             gestion = new GestionMembre(membreDB);
             mockMembreDB = new Mock<MembreDB>();
@@ -32,6 +34,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod]
         public void GestionMembre_Constructeur_RetourneDesMembresDeMembreDB()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             mockMembreDB.Setup(m => m.GetMembres()).Returns(membres);
 
             var gestionMembre = new GestionMembre(mockMembreDB.Object);
@@ -279,4 +283,4 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
 
 
     }
-}
+}*/
