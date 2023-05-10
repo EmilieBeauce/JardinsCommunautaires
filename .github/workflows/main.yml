@@ -33,34 +33,5 @@ jobs:
     - name: Tests completed
       run: echo "All tests completed successfully"
       
-    - name: Create issue if tests fail
-      if: ${{ failure() }}
-      uses: actions/github-script@v5
-      with:
-        github-token: ${{ secrets.SECRET_GITHUBACTION }}
-        script: |
-          const issueTitle = "Tests failed on ${context.ref}";
-          const issueBody = "The tests failed on **${context.ref}**. Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.";
-
-          const existingIssue = await github.rest.issues.listForRepo({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            state: "open",
-            labels: "tests-failed",
-            filter: "all"
-          });
-
-          if (!existingIssue.data.find(issue => issue.title === issueTitle)) {
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: issueTitle,
-              body: issueBody,
-              labels: ["tests-failed"]
-            });
-          }
-
-    - name: Checkout code
-      if: ${{ success() }}
-      uses: actions/checkout@v3
+   
 
