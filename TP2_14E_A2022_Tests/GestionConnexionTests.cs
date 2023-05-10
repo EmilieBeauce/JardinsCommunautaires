@@ -36,6 +36,17 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
     //test
     //test
     //test
+    //test
+    //test
+    //test
+    //test
+    //test
+    //test
+    //test
+    //test
+    //test
+    //test
+    //test
 
     [TestClass()]
     public class GestionConnexionTests
@@ -61,7 +72,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             
             var result = mock.Object.CreerCompteGestionnaire("John", "Doe", "jd@courriel.com", "password");
 
-            Assert.IsNotNull(result);
+            Assert.IsNull(result);
             Assert.AreEqual(result.Prenom, "John");
             Assert.AreEqual(result.Nom, "Doe");
             Assert.AreEqual(result.Courriel, "jd@courriel.com");
@@ -79,7 +90,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
 
             Gestionnaire nouveauGestionnaire = gestion.CreerCompteGestionnaire(prenom, nom, courriel, motDePasse);
 
-            Assert.IsNotNull(nouveauGestionnaire);
+            Assert.IsNull(nouveauGestionnaire);
             Assert.AreEqual(prenom, nouveauGestionnaire.Prenom);
             Assert.AreEqual(nom, nouveauGestionnaire.Nom);
             Assert.AreEqual(courriel, nouveauGestionnaire.Courriel);
