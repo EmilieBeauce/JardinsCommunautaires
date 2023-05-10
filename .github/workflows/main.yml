@@ -23,14 +23,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-
-    - name: Restore Dependencies
-      run: dotnet restore
+    
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
       
-    - name: Build
-      run: dotnet build
     - name: Test
-      run: dotnet test --no-restore --no-build --blame --verbosity=Detailed --logger trx
+      run: dotnet test 
       
     - name: Tests completed
       run: echo "All tests completed successfully"
