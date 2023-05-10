@@ -40,7 +40,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
 
         }
         
-        /*[TestMethod]
+        [TestMethod]
         public void Creer_Outil_Avec_Mauvaises_Valeurs()
         {
             Console.WriteLine("Starting TestMethod...");
@@ -274,7 +274,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() => gestionOutil.ModifierOutil(invalidOutil));
         }
-        */
+        
 
         
     }
