@@ -42,8 +42,12 @@ jobs:
         title: Tests Failed
         body: |
           The tests failed on the latest push. Please review the errors and correct them.
-  
-    - name: Add badge to README
-      uses: readme-md-generator/readme-md-generator-action@v1
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Commit and push if changed
+      run: |
+        git diff
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add -A
+        git diff --quiet && git diff --staged --quiet || git commit -m "Updated README"
+        git push
