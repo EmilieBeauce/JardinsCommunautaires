@@ -19,6 +19,7 @@ using TP2_14E_A2022.Utils;
 
 namespace TP2_14E_A2022.Data.Gestions.Tests
 {
+    
 
     [TestClass()]
     public class GestionConnexionTests
@@ -29,7 +30,6 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            Console.WriteLine("Starting TestMethod...");
             pageConnexionBD = new PageConnexionBD();
             gestion = new GestionConnexion(pageConnexionBD);
             Console.WriteLine("Finished TestMethod.");
