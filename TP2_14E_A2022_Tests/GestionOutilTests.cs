@@ -35,6 +35,9 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             Assert.AreEqual(nom, outil.Nom);
             Assert.AreEqual(description, outil.Description);
             Assert.AreEqual(estBrise, outil.EstBrise);
+            
+            Console.WriteLine("Finishing method");
+
         }
         
         /*[TestMethod]
