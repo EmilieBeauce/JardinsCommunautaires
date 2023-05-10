@@ -14,6 +14,10 @@ public partial class PageLireOutils : Page
 {
     private readonly OutilDB _pageConnexionBd = new OutilDB();
     private GestionOutil _gestionOutil;
+    
+    
+    
+    
     private string nomCompletGestionnaire;
 
     

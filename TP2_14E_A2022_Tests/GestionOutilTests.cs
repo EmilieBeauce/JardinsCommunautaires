@@ -17,6 +17,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod()]
         public void Creer_Outil_Avec_Bonne_Valeurs()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             // Arrange
             var outilDbMock = new Mock<IOutilDB>();
             outilDbMock.Setup(repo => repo.GetOutils()).Returns(new List<Outils>());
@@ -33,11 +35,16 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             Assert.AreEqual(nom, outil.Nom);
             Assert.AreEqual(description, outil.Description);
             Assert.AreEqual(estBrise, outil.EstBrise);
+            
+            Console.WriteLine("Finishing method");
+
         }
         
         [TestMethod]
         public void Creer_Outil_Avec_Mauvaises_Valeurs()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             var outilDbMock = new Mock<IOutilDB>();
             outilDbMock.Setup(repo => repo.GetOutils()).Returns(new List<Outils>());
             var gestionOutil = new GestionOutil(outilDbMock.Object);
@@ -267,6 +274,7 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() => gestionOutil.ModifierOutil(invalidOutil));
         }
+        
 
         
     }

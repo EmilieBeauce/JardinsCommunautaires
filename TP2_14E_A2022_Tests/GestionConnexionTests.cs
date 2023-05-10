@@ -19,6 +19,7 @@ using TP2_14E_A2022.Utils;
 
 namespace TP2_14E_A2022.Data.Gestions.Tests
 {
+    
 
     [TestClass()]
     public class GestionConnexionTests
@@ -31,10 +32,13 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         {
             pageConnexionBD = new PageConnexionBD();
             gestion = new GestionConnexion(pageConnexionBD);
+            Console.WriteLine("Finished TestMethod.");
         }
         [TestMethod]
         public void TestCreerCompteGestionnaire_retourne_un_gestionnaire()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             var mock = new Mock<IGestionConnexion>();
             mock.Setup(x => x.CreerCompteGestionnaire("John", "Doe", "jd@courriel.com", "password"))
                 .Returns(new Gestionnaire { Prenom = "John", Nom = "Doe", Courriel = "jd@courriel.com", MotDePasse = "password" });
@@ -50,6 +54,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod]
         public void CreerCompteGestionnaire_AvecDesParametresValides_RetourneUnGestionnaireCree()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             string prenom = "John";
             string nom = "Doe";
             string courriel = "johndoe@test.ca";
@@ -66,6 +72,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod]
         public void CreerCompteGestionnaire_ExceptionLevee_RetourneNull()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             var mockPageConnexionBD = new Mock<IPageConnexionBD>();
             var gestionnaireList = new List<Gestionnaire>();
             mockPageConnexionBD.Setup(m => m.GetGestionnaires()).Returns(gestionnaireList);
@@ -95,6 +103,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod]
         public void TestCreerCompteGestionnaire_retourne_null_si_les_données_sont_incorrectes()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             var mock = new Mock<IGestionConnexion>();
             mock.Setup(x => x.CreerCompteGestionnaire("John", "Doe", "jd@courriel.com", "password"))
                 .Returns(new Gestionnaire { Prenom = "John", Nom = "Doe", Courriel = "jd@courriel.com", MotDePasse = "password" });
@@ -106,6 +116,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod]
         public void NomEstValide_NullNom_ReturnsFalse()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             string nom = null;
             var result = gestion.NomEstValide(nom);
             Assert.IsFalse(result);
@@ -113,6 +125,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod]
         public void NomEstValide_EmptyNom_ReturnsFalse()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             string nom = "";
             var result = gestion.NomEstValide(nom);
             Assert.IsFalse(result);
@@ -120,6 +134,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod]
         public void NomEstValide_WhiteSpaceNom_ReturnsFalse()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             string nom = " ";
             var result = gestion.NomEstValide(nom);
             Assert.IsFalse(result);
@@ -127,6 +143,8 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         [TestMethod]
         public void PrenomEstValide_NullPrenom_ReturnsFalse()
         {
+            Console.WriteLine("Starting TestMethod...");
+
             string prenom = null;
             var result = gestion.PrenomEstValide(prenom);
             Assert.IsFalse(result);
@@ -346,3 +364,4 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
         }
     }
 }
+
