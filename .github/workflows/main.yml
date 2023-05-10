@@ -1,7 +1,6 @@
 name: Build and test
 # À chaque push et pull requestion, l'action est activé. 
 
-
 on:
   push:
     branches:
@@ -29,7 +28,22 @@ jobs:
       
     - name: Test
       run: dotnet test --no-build
-      
+      id: tests
+    
     - name: Tests completed
       run: echo "All tests completed successfully"
-
+    
+    - name: Create Issue From Failed Test
+      if: failure() && steps.tests.outcome == 'failure'
+      uses: JasonEtco/create-an-issue@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        title: Tests Failed
+        body: |
+          The tests failed on the latest push. Please review the errors and correct them.
+  
+    - name: Add badge to README
+      uses: readme-md-generator/readme-md-generator-action@v1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
