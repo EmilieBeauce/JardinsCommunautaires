@@ -1,4 +1,4 @@
-﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TP2_14E_A2022.Data.Gestions;
 using System;
 using System.Collections.Generic;
@@ -283,4 +283,4 @@ namespace TP2_14E_A2022.Data.Gestions.Tests
 
 
     }
-}*/
+}
