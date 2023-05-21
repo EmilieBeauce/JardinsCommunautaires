@@ -16,6 +16,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+      with:
+         token: ${{ secrets.SECRET_GITHUBACTION }}
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
